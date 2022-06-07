@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Unwanted google drive files
+desktop.ini
+
+# Any files in data folder may be too large
+/data/
