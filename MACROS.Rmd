@@ -1,38 +1,121 @@
 ---
-title: 'Macroeconomics Project'
-author: "Emma Terblanche, Jacques Rossouw & Samantha Scott"
-date: "30/04/2022"
+# IMPORTANT: Change settings here, but DO NOT change the spacing.
+title: "A Replication: A Reconsideration of Money Growth Rules"
+#subtitle: "This will appear as Right Header"
+documentclass: "elsarticle"
+Thesis_FP: FALSE
+# Entry1: "An unbelievable study with a title spanning multiple lines."
+# Entry2: "\\textbf{Nico Katzke}" # textbf for bold
+# Entry3: "A thesis submitted toward the degree of Doctor of Philosophy"
+# Uni_Logo: Tex/Logo.png # Place a logo in the indicated location (from your root, e.g. defaults to ~/Tex/Logo.png) and uncomment this line. Leave uncommented for no image
+# Logo_width: 0.3 # If using a logo - use this to set width (size) of image
+# Entry4: "Under the supervision of: \\vfill Prof. Joe Smith and Dr. Frank Smith"
+# Entry5: "Stellenbosch University"
+# Entry6: April 2020
+# Entry7:
+# Entry8:
+# Comment: ----- Follow this pattern for up to 5 authors
+AddTitle: TRUE # Use FALSE when submitting to peer reviewed platform. This will remove author names.
+Author1: "Jacques Rossouw"  # First Author - note the thanks message displayed as an italic footnote of first page.
+Ref1: "Stellenbosch University, Cape Town, South Africa" # First Author's Affiliation
+Email1: "21159793\\@sun.ac.za" # First Author's Email address
+Author2: "Samantha Scott"
+#Ref2: "University of Götten.."
+Email2: "20945043\\@sun.ac.za"
+#CommonAffiliation_12: TRUE
+#Ref2: "Stellenbosch University, Cape Town, South Africa" # If Author 1 and 2 have a common affiliation. Works with _13, _23, etc.
+Author3: "Emma Terblanche"
+Email3: "21777039\\@sun.ac.za"
+#CommonAffiliation_23: TRUE
+#CorrespAuthor_3: TRUE  # If corresponding author is author 3, e.g., use CorrespAuthor_3: TRUE
+keywords: "Macroeconomics \\sep Calibration \\sep Monetary Policy" # Use \\sep to separate
+#JELCodes: "L250 \\sep L100"
+# ----- Manage headers and footers:
+#BottomLFooter: $Title$
+#BottomCFooter:
+#TopLHeader: \leftmark # Adds section name at topleft. Remove comment to add it.
+BottomRFooter: "\\footnotesize Page \\thepage" # Add a '#' before this line to remove footer.
+addtoprule: TRUE
+addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
+# --------- page margins:
+margin: 2.3 # Sides
+bottom: 2 # bottom
+top: 2.5 # Top
+HardSet_layout: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashing text to fit on pages, e.g.
+linenumbers: FALSE # Used when submitting to journal
+# ---------- References settings:
+# You can download cls format here: https://www.zotero.org/ - simply search for your institution. You can also edit and save cls formats here: https://editor.citationstyles.org/about/
+bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
+csl: Tex/harvard-stellenbosch-university.csl # referencing format used.
+# By default, the bibliography only displays the cited references. If you want to change this, you can comment out one of the following:
+#nocite: '@*' # Add all items in bibliography, whether cited or not
+# nocite: |  # add specific references that aren't cited
+# ---------- General:
+RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
+Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
+toc: FALSE                       # Add a table of contents
+numbersections: TRUE             # Should sections (and thus figures and tables) be numbered?
+fontsize: 11pt                  # Set fontsize
+linestretch: 1.2                # Set distance between lines.
+link-citations: TRUE            # This creates dynamic links to the papers in reference list.
+### Adding additional latex packages:
+# header-includes:
 output:
   pdf_document:
-      keep_tex: true
-      toc: true
-      toc_depth: 3
-      number_sections: true
-      latex_engine: pdflatex
-documentclass: report
+    keep_tex: TRUE
+    template: Tex/TexDefault.txt
+    fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
+    fig_height: 3.5
+#abstract: |
+  #Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
+<!-- First: Set your default preferences for chunk options: -->
 
+<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
+# Note: Include = FALSE implies the code is executed, but not printed in your pdf.
+# warning and message = FALSE implies ugly messages and warnings are removed from your pdf.
+# These should be picked up when you execute the command chunks (code sections below) in your rmd, not printed in your paper!
 
-```{r include=FALSE}
-
-rm(list = ls()) # Clean your environment:
-gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+# Lets load in example data, and see how this can be stored and later called from your 'data' folder.
+if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
-list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+#Example_data <- Texevier::Ex_Dat
+
+# Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
+# This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
+#write_rds(Example_data, path = "data/Example_data.rds")
+
 ```
 
 \newpage
 
-# Introduction [EDIT]
+# Introduction
 
-According to Belongia and Ireland (2020), nominal interest rate management has been the Federal Reserve's approach to stabilize the output gap and inflation. The Taylor Rule is a good predictor of the nominal interest rate management. Interest rate management has been endorsed by literature and has shown advantages over the management of money stock, however, economists have only argued against a constant monetary growth rule but have neglected the potential benefits of a potential benefits of a flexible monetary growth rule. The Belongia and Ireland (2020) paper is a reconsideration of money growth rules in an estimated New Keynesian model.In this paper, the New Keynesian model by Belongia and Ireland (2020) is replicated. Firstly, the model is explained. The first order conditions log-linearisations are then presented.
-
+According to Belongia and Ireland (2020), nominal interest rate
+management has been the Federal Reserve's approach to stabilise the
+output gap and inflation. The TR is a good predictor of the
+nominal interest rate management. Interest rate management has been
+endorsed by literature and has shown advantages over the management of
+money stock, however, economists have only argued against a constant
+monetary growth rule but have neglected the potential benefits of a
+potential benefits of a flexible monetary growth rule. The Belongia and
+Ireland (2020) paper is a reconsideration of money growth rules in an
+estimated New Keynesian model.In this paper, the New Keynesian model by
+Belongia and Ireland (2020) is replicated. Firstly, the model is
+explained. The first order conditions log-linearisations are then
+presented.
 
 # The Model
 
-The model economy from THE PAPER includes the representative household, a representative finished goods-producing firm, "i" intermediate goods-producing firms (such that $i \in [0; 1]$, is a continuum) and a central bank. For each period, a unique intermediate good is produced by each intermediate goods-producing firm $i$, such that the intermediate goods adopt the same indexing notation, $i \in [0; 1]$. The symmetry of this model suggests that the focus can be narrowed to a representative intermediate goods-producing firm instead. This representative firm then produces good intermediate good $i$.
+The model economy from Belongia and Ireland (2020) includes the representative household, a representative finished goods-producing firm, "i" intermediate goods-producing firms (such that $i \in [0; 1]$, is a continuum) and a central bank. For each period, a unique intermediate good is produced by each intermediate goods-producing firm $i$, such that the intermediate goods adopt the same indexing notation, $i \in [0; 1]$. The symmetry of this model suggests that the focus can be narrowed to a representative intermediate goods-producing firm instead. This representative firm then produces good intermediate good $i$.
+
 The household preferences are described by their expected utility function. These preferences, along with the incomplete indexation of sticky nominal goods prices that are determined by the monopolistically competitive intermediate goods-producing firms suggests a New Keynesian IS and Phillips Curve that are both forward, and backwards-looking.
 Monetary Policy is assumed to follow a version of the Taylor (1993) rule, in line with the Federal Reserve behaviour over the sample period from 1983 to 2019. To allow for alternative monetary policy rules, the money demand curve used in the paper is chosen such that it may be consistent with US data ranging over the same sample period.
 With the basic model set up in this way, the derivations of the model's first order conditions for each representative is replicated in the following sections, followed by the complete system of linearised equations.
@@ -41,48 +124,89 @@ With the basic model set up in this way, the derivations of the model's first or
 
 ## The Representative Household
 
-The representative household, at the beginning of each each period $t=0,1,2,...$ holds $M_{t-1}$ units of money and $B_{t-1}$ units of bonds. Additionally, the household also receives a lump-sum monetary transfer $T_{t}$ from the central bank at the beginning of each period $t$. The household's bonds mature, yielding $B_{t-1}$ additional units of money. 
-The household purchases $B_{t}$ new bonds with a portion of its money, at an asking price $1/r_t$ units of money per bond. The gross nominal interest rate between time $t$ and $t+1$ is therefore denoted by $r_t$. The household is paid $W_{t}h_{t}$ in labour income for supplying $h_{t}{(i)}$ units of labour to each intermediate goods-producing firm, given a wage rate of  $W_{t}$, for each period $t$, where:
+Each period $t=0,1,2,...$ is entered by the representative household with
+$M_{t-1}$ units of money and $B_{t-1}$ bonds. The household receives a lump-sum monetary transfer $T_{t}$ from
+the central bank at the beginning of period
+$t$. In addition, the household's bonds mature, yielding
+$B_{t-1}$ additional units of money. The household uses some of this
+money to purchase $B_{t}$ new bonds at the price of $1=rt$ units of
+money per bond. Therefore, $r_t$ represents the gross nominal interest rate
+between $t$ and $t + 1$. The household provides
+$h_{t}{(i)}$ units of labour to each intermediate goods-producing firm
+$i\in{[0; 1]}$ during period $t$. The household is paid at the nominal wage rate
+$W_{t}$. Households therefore earn $W_{t}h_{t}$ in labour income, where
 
 $$h_{t}=\int h_{t}{(i)} \;di$$
 
-indicates the total hours worked at $t$.
-$C_t$ is the household consumption at $t$, purchased from the final goods-producing firm at the nominal price $P_t$. Finally, at the end of each period $t$, nominal profits $D_{t}(i)$ from each intermediate goods-producing firm $i \in {[0; 1]}$ is paid out to the household. This allows the household to then carry $M_{t}$ units of money into the next period, subject to the budget constraint:
+represents the total hours worked during the period. In period $t$,
+the household consumes $C_{t}$ units of the finished goods. Finished goods are purchased at
+the nominal price, $P_{t}$ from the representative finished
+goods-producing firm. The household receives
+nominal profits $D_{t}(i)$ from each intermediate goods-producing firm
+$i \in {[0; 1]}$, at the end of period $t$. The household then carries $M_{t}$ units of money into
+period $t + 1$, which is subject to the following budget constraint:
 
 $$\frac{M_{t-1}+T_{t}+B_{t-1}+W_{t}h_{t}+D_{t}}{P_{t}} \ge C_{t} + \frac{M_{t} + \frac{B_{t}}{r_{t}}}{P_{t}}$$
 
-$\forall$ $t=0,1,2,...,$ where
+for all $t=0,1,2,...,$ where
 
 $$D_{t}= \int_{0}^{1}D_{t}{(i)}\;di$$
 
-is the total profits received at $t$. 
+represents total profits received for the period. The household's
+preferences are described by the following expected utility function:
 
-The household's preferences are described by the expected utility function
+$$E_{0}\sum_{t=0}^{\infty}\beta^{t}a_{t}[ln(C_{t} - \gamma C_{t-1}) + v(\frac{M_{t}}{P_{t}Z_{t}}, u_t)-(\frac{\phi_m}{2})(\frac{M_t/P_t}{zM_{t-1}/P_{t-1}}-1)^{2}(\frac{M_{t}}{P_{t}Z_{t}})-h_{t}]$$
 
-$$\begin{aligned}
-EU(\cdot_t) = E_{0}\sum_{t=0}^{\infty}\beta^{t}a_{t}[ln(C_{t} - \gamma C_{t-1}) + v(\frac{M_{t}}{P_{t}Z_{t}}, u_t)\\-
-(\frac{\phi_m}{2})(\frac{M_t/P_t}{zM_{t-1}/P_{t-1}}-1)^{2}(\frac{M_{t}}{P_{t}Z_{t}})-h_{t}]
-\end{aligned}$$
-
-
-where $0<\beta<1$ and $0 \le \gamma \le1$. The preference shock $a_{t}$ follows the stationary autoregressive process:
+Both the discount factor and the habit formation parameter lie
+between zero and one, with $0<\beta<1$ and $0 \ge \gamma \le1$. The
+preference shock $a_{t}$ follows the stationary autoregressive process below:
 
 $$\ln(a_{t})=\rho_{a} \ln(a_{t-1}) + \varepsilon_{at} \tag{2}$$
 
-$\forall$ $t=0,1,2,...,$ with $0 \leq \rho_{a} \le 1$, and the serially uncorrelated innovation $\varepsilon_{at} \sim norm(0,\sigma_{a})$. Utility is additively separable across consumption, real balances, and hours worked such that a specification for the model's IS curve that excludes any money and employment terms. For balanced growth, real balances $M_{t}=P_{t}$ is introduced into the utility function through the function $v$ scaled by the aggregate productivity shock $Z_{t}$, a random walk process with drift:
+for all $t=0,1,2,...,$ with $0 \ge \rho_{a} \le 1$, where the serially
+uncorrelated innovation $\varepsilon_{at}$ is normally distributed with a
+mean of zero and standard deviation $\sigma_{a}$. Total utility is a combination of the utility obtained from consumption, real balances, and hours worked, which implies additive seperability, so as to
+imply a specification for the model's IS curve that does not include
+terms involving money and employment. As shown by King, Plosser, and
+Rebelo (1988), additive separability also implies that a logarithmic
+specification over consumption is necessary for the model to be consistent
+with balanced growth. Also for balanced growth, real balances
+$M_{t}=P_{t}$ enter utility through the function $v$ after being scaled
+by the aggregate productivity shock $Z_{t}$. This follows a random walk
+with drift:
 
 $$\ln(Z_{t})= \ln{z} + \ln(Z_{t-1}) + \varepsilon_{zt} \tag{3}$$
 
-where $\epsilon_{zt} \sim norm(0,\sigma_{z})$. The money demand shock $u_{t}$ is a stationary autoregressive process:
+where the serially uncorrelated error term or innovation is normally
+distributed with zero mean and standard deviation $\sigma_{z}$. The
+shock $u_{t}$ to money demand follows the stationary autoregressive
+process:
 
-$$\ln(u_{t})= \rho_{u} \ln(u_{t-1}) + \varepsilon_{ut} \tag{4}$$ $\forall \ t=0,1,2,...$ with $0 \leq \rho_{u} <1$, where $\varepsilon_{ut} \sim norm(0,\sigma_{u})$. The magnitude of the real balances adjustment cost is $\phi_{m} \ge 0$. In steady state this will equal zero.
-The household therefore chooses $Ct, ht, Bt$, and $Mt \ \forall \ t = 0, 1, 2,...,$ such that expected utility is maximised, subject to the budget constraint (1) $\forall \ t = 0,1,2,...,$
+$$\ln(u_{t})= \rho_{u} \ln(u_{t-1}) + \varepsilon_{ut} \tag{4}$$ for all
+$t=0,1,2,...$ with $0 \ge \rho_{u} <1$, where the serially uncorrelated
+innovation $\varepsilon_{ut}$ is normally distributed with mean zero and
+standard deviation $\sigma_{u}$. Finally, the parameter $\phi_{m} \ge 0$
+governs the magnitude of the adjustment cost for real balances, adapted
+from Nelson (2002) and Andres, Lopez-Salido, and Nelson (2004, 2009) to
+take the quadratic functional form used here. Since these costs subtract
+from utility along with hours worked, they have the interpretation as a
+time cost, and are scaled by the average growth rate parameter $z$ from
+(3) so as to equal zero in the model's steady state. Thus, the household
+chooses $Ct, ht, Bt$, and $Mt$ for all $t = 0, 1, 2,...,$ to maximize
+expected utility subject to the budget constraint (1) for all
+$t = 0,1,2,...,$
+
+The Household preferences are characterised by the following expected
+utility function:
+
+$$ EU(\cdot_t) = E_{0} \sum_{t=0}^\infty \beta^ta_t U(\cdot_t) = E_{0} \sum_{t=0}^\infty \beta^ta_t[\ln(C_{t}-\gamma C_{t-1})+v(\frac{M_t}{P_tZ_t},u_t)-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{zM_{t-1}}{P_{t-1}}}-1)^2(\frac{M_t}{P_tZ_t})-h_t]$$
 
 Given the Household budget constraint:
 
 $$ \left[ \frac{M_{t-1} + T_t +B_{t-1} + W_th_t+D_t}{P_t} \ge C_t + \frac{M_t+\frac{B_t}{r_t}}{P_t} \right]$$
 
-We can combine the expected utility and budget constraint above, to obtain the LaGrangian for the Household:
+Combining the expected utility and budget constraint above, we can write
+the LaGrangian for the Household:
 
 $$  \mathcal{L}(\cdot_t) = a_tU( \cdot_{t}) + \beta E_t \mathcal{L}(\cdot_{t+1}) + \Lambda_t \left[ \frac{M_{t-1} + T_t +B_{t-1} + W_th_t+D_t}{P_t}-C_t - \left(\frac{M_t+\frac{B_t}{r_t}}{P_t} \right) \right] $$
 
@@ -95,31 +219,29 @@ $$\begin{aligned} \mathcal{L}(\cdot_{t}) = \mathcal{L}(C_t, h_t, B_t, M_t) = &E_
 
 ### The FOC with respect to $C_t$:
 
-$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial C_t}= a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})$$
+$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial C_t}= a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})$$
 
-Equate to zero and solve: 
+Equate to zero and solve:
 
 $$0=  a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})$$
 
 $$\Lambda_t =  a_t(\frac{1}{C_t-\gamma C_{t-1}}) + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t}) \tag{5}$$
 
-
 ### The FOC with respect to $h_t$:
 
-$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial h_t}= (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)$$
+$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial h_t}= (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)$$
 
 Equate to zero and solve:
 
 $$0 = (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)$$
-$$( a_t) = (\frac{W_t}{P_t})(\Lambda_t) $$ 
-$$ a_t = (\frac{W_t}{P_t})(\Lambda_t) \tag{6}$$ 
-
+$$( a_t) = (\frac{W_t}{P_t})(\Lambda_t) $$
+$$ a_t = (\frac{W_t}{P_t})(\Lambda_t) \tag{6}$$
 
 ### The FOC with respect to $B_t$:
 
-$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial B_t}= (\frac{-1}{r_t P_t})(\Lambda_t) + E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})$$
+$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial B_t}= (\frac{-1}{r_t P_t})(\Lambda_t) + E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})$$
 
-Equate to zero and solve: 
+Equate to zero and solve:
 
 $$ 0=(\frac{-1}{r_t P_t})(\Lambda_t) + E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})$$
 $$ (\frac{1}{r_t P_t})(\Lambda_t) = E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})$$
@@ -128,24 +250,23 @@ $$ \Lambda_t = \beta(r_t) E_t(\frac{P_t\Lambda_{t+1}}{P_{t+1}})$$
 
 Because: $$\pi_t=\frac{P_t}{P_{t-1}}$$
 
-Therefore: $$\frac{P_t}{P_{t+1}}=\frac{1}{\pi_{t+1}}$$ 
+Therefore: $$\frac{P_t}{P_{t+1}}=\frac{1}{\pi_{t+1}}$$
 
 As such, the equation can be rewritten as:
 
 $$\Lambda_t = \beta(r_t)E_t(\frac{\Lambda_{t+1}}{\pi_{t+1}}) \tag{7}$$
 
-
 ### The FOC with respect to $M_t$:
 
-
-$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial M_t}=a_t[v_1(\frac{M_t}{P_tZ_t}, u_t) \frac{1}{P_t Z_t}-\phi_m(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)(\frac{\frac{1}{P_{t}}}{\frac{ZM_{t-1}}{P_{t-1}}})(\frac{M_t}{P_tZ_t})-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)^2(\frac{1}{P_tZ_t})]$$
+$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial M_t}=a_t[v_1(\frac{M_t}{P_tZ_t}, u_t) \frac{1}{P_t Z_t}-\phi_m(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)(\frac{\frac{1}{P_{t}}}{\frac{ZM_{t-1}}{P_{t-1}}})(\frac{M_t}{P_tZ_t})-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)^2(\frac{1}{P_tZ_t})]$$
 $$ + \Lambda_t[-\frac{1}{P_t}] + E_t\beta a_{t+1} \left[-\phi_m(\frac{M_{t+1}/P_{t+1}}{ZM_t/P_t}-1)(-\frac{M_{t+1}/P_{t+1}}{zM_{t}^2/P_{t}})(\frac{M_{t+1}}{P_{t+1}Z_{t+1}}) \right]+E_t \beta \Lambda_{t+1}(\frac{1}{P_{t+1}})$$
 
 where:
 
 $$ v_1(\cdot) = \frac{\partial}{\partial M_t} v(\cdot) $$
 
-We can now use equation (7) and the fact that $\frac{P_t}{P_{t-1}} = \pi_t$, to yield:
+We can now use equation (7) and the fact that
+$\frac{P_t}{P_{t-1}} = \pi_t$, to yield:
 
 $$ \beta E_t \Lambda_{t+1} \frac{1}{P_{t+1}} = \frac{1}{P_tr_t} \Lambda_t $$
 
@@ -163,7 +284,6 @@ $$\begin{aligned}
 &=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
 \end{aligned} \tag{8}$$
 
-
 Using the fact that:
 
 $$v_1(\frac{M_t}{P_tZ_t},u_t) = \frac{1}{\delta}[\ln(m*) - \ln(\frac{M_t}{P_tZ_t}) + \ln(u_t)]$$
@@ -177,34 +297,39 @@ $$\begin{array}{l}
 =Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
 \end{array} \tag{9}$$
 
-
-
-
-
 ## The Representative Finished Goods-Producing Firm
 
-The representative finished goods-producing firm uses $Y_t(i)$ units of each intermediate good $i \in [0,1]$. These intermediate goods are bought at the nominal price $P_t(i)$ in order to produce $Y_t$ units of the final good according to the technology described by 
+The representative finished goods-producing firm uses $Y_t(i)$ units of
+each intermediate good $i \in [0,1]$. These intermediate goods are
+bought at the nominal price $P_t(i)$ in order to produce $Y_t$ units of
+the final good according to the technology described by
 
 $$[\int_0^1Y_t(i)^{\frac{(\theta_t-1)}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}} \ge Y_t$$
 
-where $\theta_t$ translates into a random shock to the intermediate goods-producing firms' desired
-markup of price over marginal cost and therefore acts like a cost push shock of the kind
-introduced into the New Keynesian model by Clarida, Gali, and and Gertler (1999). Here, this
+where $\theta_t$ translates into a random shock to the intermediate
+goods-producing firms' desired markup of price over marginal cost and
+therefore acts like a cost push shock of the kind introduced into the
+New Keynesian model by Clarida, Gali, and and Gertler (1999). Here, this
 markup shock follows the stationary autoregressive process
 
 $$\ln(\theta_t)=(1-\rho_{\theta})\ln(\theta)+\rho_{\theta}\ln(\theta_{t-1})+\varepsilon_{\theta t} \tag{10}$$
 
-$\forall \ t=0,1,2,...,$, where $\varepsilon_{\theta t} \sim norm(0,\sigma_{\theta})$. The finished goods-producing firm thus faces the problem of maximising its profits for each period $t$, by their choice of $Y_t(i) \ \forall \ i \in [0,1]$
+for all $t=0,1,2,...,$, where the serially uncorrelated innovation
+$\varepsilon_{\theta t}$ is normally distributed with mean zero and
+standard deviation $\sigma_{\theta}$. Thus, during each period $t$, the
+finished good-producing firm chooses $Y_t(i)$ for all $i \in [0,1]$ to
+maximize its profits, which are given by
 
 $$P_t[\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}} - \int_0^1P_t(i)Y_t(i) \;di$$
 
-The Langrangian function from which the first order conditions are derived, is as follows:
+The Langrangian function from which the first order conditions are
+derived, is as follows:
 
-$$\mathcal{L} = \int_0^1P_t(i)Y_t(i) \; di +\lambda_t[Y_t - (\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} \;di)^{\frac{\theta_t}{\theta_t-1}}]$$
+$$L = \int_0^1P_t(i)Y_t(i) \; di +\lambda_t[Y_t - (\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} \;di)^{\frac{\theta_t}{\theta_t-1}}]$$
 
 ### The FOC with respect to $Y_t(i)$:
 
-$$\frac{\partial \mathcal{L}}{\partial Y_t(i)} = P_t(i) - \lambda_t[{\frac{\theta_t}{\theta_t-1}} (\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di)^{\frac{\theta_t}{\theta_t-1} -1} \frac{\theta_t-1}{\theta_t} Y_t(i)^{\frac{\theta_t-1}{\theta_t} -1}] = 0$$ 
+$$\frac{\partial L}{\partial Y_t(i)} = P_t(i) - \lambda_t[{\frac{\theta_t}{\theta_t-1}} (\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di)^{\frac{\theta_t}{\theta_t-1} -1} \frac{\theta_t-1}{\theta_t} Y_t(i)^{\frac{\theta_t-1}{\theta_t} -1}] = 0$$
 $$P_t(i) - \lambda_t[{\frac{\theta_t}{\theta_t-1}} (\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di)^{\frac{1}{\theta_t-1}} \frac{\theta_t-1}{\theta_t} Y_t(i)^{\frac{-1}{\theta_t}}] = 0$$
 
 $$ \lambda_t[\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{1}{\theta_t-1}} Y_t(i)^{\frac{-1}{\theta_t}} = P_t(i)$$
@@ -214,11 +339,11 @@ $$ \lambda_t[\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{1}{\theta_
 
 $$ \lambda_t^{\theta_t} [\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}}P_t(i)^{-\theta_t}  = Y_t(i)$$
 
-$$ \lambda_t^{\theta_t} Y_t P_t(i)^{-\theta_t} = Y_t(i)$$
-Where $Y_t = [\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}}$
+$$ \lambda_t^{\theta_t} Y_t P_t(i)^{-\theta_t} = Y_t(i)$$ Where
+$Y_t = [\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}}$
 
-$$ (\frac{\lambda_t}{P_t(i)})^{\theta_t} Y_t  = Y_t(i)$$
-Sub $Y_t(i) = (\frac{\lambda_t}{P_t(i)})^{\theta_t} Y_t$ into $Y_t$
+$$ (\frac{\lambda_t}{P_t(i)})^{\theta_t} Y_t  = Y_t(i)$$ Sub
+$Y_t(i) = (\frac{\lambda_t}{P_t(i)})^{\theta_t} Y_t$ into $Y_t$
 
 $$[\int_0^1 ((\frac{\lambda_t}{P_t(i)})^{\theta_t} Y_t)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}}  = Y_t$$
 $$[\int_0^1 ((\frac{P_t(i)}{\lambda_t})^{-\theta_t})^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}}  = 1$$
@@ -226,106 +351,112 @@ $$(\frac{1}{\lambda_t})^{-\theta_t}[\int_0^1 (P_t(i))^{-\theta_t+1} di]^{\frac{\
 
 $$[\int_0^1 (P_t(i))^{1-\theta_t} di]^{\frac{\theta_t}{\theta_t-1}}  = {\lambda_t}^{-\theta_t}$$
 $$[\int_0^1 (P_t(i))^{1-\theta_t} di]^{\frac{1}{1-\theta_t}}  = {\lambda_t}$$
-Therefore: 
+Therefore:
 
-$$\lambda_t = P_t$$
-Sub $Y_t = P_t$ back in: 
+$$\lambda_t = P_t$$ Sub $Y_t = P_t$ back in:
 
 $$(\frac{P_t}{P_t(i)})^{\theta_t} Y_t = Y_t(i)$$
 
-Therefore: 
+Therefore:
 
 $$Y_t(i) = (\frac{P_t(i)}{P_t})^{-\theta_t} Y_t$$
 
 ## The Representative Intermediate Goods-Producing Firm
 
-During each period $t=0,1,2,...,$ the representative intermediate goods-producing firm hires $h_t(i)$ units of labour from the representative household to manufacture $Y_t(i)$ units of intermediate good $i$ according to the technology described by:
+During each period $t=0,1,2,...,$ the representative intermediate
+goods-producing firm hires $h_t(i)$ units of labour from the
+representative household to manufacture $Y_t(i)$ units of intermediate
+good $i$ according to the technology described by:
 
 $$Z_th_t(i) \ge Y_t(i) \tag{11}$$
 
-where $Z_t$ is the aggregate productivity shock introduced in (3). 
+where $Z_t$ is the aggregate productivity shock introduced in (3).
 
-The quadratic cost of adjusting its nominal price between periods is given by: 
+The quadratic cost of adjusting its nominal price between periods is
+given by:
 
 $$\frac{\phi_p}{2}[\frac{P_t(i)}{{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}}-1]^2Y_t$$
 
-The firm problem is to choose $P_t(i) \ \forall \ t = 0,1,2,...$ such that they maximise their total real market value proportional to: 
+The firm chooses $P_t(i)$ for all $t = 0,1,2,...$ to maximise its total
+real market value proportional to:
 
 $$E_0\sum_{t=0}^\infty \beta^t\Lambda_t[\frac{D_t(i)}{P_t}]$$
 
-where the firm's real profits are given by the following:
+where the firm's real profits are measured by:
 
 $$\frac{D_t(i)}{P_t}=[\frac{P_t(i)}{P_t}]^{1-\theta_t}Y_t-[\frac{P_t(i)}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}]^2Y_t\tag{12}$$
 
-The Value function of this optimisation problem is given by: 
-$$v= \left\{ E_t\sum_{t=0}^\infty\beta^t\Lambda_t{\frac{D_t(i)}{P_t}} \right\}$$
+The Value function of this optimisation problem is:
+$$v=maxE_t\sum_{t=0}^\infty\beta^t\Lambda_t{\frac{D_t(i)}{P_t}}$$
 
-As such, the Bellman Equation can be constructed as: 
+As such, the Bellman Equation can be constructed as:
 
-$$v_{t, t+1}=\max_{P_t(i)} \left\{ \beta^t\Lambda_t{\frac{D_t(i)}{P_t}} + \beta^{t+1}E_t\Lambda_{t+1}{\frac{D_{t+1}(i)}{P_{t+1}}} \right\}$$
-$$v_{t, t+1}=\beta^t\Lambda_t[(\frac{P_t(i)}{P_t})^{1-\theta_t}Y_t-(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})^2Y_t] + \beta^{t+1}E_t\Lambda_{t+1}[(\frac{P_{t+1}(i)}{P_{t+1}})^{1-\theta_{t+1}}Y_{t+1}$$
+$$v=\beta^t\Lambda_t{\frac{D_t(i)}{P_t}} + \beta^{t+1}E_t\Lambda_{t+1}{\frac{D_{t+1}(i)}{P_{t+1}}}$$
+$$v=\beta^t\Lambda_t[(\frac{P_t(i)}{P_t})^{1-\theta_t}Y_t-(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})^2Y_t] + \beta^{t+1}E_t\Lambda_{t+1}[(\frac{P_{t+1}(i)}{P_{t+1}})^{1-\theta_{t+1}}Y_{t+1}$$
 
 $$-(\frac{P_{t+1}(i)}{P_{t+1}}]^{-\theta_{t+1}}(\frac{W_{t+1}}{P_{t+1}})(\frac{Y_{t+1}}{Z_{t+1}})-\frac{\phi_p}{2}[\frac{P_{t+1}(i)}{\pi_{t}^a \pi^{1-a}P_{t}(i)}]^2Y_{t+1}]$$
 
 ### The FOC with respect to $P_t(i)$
 
-$$ \frac{\partial v_{t, t+1}}{\partial P_t(i)} = \beta^t\Lambda_t(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{1}{P_t})Y_t-\beta^t\Lambda_t[(-\theta_t\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{1}{P_t})(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})]$$
+$$ \frac{\partial v}{\partial P_t(i)} = \beta^t\Lambda_t(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{1}{P_t})Y_t-\beta^t\Lambda_t[(-\theta_t\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{1}{P_t})(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})]$$
 $$-\beta^t\Lambda_t[\phi_p(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{1}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})Y_t] -\beta^{t+1}E_t\Lambda_{t+1}\phi_p[(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{-P_{t+1}(i)Y_{t+1}}{\pi_t^a\pi^{1-a}P_{t}(i)^2})] =0$$
 
-Next, in order to cancel out most $\Lambda_t$, $Y_t$ and $P_t$'s, multiply through by $\frac{P_t}{\Lambda_t Y_t}$:
+Next, in order to cancel out most $\Lambda_t$, $Y_t$ and $P_t$'s,
+multiply through by $\frac{P_t}{\Lambda_t Y_t}$:
 
-$$\beta^t(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \beta^t[\theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t})] - \beta^t\phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})]$$ 
+$$\beta^t(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \beta^t[\theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t})] - \beta^t\phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})]$$
 $$  +\beta^{t+1}\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0$$
 
-$$(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})]$$ 
+$$(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})]$$
 $$ + \beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0 \tag{13}$$
 
 and (11) with equality for all $t=0,1,2,...,$
 
-
 ## The Efficient Level of Output and Output Gap
 
-A social planner for this economy who can overcome the frictions associated with monetary
-trade, sluggish price adjustment, and the monopolistically competitive structure of the intermediate
-goods-producing sector chooses $Q_t$ and $n_t(i)$ for all $i \in [0,1]$ to maximize the social welfare function
+A social planner for this economy who can overcome the frictions
+associated with monetary trade, sluggish price adjustment, and the
+monopolistically competitive structure of the intermediate
+goods-producing sector chooses $Q_t$ and $n_t(i)$ for all $i \in [0,1]$
+to maximize the social welfare function
 
 $$E_0\sum_{t=0}^{\infty}\beta^ta_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di]$$
-subject to 
+subject to
 
-$$Z_t[\int_0^1n_t(i) di]^{\frac{\theta_t}{\theta_t-1}} \ge Q_t$$
-As such, the Bellman Equation of this model is: 
+$$Z_t[\int_0^1n_t(i) di]^{\frac{\theta_t}{\theta_t-1}} \ge Q_t$$ As
+such, the Bellman Equation of this model is:
 
 $$v(Q_{t-1}) = a_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di] + \beta E_tv(Q_t,Q_{t+1}) + \Xi [Z_t(\int_0^1n_t(i) di)^{\frac{\theta_t}{\theta_t-1}} - Q_t]$$
 
-### The FOC with respect to $Q_t$: 
+### The FOC with respect to $Q_t$:
 
 $$\frac{\partial v(Q_{t-1})}{\partial Q_t} = \frac{a_t}{Q_t-\gamma Q_{t-1}} + \beta E_t\frac{\partial v(Q_t, Q_{t+1})}{\partial Q_t} - \Xi =0$$
-We know that 
+We know that
 
 $$\frac{\partial v(Q_{t-1})}{\partial Q_{t-1}} = \frac{a_t}{Q_t-\gamma Q_{t-1}} (-\gamma)$$
 
-Therefore, when iterating forward, we find that: 
+Therefore, when iterating forward, we find that:
 $$\frac{\partial v(Q_{t})}{\partial Q_{t}} = \frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (-\gamma)$$
 
-Subbing $\frac{\partial v(Q_{t})}{\partial Q_{t}}$ back in gives: 
+Subbing $\frac{\partial v(Q_{t})}{\partial Q_{t}}$ back in gives:
 
 $$\frac{\partial v(Q_{t-1})}{\partial Q_t} = \frac{a_t}{Q_t-\gamma Q_{t-1}} + \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (-\gamma) - \Xi =0$$
 Multiply through by $(-1)$:
 
 $$ \frac{a_t}{Q_t-\gamma Q_{t-1}} - \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (\gamma)  = \Xi$$
 
-### The FOC with respect to $n_t$: 
+### The FOC with respect to $n_t$:
 
 $$\frac{\partial v(Q_{t-1})}{\partial n_t} = a_t (-1) + \Xi Z_t \frac{\theta_t}{\theta_t -1} (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{\theta_t}{\theta_t - 1} (\frac{\theta_t -1}{\theta_t}) n_t(i)^{\frac{\theta_t -1}{\theta_t}-1}=0$$
 $$ a_t + \Xi Z_t  (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} n_t(i)^{\frac{-1}{\theta_t}}=0$$
 $$  \Xi Z_t  (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} n_t(i)^{\frac{-1}{\theta_t}}=a_t$$
 
-The Feasibility Constraint of this problem is: 
+The Feasibility Constraint of this problem is:
 $$(\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{\theta_t}{\theta_t - 1} \ge \frac{Q_t}{Z_t}$$
-Rearranging the Feasibility Constraint gives: 
+Rearranging the Feasibility Constraint gives:
 
 $$(\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} \ge (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}$$
-Therefore 
+Therefore
 
 $$\Xi Z_t (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}n_t(i)^{\frac{-1}{\theta_t}}=a_t$$
 
@@ -333,17 +464,17 @@ $$\Xi Z_t (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}n_t(i)^{\frac{-1}{\theta_t}}=a_t$$
 
 # Log-Linearisation:
 
-
 ## Obtaining the final system of equations:
 
-
 ### Conditions:
-To rewrite the equations into a usable system of equations that can be log-linearised, we make use of the following series of steady state, stationary or equilibrium equations and variables:
+
+To rewrite the equations into a usable system of equations that can be
+log-linearised, we make use of the following series of steady state,
+stationary or equilibrium equations and variables:
 
 #### A:
 
 $$ Y_{t}(i)=Y_{t}, h_{t}(i)=h_{t}, D_{t}(i)=D_{t}, \text { and } P_{t}(i)=P_{t} \text { for all } i \in[0,1] \text { and } t=0,1,2, \ldots $$
-
 
 #### B:
 
@@ -353,7 +484,6 @@ $$ M_{t}=M_{t-1}+T_{t} \text { and } B_{t}=B_{t-1}=0 $$
 
 $$ y_{t}=Y_{t} / Z_{t}, c_{t}=C_{t} / Z_{t}, m_{t}=\left(M_{t} / P_{t}\right) / Z_{t}, q_{t}=Q_{t} / Z_{t}, \lambda_{t}=Z_{t} \Lambda_{t}, \text { and } z_{t}=Z_{t} / Z_{t-1} $$
 
-
 #### D:
 
 In steady state we can write the following, per their definitions:
@@ -362,24 +492,27 @@ $$\begin{aligned} & y_{t}=y,\ c_{t}=c,\ \pi_{t}=\pi,\ r_{t}=r, \ m_{t}=m,\ q_{t}
 & \mu_{t}=\mu,\ g_{t}=g,\ \lambda_{t}=\lambda,\ a_{t}=a=1,\ z_{t}=z,\ u_{t}=u=1, \\ 
 & \text {and } \theta_{t}=\theta \end{aligned}$$
 
-
 ### Imposing The Coniditions:
 
-Firstly, we combine equation (11) and (12) from Section 3.3 [The Representative Intermediate Goods-Producing Firm] and impose the above conditions to obtain equation (1) from the appendix of "THE PAPER":
+Firstly, we combine equation (11) and (12) from Section 3.3 [The
+Representative Intermediate Goods-Producing Firm] and impose the above
+conditions to obtain equation (1) from the appendix of "Belongia and Ireland (2020)":
 
 $$Y_{t} = C_t + \frac{\phi_{p}}{2} \cdot \left[ \frac{\pi_{t}}{{\pi_{t-1}}^{\alpha} \pi^{1-\alpha}} -1 \right]^{2} \cdot Y_t $$
 
-Dividing both sides by $Z_t$ we can substitute for the necessary stationarity variables and rewrite as:
+Dividing both sides by $Z_t$ we can substitute for the necessary
+stationarity variables and rewrite as:
 
 $$y_{t}=c_{t}+\frac{\phi_{p}}{2}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)^{2} y_{t} \tag{1}$$
 
-Directly from Equations (2)-(4) in Section 3.1 [The Representative Household]:
+Directly from Equations (2)-(4) in Section 3.1 [The Representative
+Household]:
 
 $$\ln \left(a_{t}\right)=\rho_{a} \ln \left(a_{t-1}\right)+\varepsilon_{a t} \tag{2}$$
 
 $$\ln \left(Z_{t}\right)=\ln (z) + \ln(Z_{t-1}) +\varepsilon_{z t}$$
 
-- Subtract both sides by $\ln(Z_{t-1})$
+Subtract both sides by $\ln(Z_{t-1})$
 
 $$\ln \left(z_{t}\right)=\ln (z)+\varepsilon_{z t} \tag{3}$$
 
@@ -389,12 +522,9 @@ From [The FOC with respect to $C_t$:]
 
 $$ \Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right] $$
 
-
 $$\Rightarrow \lambda_{t}=\frac{a_{t}z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right) \tag{5}$$
 
-
 $$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right) \tag{7}$$
-
 
 Rewrite equation (9) from [The FOC with respect to $M_t$:]
 
@@ -405,24 +535,20 @@ $$\begin{aligned}
 &=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
 \end{aligned}$$
 
-
-
 $$\begin{aligned} & \frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)^{2} \\
 & -a_{t} \phi_{m}\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}\right) \\
 & +\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}-1\right)\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}\right)^{2}\left(\frac{z}{z_{t+1}}\right)\right] \\
 & =\lambda_{t}\left(1-\frac{1}{r_{t}}\right), \\
 \end{aligned}$$
 
-
-## Applying The Taylor Method of Linear Approximation
+## Applying the Taylor Method of Linear Approximation
 
 We apply the Taylor throughout the following section as follows:
 
-For a function $f(x_t)$ input $x_t$ , we apply the Taylor method such that: 
-$$f(x_t) = f(X^{SS}) + \frac{df(x)}{x_t} (x_t(i) - x^{SS})$$
+For a function $f(x_t)$ input $x_t$ , we apply the Taylor method such
+that: $$f(x_t) = f(X^{SS}) + \frac{df(x)}{x_t} (x_t(i) - x^{SS})$$
 
-Using the approximation: 
-$$\begin{aligned}
+Using the approximation: $$\begin{aligned}
 &x_t - x^{SS} \approx x^{SS} \hat{x}_{t}
 \\
 &\text{where } \hat{x}_{t} = \ln(x_t)-\ln(x^{SS})
@@ -432,27 +558,30 @@ $$\begin{aligned}
 &\text{(i.e. no time subscript)}
 \end{aligned}$$
 
-
 ## Uhlig's Method of Linearisation
 
 Applying Uhlig's method requires the following:
 
-For the function $f(x_t)$ i.e., we use the fact that: 
+\newpage
 
-1.   $$\hat{x}_t = \ln(x_t) - \ln(x) \\
-\text{ where x } \equiv x^{SS}$$
+For the function $f(x_t)$ i.e., we use the fact that:
 
-2.   Then, $f(^{SS})$ is used to simplify $f(x_t)$ where $x_t$ is replaced accodring to $x_t = x \cdot e^{\hat{x}_t}$
+1.  $$\hat{x}_t = \ln(x_t) - \ln(x) \\
+    \text{ where x } \equiv x^{SS}$$
 
+2.  Then, $f(^{SS})$ is used to simplify $f(x_t)$ where $x_t$ is
+    replaced accodring to $x_t = x \cdot e^{\hat{x}_t}$
 
-3.   Additionally, the approximation result $e^{x_t+y_t} \approx 1+x_t+y_t$ is used for further simplification.
+3.  Additionally, the approximation result
+    $e^{x_t+y_t} \approx 1+x_t+y_t$ is used for further simplification.
 
-4.   For the last step, all constants can be dropped.
+4.  For the last step, all constants can be dropped.
 
+For the following sections, we show the steps to reach the final
+log-linearised equations (19) to (31) from in Section 2.7 of "THE
+PAPER".
 
-For the following sections, we show the steps to reach the final log-linearised equations (19) to (31) from in Section 2.7 of "THE PAPER".
-
-## Equation (1) from the appendix of "THE PAPER"
+## Equation (1) from the appendix of "Belongia and Ireland (2020)"
 
 Recall the results from equation (11), (12), and the Budget Constraint:
 
@@ -473,9 +602,7 @@ $$\begin{aligned} -Y_t  &= -\left[ \frac{D_t}{P_t} + (\frac{W_t}{P_t})(\frac{Y_t
 \therefore Y_t & = C_t - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t
 \end{aligned}$$
 
-
 Finally, we can now rewrite & linearise the final equation:
-
 
 $$\begin{aligned}
 y_{t} &= c_t + \frac{\phi_{p}}{2} \cdot \left[ \frac{\pi_{t}}{{\pi_{t-1}}^{\alpha} \pi^{1-\alpha}} -1 \right]^{2} \cdot y\\
@@ -490,8 +617,8 @@ $$\begin{aligned}
 p_{1}^{SS}&=\frac{\phi_{p} \cdot y}{2}\\\left[\frac{dp_{1}}{dy_{t}} \right]^{SS} &= \frac{\phi_{p}}{2}\\\left[\frac{dp_{1}}{d\pi_{t}} \right]^{SS} &= \frac{\phi_{p} \cdot y}{\pi}\\\left[\frac{dp_{1}}{d\pi_{t-1}} \right]^{SS} &= - \frac{\phi_{p} \cdot y}{\pi}
 \end{aligned}$$
 
-
 ### p1
+
 Therefore, we can rewrite $p_{1}$ using the Taylor method, as:
 
 $$\begin{aligned}
@@ -500,6 +627,7 @@ p_{1} = \frac{\phi_{p} \cdot y}{2} + \frac{\phi_{p}}{2} y \cdot \hat{y_{t}} + \f
 \end{aligned}$$
 
 ### p2
+
 and for $p_{2}$
 
 $$\begin{aligned}
@@ -520,6 +648,7 @@ p_{2} &= \phi_{p} y + \phi_{p} y \hat{y}_{t} + \frac{\phi_{p} y}{\pi} \pi \hat{\
 \end{aligned}$$
 
 ### p3
+
 Lastly, repeating the same process for the last term $p_{3}$
 
 $$\begin{aligned}
@@ -536,7 +665,9 @@ $$\begin{aligned}
 y_{t} = & \ c_t  +\left[ \overbrace{\frac{\phi_{p} \cdot y}{2}}^{A} + \overbrace{\frac{\phi_{p} \cdot y \cdot \hat{y_{t}} }{2}}^{B} + \overbrace{\phi_{p} \cdot y \cdot \hat{\pi}_{t}}^{C} - \overbrace{\alpha \cdot \phi_{p} \cdot y \cdot \hat{\pi}_{t-1}}^{D} \right] \\ & \ - \left[ \overbrace{\phi_{p} y}^{2A} + \overbrace{\phi_{p} y \hat{y}_{t}}^{2B} + \overbrace{ \phi_{p} y \hat{\pi}_{t}}^{C} - \overbrace{\alpha \phi_{p} y \hat{\pi}_{t-1}}^{D} \right] + \left[ \overbrace{\frac{\phi_{p} y} {2}}^{A} + \overbrace{\frac{\phi_{p}}{2}y \hat{y}_{t}}^{B} \right] \\= &\  c_{t} + A + B + C -D - 2A - 2B - C + D + A + B\\
 \end{aligned}$$
 
-Now, using $y = c + \frac{\phi_{p} \cdot y}{2} - \phi_{p} y + \frac{\phi_{p} y} {2} = c$, we subtract y on both sides, such that
+Now, using
+$y = c + \frac{\phi_{p} \cdot y}{2} - \phi_{p} y + \frac{\phi_{p} y} {2} = c$,
+we subtract y on both sides, such that
 
 $$\begin{aligned}
 A + B + C &- D - 2A - 2B - C + D + A + B = 0
@@ -554,7 +685,9 @@ y_{t} - y &= c_t - c
 From equation (5)
 $$\Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right]$$
 
-Using $c_{t}=C_{t} / Z_{t} \  \lambda_{t}=Z_{t} \cdot \Lambda_{t}, \text{ and } z_t = Z_t / Z_{t-1}$ we can rewrite the above equation using its stationary variables:
+Using
+$c_{t}=C_{t} / Z_{t} \  \lambda_{t}=Z_{t} \cdot \Lambda_{t}, \text{ and } z_t = Z_t / Z_{t-1}$
+we can rewrite the above equation using its stationary variables:
 
 $$\begin{aligned}
 \lambda_{t} / Z_t =\frac{a_{t}}{Z_{t} c_{t}-\gamma Z_{t-1} c_{t-1}}-\beta \gamma E_{t} \left(\frac{a_{t+1}}{Z_{t+1} c_{t+1}-\gamma Z_{t-1} c_{t}} \right)\\
@@ -562,12 +695,12 @@ $$\begin{aligned}
 \lambda_{t} =\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)
 \end{aligned}$$
 
-Once again, for simplicity, we separate the equation into two parts: 
+Once again, for simplicity, we separate the equation into two parts:
 
 $$\lambda_{t}=\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)\
 = a_1 + \beta \gamma E_t (a_2)$$
 
-Now we can determine the taylor approximations individually
+Now we can determine the Taylor approximations individually:
 
 ### a1
 
@@ -595,7 +728,8 @@ $$\begin{aligned}
 &= \frac{a z \gamma}{(z c-\gamma c)^{2}}
 \end{aligned}$$
 
-The similarity between $a_1$ and $a_2$ means that some of the steps will yield very similar results:
+The similarity between $a_1$ and $a_2$ means that some of the steps will
+yield very similar results:
 
 ### a2
 
@@ -612,10 +746,10 @@ $$\begin{aligned}
 &= - \frac {a z} {(z c - \gamma c)^{2}}\\\left[\frac{da_{2}}{dc_{t}} \right]^{SS} &= \left[\frac{da_{1}}{dc_{t-1}} \right]^{SS} \cdot 1 / z\\&= \frac{a \gamma}{(z c-\gamma c)^{2}}
 \end{aligned}$$
 
-Thus, we have 
+Thus, we have
 $$\lambda_t = a_1 - \beta \gamma E_t (a_2) \text{ which we can expand, and } 
 \\
-\lambda = \frac{a z}{(z  -\gamma)c } - \beta \gamma \frac{a}{(z-\gamma) c}$$ 
+\lambda = \frac{a z}{(z  -\gamma)c } - \beta \gamma \frac{a}{(z-\gamma) c}$$
 
 ### Lambda
 
@@ -640,7 +774,8 @@ $$\begin{aligned}
 \right]}^{a_2}
 \end{aligned}$$
 
-subtracting $\lambda$ from both sides of the equations to get $\lambda_t - \lambda$ on the left side, we get:
+subtracting $\lambda$ from both sides of the equations to get
+$\lambda_t - \lambda$ on the left side, we get:
 
 $$\begin{aligned}
 \lambda \hat{\lambda}_t &=
@@ -667,7 +802,9 @@ $$\begin{aligned}
 - \frac{ \gamma a c }{(z c-\gamma c)^{2}} \cdot \hat{c}_t
 \end{aligned}$$
 
-From the paper we know that $a=1$, $E_t \hat{a}_{t+1} = (\rho_a \hat{a}_t)$, and $E_t \hat{z}_{t+1}=0$, and thus:
+From the paper we know that $a=1$,
+$E_t \hat{a}_{t+1} = (\rho_a \hat{a}_t)$, and $E_t \hat{z}_{t+1}=0$, and
+thus:
 
 $$\begin{aligned}
 \lambda \hat{\lambda}_t &= 
@@ -682,8 +819,8 @@ $$\begin{aligned}
 - \beta \gamma \frac{\gamma c }{(z c-\gamma c)^{2}} \cdot \hat{c}_t
 \end{aligned}$$
 
-The common denominator can be removed by multiplying both sides by $(zc-\gamma c)^2$
-and then we divide by c
+The common denominator can be removed by multiplying both sides by
+$(zc-\gamma c)^2$ and then we divide by c
 
 $$\begin{aligned}
 \lambda \hat{\lambda}_t (zc-\gamma c)^2 &= 
@@ -716,7 +853,7 @@ $$\begin{aligned}
 + \beta \gamma z E_{t} \hat{y}_{t+1}
 \end{aligned}$$
 
-From the Appendix, we can use the fact that 
+From the Appendix, we can use the fact that
 
 $$y \lambda=\frac{(z-\beta \gamma)}{(z-\gamma)}$$
 
@@ -726,7 +863,6 @@ $$\begin{aligned} &(z-\gamma)(z-\beta \gamma) \hat{\lambda}{t}\\
 
 yielding the final result:
 $$(z-\gamma)(z-\beta \gamma) \hat{\lambda}_{t}=(z-\gamma)\left(z-\beta \gamma p_{a}\right) \hat{a}_{t}-\gamma z \hat{z}_{t}+z \gamma \hat{y}_{t-1}+\beta \gamma z E_{t} \hat{y}_{t+1}-\left(z^{2}+\beta \gamma^{2}\right) \hat{y}_{t}$$
-
 
 ## Equation (20)
 
@@ -739,7 +875,8 @@ The steady state equation follows as
 $$\lambda = \beta r \frac{\lambda} {z \pi} \\
 \Rightarrow 1=\frac{\beta r} {z \pi}$$
 
-Now, substituting each variable in the fashion similar to $\lambda_t = \lambda e^{\hat{\lambda}_t}$
+Now, substituting each variable in the fashion similar to
+$\lambda_t = \lambda e^{\hat{\lambda}_t}$
 
 $$\begin{array}{l}
 \lambda_{t}=\beta r_{t} E_{t}\left[\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right]\\
@@ -751,19 +888,18 @@ $$\begin{array}{l}
 \therefore \hat{\lambda}_{t}=\hat{r}_{t}+E_{t}\left[\hat{\lambda}_{t+1} - \hat{\pi}_{t+1}\right]
 \end{array}$$
 
-
 ## Equation (21)
 
 $$1=\frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)\right]$$
 
-The LHS of the equation, instead of approximating, the log of 1 is zero, so that is used instead
-For the RHS, we continue as before, by separating the function into simpler terms
+The LHS of the equation, instead of approximating, the log of 1 is zero,
+so that is used instead For the RHS, we continue as before, by
+separating the function into simpler terms
 
 $$\begin{aligned}
 z_1 = \frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}} \\
 z_2 = \left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)
 \end{aligned}$$
-
 
 ### Z1
 
@@ -779,7 +915,6 @@ q_{t-1}\right)^{2}}\right]^{SS}\\
 \left[\frac{dz_{1}}{dq_{t-1}} \right]^{SS} &= \left[-z_{t}\left(z_{t} q_{t}-\gamma q_{t-1}\right)^{-2}(-\gamma)\right]^{SS} \\
 &=\frac{z \gamma}{(z q-\gamma q)^2}
 \end{aligned}$$
-
 
 Now we can expand the linearisation equation for $z_1$
 
@@ -807,7 +942,6 @@ z_{2}^{SS} &= \left(\frac{a}{a}\right)\left(\frac{1}{z q-\gamma q}\right) \\
 &=\frac{\gamma}{(z q-\gamma q)^{2}}
 \end{aligned}$$
 
-
 Therefore, we have $z_2$
 
 {Recall a=1}
@@ -828,38 +962,39 @@ z_2 =& \frac{1}{z q-\gamma q}
 \end{aligned}$$
 
 \newpage
-Now for $\beta \gamma E_t z_2$, using $E_t \hat{a}_{t+1}=\rho_a\hat{a}_t$
+
+Now for $\beta \gamma E_t z_2$, using
+$E_t \hat{a}_{t+1}=\rho_a\hat{a}_t$
 
 $$\begin{aligned}
 \beta \gamma E_t z_2
-&= \beta \gamma \left[ \frac{1}{z q-\gamma q}
+=& \beta \gamma \left[ \frac{1}{z q-\gamma q}
 + \left(\frac{1}{z q-\gamma q}\right) \cdot E_t\hat{a}_{t+1}
 -\left(\frac{1}{z q-\gamma q}\right) \cdot E_t\hat{a}_{t}
--\left(\frac{1}{z q-\gamma q}\right) \cdot zE_t\hat{z}_{t+1}
--\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
+-\left(\frac{1}{z q-\gamma q}\right) \cdot zE_t\hat{z}_{t+1} \right.\\
+& \left. -\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\gamma}{(z q-\gamma q)^{2}} \cdot q E_t\hat{q}_{t} \right]\\
-&= \beta \gamma \left[ \frac{1}{z q-\gamma q}
+=& \beta \gamma \left[ \frac{1}{z q-\gamma q}
 + \left(\frac{1}{z q-\gamma q}\right) \cdot \rho_a\hat{a}_t
 -\left(\frac{1}{z q-\gamma q}\right) \cdot \hat{a}_{t}
 -0
 -\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\gamma}{(z q-\gamma q)^{2}} \cdot q \hat{q}_{t} \right]\\
-&= \frac{\beta \gamma}{z q-\gamma q}
+=& \frac{\beta \gamma}{z q-\gamma q}
 + \left(\frac{\beta \gamma}{z q-\gamma q}\right) \cdot \rho_a\hat{a}_t
 -\left(\frac{\beta \gamma}{z q-\gamma q}\right) \cdot \hat{a}_{t}
 -\frac{\beta \gamma q^2}{(z q-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\beta \gamma^2}{(z q-\gamma q)^{2}} \cdot q \hat{q}_{t}
 \end{aligned}$$
 
-
 ### Together
+
 Now, we can write out $0 = z_1 - \beta \gamma E_t z_2$
 
 Using
 
 $$z_1-z_1^{SS} - \beta \gamma (z_2 - z_2^{SS}) \approx z_1 \hat{z_1} - z_2 \hat{z_2}\\
 \Rightarrow \text{subtract from the RHS: } \frac{z}{z q-\gamma q}-\beta \gamma \frac{a}{a z q-\gamma a q}$$
-
 
 $$\begin{aligned}
 0 = &\frac{z}{z q-\gamma q} 
@@ -873,7 +1008,6 @@ $$\begin{aligned}
 -\frac{\beta \gamma q^2}{(z q-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\beta \gamma^2}{(z q-\gamma q)^{2}} \cdot q \hat{q}_{t} \right]
 \end{aligned}$$
-
 
 Multiply both sides by $(z q-\gamma q)^{2} \frac{1}{q}$
 
@@ -896,7 +1030,6 @@ $$\begin{aligned}
 &+\beta \gamma z \hat{a}_{t}-\beta \gamma^{2} \hat{a}_{t}
 +\beta \gamma q E_{t} \hat{q}_{t+1}-\beta \gamma^{2} \hat{q}_{t}
 \end{aligned}$$
-
 
 Finally, we subtract:
 
@@ -925,19 +1058,17 @@ $$\begin{aligned}
 = & \gamma z \hat{q}_{t-1}-\hat{q}_{t}\left(z^{2}+\beta \gamma^{2}\right)+\beta \gamma q E_{t} \hat{q}_{t+1}+\hat{a}_{t} \beta \gamma\left(1-\rho_{a}\right)(z-\gamma)-\gamma z \hat{z}_{t}
 \end{aligned}$$
 
-
 ## Equation (22)
 
 $$\begin{aligned} x_{t}=y_{t} / q_{t} \\
 \text{Steady State: } x = y/p \end{aligned}$$
 
-Now, 
+Now,
 
 $$\begin{aligned} x_{t}=y_{t} / q_t\\
 \Rightarrow x e^{\hat{x} t}=\frac{y e^{\hat{y} t}}{q e^{\hat{q} t}}\\
 \Rightarrow\left(1+\hat{x}_{t}\right)=\left(1+\hat{y}_{t}-\hat{q}_{t}\right)\\
 \therefore \quad \hat{x}_{t}=\hat{y}_{t}-\hat{q}_{t} \end{aligned}$$
-
 
 ## Equation (23)
 
@@ -946,12 +1077,10 @@ Starting from equation (13)
 $$\begin{array}{l} (1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})] \\
 +\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0 \end{array}$$
 
-\newpage
 Substituting for the equilibrium Conditions and using (6):
 
 $$\begin{aligned} (1-\theta_t) + \theta_t (\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}})] \\
 +\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}}-1)(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}})(\frac{Y_{t+1}}{Y_t})=0 \end{aligned}$$
-
 
 $$\begin{aligned} \Rightarrow \theta_t - 1 = & \theta_t \frac{a_t}{\Lambda_t Z_t} - \phi_p[(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}}-1)(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}})] \\
 & +\beta\phi_pE_t(\frac{\Lambda_{t+1}Y_{t+1}}{\Lambda_{t}Y_t})(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}-1)(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}) \end{aligned}$$
@@ -969,8 +1098,8 @@ $$\begin{aligned}
 \therefore \quad \lambda = \frac{\theta}{\theta-1}
 \end{aligned}$$
 
-
-Using the above result we can obtain and simplify further. Then, log-linearise using Uhlig's Method:
+Using the above result we can obtain and simplify further. Then,
+log-linearise using Uhlig's Method:
 
 First we separate the four terms, for simplicity:
 
@@ -1003,41 +1132,39 @@ $$\begin{aligned}
 =& \beta \phi_{p} E_{t}\left[ \hat{\pi}_{t+1}-\alpha \hat{\pi}_{t}\right]
 \end{aligned}$$
 
-
 Putting all the components together then yields:
 
 $$ \theta\left(1+\hat{\theta}_{t}\right)=\frac{\theta}{\lambda}\left(1+\hat{\theta}_{t} \right)+ \frac{\theta}{\lambda} \left(\hat{a}_{t}-\hat{\lambda}_{t}\right) - \phi_p\left[\hat{\pi}_{t}-\alpha \hat{\pi}_{t-1}\right] + \beta \phi_{p} E_{t}\left[ \hat{\pi}_{t+1}-\alpha \hat{\pi}_{t}\right] $$
 
-Simplify using $$\lambda=\frac{\theta}{\theta-1}, \quad \hat{e}_{t}=-\left(\frac{1}{\phi_{p}}\right) \hat{\theta}_{t} \text {, and } \psi=\frac{(\theta-1)}{\phi_{p}}$$
-i.e. 
+Simplify using
+$$\lambda=\frac{\theta}{\theta-1}, \quad \hat{e}_{t}=-\left(\frac{1}{\phi_{p}}\right) \hat{\theta}_{t} \text {, and } \psi=\frac{(\theta-1)}{\phi_{p}}$$
+i.e.
 $$ 1 - \frac{1}{\lambda} = 1/\theta, \\ \frac{\theta}{\lambda} = \theta - 1 $$
 
 $$\begin{aligned} \theta \left(1+\hat{\theta}_{t}\right)\cdot \left[ 1 - \frac{1}{\lambda} \right] =& \frac{\theta}{\lambda} \left(\hat{a}_{t}-\hat{\lambda}_{t}\right) - \phi_p\left[\hat{\pi}_{t}-\alpha \hat{\pi}_{t-1}\right] + \beta \phi_{p} E_{t}\left[ \hat{\pi}_{t+1}-\alpha \hat{\pi}_{t}\right]\\
  \frac{\left(1+\hat{\theta}_{t}\right)}{\phi_{p}} =& \frac{\theta - 1}{\phi_{p}} \left(\hat{a}_{t}-\hat{\lambda}_{t}\right) - \left[\hat{\pi}_{t}-\alpha \hat{\pi}_{t-1}\right] + \beta E_{t}\left[ \hat{\pi}_{t+1}-\alpha \hat{\pi}_{t}\right]
 \end{aligned}$$
 
-Ignoring the constant parameter $-1/\phi_p$, and rearranging the terms yields the final result:
+Ignoring the constant parameter $-1/\phi_p$, and rearranging the terms
+yields the final result:
 
 $$\begin{aligned} &-\hat{e}_t =  \psi \left(\hat{a}_{t}-\hat{\lambda}_{t}\right) -(1+\beta \alpha)\hat{\pi}_{t} +\alpha \hat{\pi}_{t-1} + \beta E_{t}\left[ \hat{\pi}_{t+1}\right]\\
 \Rightarrow &(1+\beta \alpha) \hat{\pi}_{t}=\alpha \hat{\pi}_{t-1}+\beta E_{t} \hat{\pi}_{t+1}-\psi \hat{\lambda}_{t}+\psi \hat{a}_{t}+\hat{e}_{t}
 \end{aligned}$$
 
-
 ## Equation (24)
 
 $$\ln \left(r_{t} / r\right)=\rho_{r} \ln \left(r_{t-1} / r\right)+\rho_{\pi} \ln \left(\pi_{t-1} / \pi\right)+\rho_{x} \ln \left(x_{t-1} / x\right)+\varepsilon_{r t}$$
 
-Directly applying Uhlig's method using $r_t=r\cdot e^{\hat{r}_t}$ for each variable of the equation yields the required result:
+Directly applying Uhlig's method using $r_t=r\cdot e^{\hat{r}_t}$ for
+each variable of the equation yields the required result:
 
 $$\begin{aligned} & \ln \left[\frac{r e^{\hat{r} t}}{r}\right]=\operatorname{\rho_r} \ln \left[\frac{r e^{\hat{r}_{t-1}}}{r}\right]+\rho{\pi} \ln \left[\frac{\pi e^{\hat{\pi}_{t-1}}}{n}\right)+\rho_x \ln \left(\frac{x e^{\hat{x}_{t+1}}}{x}\right)+\varepsilon_{rt} \\
 & \therefore \quad \hat{r}_{t}=\rho_{r} \hat{r}_{t-1}+\rho_{\pi} \hat{\pi}_{t-1}+\rho x \hat{x}_{t-1}+\varepsilon_{r t} \end{aligned}$$
 
-
 ## Equation (25)
 
 Starting Form Equation (9) and using the conditions from section [C:]
-
-
 
 $$ \begin{aligned}
 &\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}-1\right)^{2} \\
@@ -1051,7 +1178,9 @@ $$ \begin{aligned}
 \end{aligned}$$
 
 \newpage
-As indicated in the Appendix of the paper, substituting for the steady state conditions in equation (9) yields
+
+As indicated in the Appendix of the paper, substituting for the steady
+state conditions in equation (9) yields
 
 $$\begin{aligned}
 &\frac{a}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m\right)+\ln \left(u\right)\right]-a\left(\frac{\phi_{m}}{2}\right)\left(\frac{z m}{z m}-1\right)^{2} \\
@@ -1064,9 +1193,11 @@ $$\begin{aligned}
 &\delta_{r} =\left(\frac{\delta}{r}\right)\left(\frac{\theta}{\theta-1}\right)
 \end{aligned}$$
 
-Now, to simplify the linearisation process, we consider the equation (9) in parts:
+Now, to simplify the linearisation process, we consider the equation (9)
+in parts:
 
 ### Term 1:
+
 $$\begin{aligned}
 \frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]
 = &\frac{a_{t}}{\delta}\left\{\ln \left(m^{*}\right)-\ln (m)-\hat{m}_{t}+\hat{u}_{t}\right\} \\
@@ -1075,20 +1206,21 @@ $$\begin{aligned}
 \end{aligned}$$
 
 ### Term 5:
+
 $$\begin{aligned} \lambda_{t}\left(1-\frac{1}{r_{t}}\right) 
 &=\lambda e^{\hat{\lambda}_{t}}\left(1-\frac{e^{-\hat{r}_{t}}}{r}\right)\\
 &=\lambda\left[e^{\hat{\lambda}_{t}}-\frac{e^{\lambda_{t}-\hat{r}_{t}}}{r}\right]\\
 &=\lambda\left[1+\hat{\lambda}_{t}-\frac{1+\hat{\lambda}_{t}-\hat{r}_{t}}{r}\right]\\
 &=\lambda+\hat{\lambda \lambda}_{t} - \lambda/r + \lambda \cdot \hat{\lambda}_{t}/r - \lambda \cdot \hat{r}_{t}/r \end{aligned}$$
 
-Using $\lambda - \lambda/r = \frac{\delta_r(r-1)}{\delta}$ to add the previous two solutions together and changing the sign for carrying the term to the other side of the equality, we get:
-
+Using $\lambda - \lambda/r = \frac{\delta_r(r-1)}{\delta}$ to add the
+previous two solutions together and changing the sign for carrying the
+term to the other side of the equality, we get:
 
 $$\begin{aligned}&\lambda+\hat{\lambda \lambda}_{t} - \lambda/r + \lambda \cdot \hat{\lambda}_{t}/r - \lambda \cdot \hat{r}_{t}/r -\frac{a_{t}}{\delta}\delta_{r}(r-1)\\
 = &-\frac{e^{\hat{a}_{t}}}{\delta}\delta_{r}(r-1) + \lambda-\lambda/r+\hat{\lambda}_t \cdot \lambda/r \cdot (r-1) + \lambda \cdot \hat{r}_t/r\\
 =& -\frac{\delta_r(r-1) \hat{a}_t}{\delta} + \hat{\lambda}\frac{\delta_r (r-1)}{\delta} +\hat{r}_t \frac{\delta_r}{\delta}
 \end{aligned}$$
-
 
 ### Term 2:
 
@@ -1100,14 +1232,13 @@ $$\begin{aligned}&a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{Z_t m_t }{z Z_
 =& 0
 \end{aligned}$$
 
-
 ### Term 3:
+
 $$\begin{aligned} &-a_{t} \phi_{m}\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}} - 1\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}\right)\\
 =& e^{\hat{a}_{t}} \phi_{m}\left[\frac{z m e^{\hat{z}_{t}+\hat{m}_{t}}}{z m e^{\hat{m}_{t-1}}}-1\right]\left[\frac{z m e^{\hat{z}_{t}+\hat{m}_{t}}}{z m e^{\hat{m}_{t-1}}}\right]\\
 =& \phi_m \left[ \exp \left(2 \hat{z}_{t}+2 \hat{m}_{t}-2 \hat{m}_{t-1}+\hat{a}_{t}\right)-\exp \left(\hat{z}_{t}+\hat{m}_{t}-\hat{m}_{t-1}+\hat{a}_{t}\right) \right]\\
 =& \phi_m \left[\hat{z}_{t}+\hat{m}_{t}-\hat{m}_{t-1}\right]
 \end{aligned}$$
-
 
 ### Term 4:
 
@@ -1118,7 +1249,6 @@ $$\begin{aligned}&\beta \phi_{m} E_{t}\left[e^{\hat{a}_{t+1}}\left(\frac{z m e^{
 =&\beta \phi_{m} E_{t}\left\{\hat{z}_{t+1}+\hat{m}_{t+1}-\hat{m}_{t}\right\}\\
 =& \beta \phi_{m} E_{t}\left\{\hat{m}_{t+1}\right\} - \beta \phi_m \hat{m}_{t}
 \end{aligned}$$
-
 
 ### Adding The Terms Together for the Final Solution:
 
@@ -1137,8 +1267,6 @@ $$\begin{aligned}\therefore \quad & \delta_r (r-1) \hat{\lambda} - \delta_r(r-1)
 = \phi \hat{m}_{t-1}-[1+(1+\beta) \phi] \hat{m}_{t}+\beta \phi \hat{m}_{t+1}-\delta_{r} \hat{r}_{t}
 \end{aligned}$$
 
-
-
 ## Equation (26)
 
 $$\mu_{t}=z_{t}\left(m_{t} / m_{t-1}\right) \pi_{t}$$
@@ -1152,7 +1280,6 @@ $$\begin{aligned}
 \therefore \quad & \hat{\mu}_{t} =\hat{z}_{t}+\hat{m}_{t}-\hat{m}_{t-1}+\pi_{t}
 \end{aligned}$$
 
-
 ## Equation (27)
 
 This equation
@@ -1164,6 +1291,7 @@ Using the Steady State solution
 $$g = z$$
 
 \newpage
+
 Yields the following solution, using Uhlig's method:
 
 $$\begin{aligned}
@@ -1172,7 +1300,6 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 \Rightarrow \left(1+\hat{g}_{t}\right)&=\left(1+\hat{y}_{t}-\hat{y}_{t-1}+\hat{z}_{t}\right)\\
 \therefore \hat{g}_{t} &= \hat{y}_{t}-\hat{y}_{t-1}+\hat{z}_{t}
 \end{aligned}$$
-
 
 ## Equation (28)
 
@@ -1184,7 +1311,6 @@ $$\begin{aligned}
 \therefore \quad & \hat{a}_{t} =\rho_{a} \hat{a}_{t-1}+\varepsilon_{a t}
 \end{aligned}$$
 
-
 ## Equation (29)
 
 $$\begin{aligned}
@@ -1193,7 +1319,6 @@ $$\begin{aligned}
 \Rightarrow  \ln (z)+\hat{z}_{t}=\ln (z)+\varepsilon_{z t}\\
 \therefore \hat{z}_t = \varepsilon_{z t}
 \end{aligned}$$
-
 
 ## Equation (30)
 
@@ -1205,7 +1330,6 @@ $$\begin{aligned}
 \therefore \quad &\hat{u}_{t} =\rho_{u} \hat{u}_{t-1}+\varepsilon_{u t}
 \end{aligned}$$
 
-
 ## Equation (31)
 
 $$\begin{aligned}
@@ -1215,8 +1339,7 @@ $$\begin{aligned}
 \therefore & \quad \hat{\theta}_{t}=\rho_{\theta} \hat{\theta}_{t-1}+\varepsilon_{\theta t}
 \end{aligned}$$
 
-
-using the normalisation 
+using the normalisation
 $$\hat{e}_{t}=-\left(1 / \phi_{p}\right) \hat{\theta}_{t}$$
 
 and
@@ -1231,5 +1354,92 @@ $$\begin{aligned}
 \Rightarrow \quad &\hat{e}_t =  \rho_{e} \hat{e}_{t-1}+\varepsilon_{e t}
 \end{aligned}$$
 
+\newpage
+
+# Data and Calibration Methods
+
+Impulse response functions show the movement of macroeconomic variables back to steady state in response to a shock. This paper makes use of these graphs to compare different approaches to monetary policy, namely the Taylor (TR) rule, the zero Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule, and the Constant Money Growth  (CMG) rule. 
+
+To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell et al. (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. The table below lists the different parameter values used. 
+
+TABLE
+
+The steady state growth rate was calculated in accordance with Belongia & Ireland (2020)’s method. 1983-2019 quarterly GDP data from FRED is used, which is then converted into per capita terms by dividing by the civilian noninstitutional population. The trend of the quarterly GDP per capita data is then extracted using a Hodrick-Prescott filter with a smoothing parameter of 1600. After this, the average of the natural log change in quarterly GDP is calculated as 1.00037. In order to calculate the steady state interest rate, we use FRED’s quarterly interest rate data between 1983 and 2019. The average of this data is then divided by four to get 0.98783908. 
+
+rho_pi, rho_x and rho_r are only used for the Taylor rule calibration. Under the FMG and CMG rules, rho_mm, rho_mpi and rho_mx replace rho_pi, rho_x and rho_r, due to the switch from equation 24 to 33. When calibrating the CMG rule, these parameters are set to zero. Under the FMG rule, we set rho_mm, rho_mpi and rho_mx equal to 1, 0 and -0.125 respectively. This is in accordance to Belongia & Ireland (2020).
+
+To conduct robustness checks for z_ss, r_ss, beta, and psi, we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three values are taken from Ireland (2010), and we have replaced the value for the Phillips Curve slope with the mean posterior value from Belongia & Ireland (2020). When comparing our impulse response functions to those using these values, we conclude that they are similar, implying that the values used are appropriate. The following section compares the impulse response functions under each rule after a small and positive productivity, preference, cost push, and money demand shocks are induced. 
+
+\newpage
+
+# Results
+
+## Productivity Shock 
+
+The figure below shows the impulse response functions of the output growth, inflation, nominal interest rate, money growth rate and output gap after a positive productivity shock. The graphs depict the way in which each of these macroeconomic variables change under the Taylor (TR) rule, the Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule and the Constant Money Growth (CMG)  rule. 
+
+GRAPH
+
+The impulse response functions (IRF) of the output growth of the TR rule, IR rule, FMG rule, and CMG rule in response to a productivity shock are illustrated in the first of the graphs above. The effect of the TR rule and the IR rule on output growth is identical. The IRF of output growth under the FMG rule, TR rule and IR rule jumps above 0.002. Under these three rules, it then slowly moves down to zero at a decreasing rate. The IRF of output growth under the IR rule moves faster, and reaches zero after 12 periods, whereas under the FMG rule, it is more gradual and reaches zero at around 14 periods. Under both rules, the trajectory of output growth crosses the zero line, but not by much and moves upwards toward zero again. Under the CMG rule, however, the IRF starts below zero, and moves up to cross the zero line just past two periods. It then proceeds to increase but at a decreasing rate until approximately six periods. Thereafter, it gradually moves back to steady state. The trajectory of output growth of all three rules represented here takes more than 20 periods to settle around the steady state. 
+
+The IRF of inflation rate under both the CMG rule and FMG rule responds to a shock in productivity, however it follows different trajectories toward zero under the two rules. Under the FMG rule, the IRF jumps to just below steady state, and crosses the zero line at around three periods. It rises minimally until a turning point at 10 periods, afterwhich is returns to zero by 20 periods. The trajectory of the inflation rate under this rule does not stray far from steady state. Alternatively, the IRF of inflation under the CMG rule experiences a bigger fluctuation in response to the productivity shock. It jumps down to approximately -0.0008 and declines further until two periods have passed. From there, it increases steadily at an increasing rate towards zero. It does not, however, reach zero within 20 periods, as the IRF under the FMG rule does. 
+
+Similar to the inflation rate, nominal interest rates under both the CMG rule and FMG rule respond to a shock in productivity. Both IRFs start above 0.0008. The IRF under the CMG rule declines steadily at an increasing rate towards zero, but under the FMG rule it first increases slightly before starting to decline after approximately two periods. The trajectory of the nominal interest rate then crosses the zero line just before 14 periods. At around 18 periods the IRF starts moving back to zero. Although the graph shows that the trajectory of the nominal interest rate moves close to zero under both scenarios, it takes more than 20 periods to reach steady state. 
+
+The nominal money growth rate under the TR rule and IR rule in response to a productivity shock have identical IRFs. Both jump to above 0.001 and decline steadily to reach zero by 20 periods. Alternatively, the IRF under the FMG rule increases at an increasing rate, after reaching a point of inflection after about five periods, after which it increases at a decreasing rate. The trajectory of the money growth rate reaches a turning point between eight and nine periods, after which it declines to just above steady state by 20 periods. 
+
+In response to a productivity shock, the IRF of output gap under the FMG rule first declines, and then returns to steady state by eight periods. It then increases slightly, but almost reaches steady state again after 20 periods have passed. The output gap under the CMG rule behaves differently in response to such a shock. The IRF also declines at first, but from a starting point of -0.004 (as opposed to -0.001). Just after four periods, it reaches a turning point from which it increases at a decreasing rate. The trajectory of the output gap does not reach steady state within 20 periods. 
+
+Contractionary monetary policy refers to increases in interest rates so as to decrease the supply of money in the economy in order to lower inflation (Chen, 2020). After a small positive shock to productivity, the CMG rule displays signs of this policy, with nominal interest rates jumping up before slowly returning to steady state. The FMG rule results in an increase in output growth, after which a rise in the money growth and a decrease in the nominal interest rate allows for the output growth to return to steady state without significant changes to inflation. Under both the TR rule and the IR rule, money growth increases to accommodate the increase in output, so that the output gap remains stable. It appears as though the CMG responds the least efficiently to the shock, with large fluctuations in inflation, as well as decreases in output growth, and a negative output gap. 
+
+
+## Preference Shock
+
+The figure below shows the response of the chosen macroeconomic variables to a positive preference shock. As explained above, each panel shows the response of the given variable under each of the four rules. A preference shock refers to a shock to the utility aspect of the economy (Chugh, 2015:147). As such, it affects the macroeconomic variables from the demand side (Malik et al., 2019:12). 
+
+The output growth of all four scenarios starts above zero in response to a preference shock, in order of IR rule, TR Rule, FMG rule and CMG rule from lowest to highest. The trajectory of the output growth under all scenarios then declines, however, under the TR Rule, FMG rule and CMG rule, it becomes negative. Under the TR rule, the IRF stays very close to zero. The trajectory of the output growth of the FMG and CMG rules decrease further below zero but start to move back to steady state between six and eight periods. The IRF under the FMG rule reaches zero around 12 periods, whereas under the CMG rule, it increases more gradually, nearing it at 20 periods. The IRF of output growth under the IR rule experienced the smallest jump up after the shock and returned to steady state after four periods. 
+
+Inflation under the CMG rule jumps to above 0.0002 in response to a preference shock. The IRF proceeds to increase further for two periods, after which it declines steadily past zero. It is still declining after 18 periods. The IRFs under both the FMG rule and the TR rule experience a small jump and start between zero and 0.0001. Under the TR rule, the IRF remains close to steady state, and gradually proceeds to zero by 20 periods. Under the FMG rule, it sharply declines to cross the zero line and reaches a turning point between seven and eight periods. It increases to cross the zero line again at around 17 periods. It remains slightly above steady state after 20 periods.
+
+The nominal interest rate under the TR rule does not experience an immediate jump in response to a preference shock. Instead, the IRF slowly increases up to 0.0003 until it starts to decrease after six periods. It slowly moves down towards zero, but does not reach steady state within 20 periods. The nominal interest rate under the FMG rule and CMG rule both jump down minimally in response to a preference shock. Starting at -0.0001, however, the IRF of the nominal interest rate under the FMG rule increases and then plateaus below 0.0001, whereas that of the CMG rule remains level for approximately two periods, after which it starts to increase. After 14 periods, it reaches a turning point where it starts to return to zero, however, it does not reach steady state within 20 periods. 
+
+The money growth rate under the FMG rule does not jump immediately after a preference shock. The IRF declines from zero at a decreasing rate. It reaches a turning point between seven and eight periods after the shock, after which it increases steadily. The IRF of the money growth rate crosses the zero line just before 16 periods and proceeds to rise. It is still moving away from steady state at 20 periods. The money growth rate in response to the shock under the TR rule jumps to below -0.004 and remains there for approximately three periods. It then starts increasing and returns to steady state between nine and 10 periods, after which it moves away from steady state again in the positive direction. Unlike the money growth rate under the FMG rule, however, it starts moving back towards the steady state before 20 periods. It does not reach steady state within 20 periods. 
+
+The output gap under the TR rule does not deviate from steady state significantly in response to a preference shock. The IRF experiences a small positive jump, but returns to steady state between 10 and 12 periods. The trajectory of the output gap under the FMG rule jumps up slightly more than under the TR rule, but instead of returning to zero immediately, it increases first. After two periods, it starts to decrease, and crosses the zero line after approximately seven periods. After this point, it deviates slightly negatively from steady state, but slowly moves back. By 20 periods, it has returned close to steady state.
+
+The FMG rule displays a delayed response to the preference shock, with eventual contractionary policy. The nominal interest rate first decreases, after which it increases significantly. Along with this increase in the interest rate, the money growth rate declines. As a result, inflation minimally decreases, and the output growth and gap remain stable. The same cannot be said, however, for the CMG rule, where the money growth does not change to accomodate for the shock. Under this rule, inflation responds in a volatile manner. Additionally, the output growth and gap experience the biggest jumps under this rule. Under the TR rule, money growth decreases before it starts to increase. Interest rates do not respond immediately, but eventually increase. These changes result in inflation and the output gap being kept stable. The jump in output growth is also minimal. Macroeconomic factors under the IR rule do respond strongly to a preference shock. There is only a very small positive change in output growth. 
+
+
+## Money Demand Shock 
+
+The figure below shows the response of the chosen macroeconomic variables to a positive money demand shock. As explained above, each panel shows the response of the given variable under each of the four rules. According to Lorenzoni (2006), output volatility may be attributed to demand shocks. A positive money demand shock increases households' spending, leading to a rise in inflation. 
+
+As seen in the first impulse response function above, there is a negative effect on output growth under both the CMG rate and FMG rate rules after a positive money demand shock. The IRF of output growth starts at approximately -0.001 under the FMG rate rule and approximately -0.003 under the CMG rate rule. The IRF increases at a decreasing rate under both rules, with the trajectory of output growth under the FMG rate rule crossing the zero line first. Under both, the IRFs begin decreasing, with the FMG rate rule reaching the steady state at 14 periods, but then proceeds to slightly decrease below the steady state thereafter. Under the CMG rate rule, the IRF does not reach the steady state within twenty periods. 
+
+Inflation under both the CMG rate rule and the FMG rate rule is impacted negatively by the money demand shock. The negative effect under the CMG rate rule is larger than under the FMG rate rule. Under the CMG rate rule, the IRF starts at -0.0005 and approximately -0.00005 under the FMG rate rule. Under the CMG rate rule, the IRF initially decreases before increasing at two periods. It increases at a decreasing rate and reaches the steady state at 18 periods, before surpassing the steady state and continues to increase. Under the FMG rate rule, the IRF increases until eight periods, then slightly decreases. The trajectory of Inflation reaches, and remains at, the steady state after 18 periods. 
+
+The nominal interest rate under both the FMG rate rule and CMG rate rule experiences a positive shock and the IRFs start at 0.0008. Initially, the IRF under the CMG rate rule declines at a faster rate than under the FMG rate rule. However, at seven periods, the IRF under the FMG rate rule drops below the CMG rate rule. Under the FMG rate rule, the IRF of the nominal interest rate reaches the steady state at 13 periods but continues to decrease at a decreasing rate. Under the CMG rate rule, the IRF does not reach the steady state within 20 periods. 
+
+As seen in the graph above, after the shock, the money growth rate is identically impacted by the TR rule and the IR rule. There is an initial positive effect on the money growth rate, however the IRF begins to decline, where it meets the steady state at 10 periods. Thereafter, the IRF of the money growth rate drops below the steady state and continues to decrease at a decreasing rate. Under the FMG rule, the IRF of the money growth rate starts at zero and initially increases. After nine periods, the IRF begins to decrease and meets the steady state after 18 periods, thereafter, dropping below the steady state.
+
+The output gap is negatively affected by the shock under both the constant money growth rate rule and the flexible money growth rate rule. Under the FMG rate rule, the IRF of the output gap starts at -0.001 and initially decreases. After three periods, the IRF increases to meet the steady state at eight periods. It increases at a decreasing rate and begins to stabilise after 13 periods. Under the CMG rate rule, the IRF of the output gap starts at 0.003 and decreases until the 4th period. It then increases at a decreasing rate and does not reach the steady state within 20 periods. 
+
+## Cost Push Shock
+
+The figure below shows the response of the chosen macroeconomic variables to a positive cost push shock. As explained above, each panel shows the response of the given variable under each of the four rules. A cost push shock results in higher inflation due to an increase in the price of production, causing a decrease in aggregate supply. 
+
+Under the four rules, output growth is not significantly affected by the cost push shock. However, under the IR rule, output growth is positively affected, as the IRF starts at 0,01 and decreases to meet the steady state after approximately 12 periods. 
+
+Under the TR rule, the FMG rate rule and the CMG rate rule, there is a positive effect of the cost push shock on inflation, which is to be expected. Under the FMG rule, the IRF of inflation starts at 0.015 and sharply decreases for the first three periods, thereafter, decreases more subtly until reaching the steady state after 12 periods. Under the CMG rule, the IRF starts at 0.00125 and decreases to surpass the zero line before four periods. It then increases but does not reach the steady state within 20 periods. Under the TR, the IRF starts at 0.0025 and decreases to meet the steady state after 4 periods.
+
+The nominal interest rate is affected by the shock under the CMG rate rule and the FMG rate rule in a similar fashion, as a response to the shock. Under both, there is a positive effect of the shock on nominal interest rate, where the IRF starts at 0.008. It then declines at a faster rate under the FMG rate rule initially, but after six periods, the IRF declines at a faster rate under the CMG rate rule. Under the CMG rate rule, the IRF reaches the steady state sooner, at 13 periods, than the FMG, which does not reach the steady state within 20 periods. Under the TR, the IRF starts at zero and slightly increases before decreasing and merging with the steady state after eight periods. 
+
+There is a positive effect on the money growth rate under the IR rule and the TR rule. Under the IR rule, the IRF of the money demand growth rate starts at approximately 0.003 and decreases sharply to below the steady state after two periods. At the 4th period, the IRF increases to meet the steady state after 18 periods. Under the TR rule, the positive effect is smaller, as the IRF of the money growth rate starts at 0.0015. It then decreases to meet the steady state after three periods but increases again. After eight periods, the IRF decreases once again to meet the steady state after 18 periods. Under the FMG rate rule, the IRF starts at zero and steadily increases before decreasing after nine periods. The IRF of the money growth rate does not reach the steady state within 20 periods. 
+
+Under the TR rule, there is no significant impact of the shock on the output gap. Under the IR rule, the CMG rate rule and the FMG rate rule, there is a negative impact of the cost push shock on the output gap. The smallest effect on the output gap is under the IR rule where the IRF of the output gap starts at just below zero and initially increases to cross the zero line. It then starts to decrease after 14 periods and moves towards the steady state, however, it does not reach it within 20 periods. Under the CMG rate rule, the IRF of the output gap starts at approximately -0.01 and initially decreases before increasing after four periods. It does not reach the steady state within 20 periods. Under the IR rule, the IRF of the output gap starts at -0.035 and remains there until two periods have passed. After that point, it increases at a decreasing rate and meets the steady state after 14 periods. 
+
+\newpage
+
+# Conclusion
 
 
