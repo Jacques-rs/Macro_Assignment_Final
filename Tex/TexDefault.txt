@@ -396,8 +396,10 @@ $endif$
 
 
 $if(toc)$
+\newpage
 \renewcommand{\contentsname}{Table of Contents}
 {\tableofcontents}
+\newpage
 $endif$
 
 %________________________
