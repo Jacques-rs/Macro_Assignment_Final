@@ -53,7 +53,7 @@ csl: Tex/harvard-stellenbosch-university.csl # referencing format used.
 # ---------- General:
 RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
 Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
-toc: FALSE                       # Add a table of contents
+toc: TRUE                       # Add a table of contents
 numbersections: TRUE             # Should sections (and thus figures and tables) be numbered?
 fontsize: 11pt                  # Set fontsize
 linestretch: 1.2                # Set distance between lines.
@@ -68,6 +68,8 @@ output:
     fig_height: 3.5
 #abstract: |
   #Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+  md_document:
+    variant: markdown_github  
 editor_options: 
   markdown: 
     wrap: 72
@@ -100,17 +102,17 @@ library(tidyverse)
 
 According to Belongia and Ireland (2020), nominal interest rate
 management has been the Federal Reserve's approach to stabilise the
-output gap and inflation. The TR is a good predictor of the
+output gap and inflation. The Taylor rule is a good predictor of the
 nominal interest rate management. Interest rate management has been
 endorsed by literature and has shown advantages over the management of
 money stock, however, economists have only argued against a constant
 monetary growth rule but have neglected the potential benefits of a
-potential benefits of a flexible monetary growth rule. The Belongia and
-Ireland (2020) paper is a reconsideration of money growth rules in an
-estimated New Keynesian model.In this paper, the New Keynesian model by
-Belongia and Ireland (2020) is replicated. Firstly, the model is
-explained. The first order conditions log-linearisations are then
-presented.
+flexible monetary growth rule. Belongia and Ireland (2020) is a reconsideration of money growth rules in an
+estimated New Keynesian model. This paper provides a replication of the New Keynesian model by
+Belongia and Ireland (2020) as well as extending the authors' work via calibration, as opposed to estimation. This paper examines the responses of macroeconomic variables under the Taylor rule, Interest Rate rule, Flexible Money Growth rate rule as well as the Constant Money Growth rate rule, in response to the different shocks. The shocks are a preference shock, a productivity shock, a money demand shock and a cost push shock. The macroeconomic variables focused on are output growth rates, inflation, nominal interest rates, money growth rates and output gap.
+
+In section 2, the model is explained. The first order conditions and the log-linearisations of the model are then
+presented in sections 3 and 4, respectively. Section 5 provides an explanation of the data and calibration methods used. The paper presents and discusses the calibration results, in the form of impulse response functions in section 6. Lastly, this paper concludes by ...  
 
 # The Model
 
@@ -163,7 +165,7 @@ preference shock $a_{t}$ follows the stationary autoregressive process below:
 
 $$\ln(a_{t})=\rho_{a} \ln(a_{t-1}) + \varepsilon_{at} \tag{2}$$
 
-for all $t=0,1,2,...,$ with $0 \ge \rho_{a} \le 1$, where the serially
+for all $t=0,1,2,...,$ with $0 \le \rho_{a} \le 1$, where the serially
 uncorrelated innovation $\varepsilon_{at}$ is normally distributed with a
 mean of zero and standard deviation $\sigma_{a}$. Total utility is a combination of the utility obtained from consumption, real balances, and hours worked, which implies additive seperability, so as to
 imply a specification for the model's IS curve that does not include
@@ -183,7 +185,7 @@ shock $u_{t}$ to money demand follows the stationary autoregressive
 process:
 
 $$\ln(u_{t})= \rho_{u} \ln(u_{t-1}) + \varepsilon_{ut} \tag{4}$$ for all
-$t=0,1,2,...$ with $0 \ge \rho_{u} <1$, where the serially uncorrelated
+$t=0,1,2,...$ with $0 \le \rho_{u} <1$, where the serially uncorrelated
 innovation $\varepsilon_{ut}$ is normally distributed with mean zero and
 standard deviation $\sigma_{u}$. Finally, the parameter $\phi_{m} \ge 0$
 governs the magnitude of the adjustment cost for real balances, adapted
@@ -219,7 +221,7 @@ $$\begin{aligned} \mathcal{L}(\cdot_{t}) = \mathcal{L}(C_t, h_t, B_t, M_t) = &E_
 
 ### The FOC with respect to $C_t$:
 
-$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial C_t}= a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})$$
+$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial C_t}= a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})$$
 
 Equate to zero and solve:
 
@@ -229,7 +231,7 @@ $$\Lambda_t =  a_t(\frac{1}{C_t-\gamma C_{t-1}}) + E_t\beta a_{t+1}(-\gamma)(\fr
 
 ### The FOC with respect to $h_t$:
 
-$$\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial h_t}= (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)$$
+$$\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial h_t}= (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)$$
 
 Equate to zero and solve:
 
@@ -1392,7 +1394,6 @@ In response to a productivity shock, the IRF of output gap under the FMG rule fi
 
 Contractionary monetary policy refers to increases in interest rates so as to decrease the supply of money in the economy in order to lower inflation (Chen, 2020). After a small positive shock to productivity, the CMG rule displays signs of this policy, with nominal interest rates jumping up before slowly returning to steady state. The FMG rule results in an increase in output growth, after which a rise in the money growth and a decrease in the nominal interest rate allows for the output growth to return to steady state without significant changes to inflation. Under both the TR rule and the IR rule, money growth increases to accommodate the increase in output, so that the output gap remains stable. It appears as though the CMG responds the least efficiently to the shock, with large fluctuations in inflation, as well as decreases in output growth, and a negative output gap. 
 
-
 ## Preference Shock
 
 The figure below shows the response of the chosen macroeconomic variables to a positive preference shock. As explained above, each panel shows the response of the given variable under each of the four rules. A preference shock refers to a shock to the utility aspect of the economy (Chugh, 2015:147). As such, it affects the macroeconomic variables from the demand side (Malik et al., 2019:12). 
@@ -1408,7 +1409,6 @@ The money growth rate under the FMG rule does not jump immediately after a prefe
 The output gap under the TR rule does not deviate from steady state significantly in response to a preference shock. The IRF experiences a small positive jump, but returns to steady state between 10 and 12 periods. The trajectory of the output gap under the FMG rule jumps up slightly more than under the TR rule, but instead of returning to zero immediately, it increases first. After two periods, it starts to decrease, and crosses the zero line after approximately seven periods. After this point, it deviates slightly negatively from steady state, but slowly moves back. By 20 periods, it has returned close to steady state.
 
 The FMG rule displays a delayed response to the preference shock, with eventual contractionary policy. The nominal interest rate first decreases, after which it increases significantly. Along with this increase in the interest rate, the money growth rate declines. As a result, inflation minimally decreases, and the output growth and gap remain stable. The same cannot be said, however, for the CMG rule, where the money growth does not change to accomodate for the shock. Under this rule, inflation responds in a volatile manner. Additionally, the output growth and gap experience the biggest jumps under this rule. Under the TR rule, money growth decreases before it starts to increase. Interest rates do not respond immediately, but eventually increase. These changes result in inflation and the output gap being kept stable. The jump in output growth is also minimal. Macroeconomic factors under the IR rule do respond strongly to a preference shock. There is only a very small positive change in output growth. 
-
 
 ## Money Demand Shock 
 

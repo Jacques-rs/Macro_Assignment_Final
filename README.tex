@@ -1,112 +1,288 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-%
-\documentclass[
-]{report}
-\usepackage{amsmath,amssymb}
+\documentclass[11pt,preprint, authoryear]{elsarticle}
+
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+%%%% My spacing
+\usepackage{setspace}
+\setstretch{1.2}
+\DeclareMathSizes{12}{14}{10}{10}
+
+% Wrap around which gives all figures included the [H] command, or places it "here". This can be tedious to code in Rmarkdown.
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\let\origtable\table
+\let\endorigtable\endtable
+\renewenvironment{table}[1][2] {
+    \expandafter\origtable\expandafter[H]
+} {
+    \endorigtable
+}
+
+
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Macroeconomics Project},
-  pdfauthor={Emma Terblanche, Jacques Rossouw \& Samantha Scott},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
 \fi
 
-\title{Macroeconomics Project}
-\author{Emma Terblanche, Jacques Rossouw \& Samantha Scott}
-\date{30/04/2022}
+\usepackage{amssymb, amsmath, amsthm, amsfonts}
+
+\def\bibsection{\section*{References}} %%% Make "References" appear before bibliography
+
+
+\usepackage[round]{natbib}
+
+\usepackage{longtable}
+\usepackage[margin=2.3cm,bottom=2cm,top=2.5cm, includefoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage[bottom, hang, flushmargin]{footmisc}
+\usepackage{graphicx}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1.3ex plus 0.5ex minus 0.3ex}
+\usepackage{textcomp}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+%%%%  Remove the "preprint submitted to" part. Don't worry about this either, it just looks better without it:
+\makeatletter
+\def\ps@pprintTitle{%
+  \let\@oddhead\@empty
+  \let\@evenhead\@empty
+  \let\@oddfoot\@empty
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+
+ \def\tightlist{} % This allows for subbullets!
+
+\usepackage{hyperref}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=blue,
+            pdfborder={0 0 0}}
+
+
+% The following packages allow huxtable to work:
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{caption}
+
+
+\newenvironment{columns}[1][]{}{}
+
+\newenvironment{column}[1]{\begin{minipage}{#1}\ignorespaces}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+
+\makeatletter
+\def\ignorespacesandallpars{%
+  \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+}
+\makeatother
+
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
+
+
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+%%% Include extra packages specified by user
+
+%%% Hard setting column skips for reports - this ensures greater consistency and control over the length settings in the document.
+%% page layout
+%% paragraphs
+\setlength{\baselineskip}{12pt plus 0pt minus 0pt}
+\setlength{\parskip}{12pt plus 0pt minus 0pt}
+\setlength{\parindent}{0pt plus 0pt minus 0pt}
+%% floats
+\setlength{\floatsep}{12pt plus 0 pt minus 0pt}
+\setlength{\textfloatsep}{20pt plus 0pt minus 0pt}
+\setlength{\intextsep}{14pt plus 0pt minus 0pt}
+\setlength{\dbltextfloatsep}{20pt plus 0pt minus 0pt}
+\setlength{\dblfloatsep}{14pt plus 0pt minus 0pt}
+%% maths
+\setlength{\abovedisplayskip}{12pt plus 0pt minus 0pt}
+\setlength{\belowdisplayskip}{12pt plus 0pt minus 0pt}
+%% lists
+\setlength{\topsep}{10pt plus 0pt minus 0pt}
+\setlength{\partopsep}{3pt plus 0pt minus 0pt}
+\setlength{\itemsep}{5pt plus 0pt minus 0pt}
+\setlength{\labelsep}{8mm plus 0mm minus 0mm}
+\setlength{\parsep}{\the\parskip}
+\setlength{\listparindent}{\the\parindent}
+%% verbatim
+\setlength{\fboxsep}{5pt plus 0pt minus 0pt}
+
+
 
 \begin{document}
-\maketitle
 
-{
-\setcounter{tocdepth}{2}
-\tableofcontents
+
+
+\begin{frontmatter}  %
+
+\title{A Replication: A Reconsideration of Money Growth Rules}
+
+% Set to FALSE if wanting to remove title (for submission)
+
+
+
+
+\author[Add1]{Jacques Rossouw}
+\ead{21159793@sun.ac.za}
+
+\author[Add1]{Samantha Scott}
+\ead{20945043@sun.ac.za}
+
+\author[Add1,Add2]{Emma Terblanche}
+\ead{21777039@sun.ac.za}
+
+
+
+\address[Add1]{Stellenbosch University, Cape Town, South Africa}
+
+
+
+\vspace{1cm}
+
+
+\begin{keyword}
+\footnotesize{
+Macroeconomics \sep Calibration \sep Monetary Policy \\
+\vspace{0.3cm}
 }
+\end{keyword}
+
+
+
+\vspace{0.5cm}
+
+\end{frontmatter}
+
+
+\newpage
+\renewcommand{\contentsname}{Table of Contents}
+{\tableofcontents}
 \newpage
 
-\hypertarget{introduction-edit}{%
-\chapter{Introduction {[}EDIT{]}}\label{introduction-edit}}
+%________________________
+% Header and Footers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\chead{}
+\rhead{}
+\lfoot{}
+\rfoot{\footnotesize Page \thepage}
+\lhead{}
+%\rfoot{\footnotesize Page \thepage } % "e.g. Page 2"
+\cfoot{}
+
+%\setlength\headheight{30pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%________________________
+
+\headsep 35pt % So that header does not go over title
+
+
+
+
+\newpage
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
 According to Belongia and Ireland (2020), nominal interest rate
-management has been the Federal Reserve's approach to stabilize the
-output gap and inflation. The Taylor Rule is a good predictor of the
+management has been the Federal Reserve's approach to stabilise the
+output gap and inflation. The Taylor rule is a good predictor of the
 nominal interest rate management. Interest rate management has been
 endorsed by literature and has shown advantages over the management of
 money stock, however, economists have only argued against a constant
 monetary growth rule but have neglected the potential benefits of a
-potential benefits of a flexible monetary growth rule. The Belongia and
-Ireland (2020) paper is a reconsideration of money growth rules in an
-estimated New Keynesian model.In this paper, the New Keynesian model by
-Belongia and Ireland (2020) is replicated. Firstly, the model is
-explained. The first order conditions log-linearisations are then
-presented.
+flexible monetary growth rule. Belongia and Ireland (2020) is a
+reconsideration of money growth rules in an estimated New Keynesian
+model. This paper provides a replication of the New Keynesian model by
+Belongia and Ireland (2020) as well as extending the authors' work via
+calibration, as opposed to estimation. This paper examines the responses
+of macroeconomic variables under the Taylor rule, Interest Rate rule,
+Flexible Money Growth rate rule as well as the Constant Money Growth
+rate rule, in response to the different shocks. The shocks are a
+preference shock, a productivity shock, a money demand shock and a cost
+push shock. The macroeconomic variables focused on are output growth
+rates, inflation, nominal interest rates, money growth rates and output
+gap.
+
+In section 2, the model is explained. The first order conditions and the
+log-linearisations of the model are then presented in sections 3 and 4,
+respectively. Section 5 provides an explanation of the data and
+calibration methods used. The paper presents and discusses the
+calibration results, in the form of impulse response functions in
+section 6. Lastly, this paper concludes by \ldots{}
 
 \hypertarget{the-model}{%
-\chapter{The Model}\label{the-model}}
+\section{The Model}\label{the-model}}
 
-The model economy from THE PAPER includes the representative household,
-a representative finished goods-producing firm, ``i'' intermediate
-goods-producing firms (such that \(i \in [0; 1]\), is a continuum) and a
-central bank. For each period, a unique intermediate good is produced by
-each intermediate goods-producing firm \(i\), such that the intermediate
-goods adopt the same indexing notation, \(i \in [0; 1]\). The symmetry
-of this model suggests that the focus can be narrowed to a
-representative intermediate goods-producing firm instead. This
-representative firm then produces good intermediate good \(i\). The
-household preferences are described by their expected utility function.
-These preferences, along with the incomplete indexation of sticky
-nominal goods prices that are determined by the monopolistically
+The model economy from Belongia and Ireland (2020) includes the
+representative household, a representative finished goods-producing
+firm, ``i'' intermediate goods-producing firms (such that
+\(i \in [0; 1]\), is a continuum) and a central bank. For each period, a
+unique intermediate good is produced by each intermediate
+goods-producing firm \(i\), such that the intermediate goods adopt the
+same indexing notation, \(i \in [0; 1]\). The symmetry of this model
+suggests that the focus can be narrowed to a representative intermediate
+goods-producing firm instead. This representative firm then produces
+good intermediate good \(i\).
+
+The household preferences are described by their expected utility
+function. These preferences, along with the incomplete indexation of
+sticky nominal goods prices that are determined by the monopolistically
 competitive intermediate goods-producing firms suggests a New Keynesian
 IS and Phillips Curve that are both forward, and backwards-looking.
 Monetary Policy is assumed to follow a version of the Taylor (1993)
@@ -119,87 +295,101 @@ order conditions for each representative is replicated in the following
 sections, followed by the complete system of linearised equations.
 
 \hypertarget{derivations-of-models-first-order-conditions}{%
-\chapter{Derivations of Model's First Order
+\section{Derivations of Model's First Order
 Conditions:}\label{derivations-of-models-first-order-conditions}}
 
 \hypertarget{the-representative-household}{%
-\section{The Representative
+\subsection{The Representative
 Household}\label{the-representative-household}}
 
-The representative household, at the beginning of each each period
-\(t=0,1,2,...\) holds \(M_{t-1}\) units of money and \(B_{t-1}\) units
-of bonds. Additionally, the household also receives a lump-sum monetary
-transfer \(T_{t}\) from the central bank at the beginning of each period
-\(t\). The household's bonds mature, yielding \(B_{t-1}\) additional
-units of money. The household purchases \(B_{t}\) new bonds with a
-portion of its money, at an asking price \(1/r_t\) units of money per
-bond. The gross nominal interest rate between time \(t\) and \(t+1\) is
-therefore denoted by \(r_t\). The household is paid \(W_{t}h_{t}\) in
-labour income for supplying \(h_{t}{(i)}\) units of labour to each
-intermediate goods-producing firm, given a wage rate of \(W_{t}\), for
-each period \(t\), where:
+Each period \(t=0,1,2,...\) is entered by the representative household
+with \(M_{t-1}\) units of money and \(B_{t-1}\) bonds. The household
+receives a lump-sum monetary transfer \(T_{t}\) from the central bank at
+the beginning of period \(t\). In addition, the household's bonds
+mature, yielding \(B_{t-1}\) additional units of money. The household
+uses some of this money to purchase \(B_{t}\) new bonds at the price of
+\(1=rt\) units of money per bond. Therefore, \(r_t\) represents the
+gross nominal interest rate between \(t\) and \(t + 1\). The household
+provides \(h_{t}{(i)}\) units of labour to each intermediate
+goods-producing firm \(i\in{[0; 1]}\) during period \(t\). The household
+is paid at the nominal wage rate \(W_{t}\). Households therefore earn
+\(W_{t}h_{t}\) in labour income, where
 
 \[h_{t}=\int h_{t}{(i)} \;di\]
 
-indicates the total hours worked at \(t\). \(C_t\) is the household
-consumption at \(t\), purchased from the final goods-producing firm at
-the nominal price \(P_t\). Finally, at the end of each period \(t\),
+represents the total hours worked during the period. In period \(t\),
+the household consumes \(C_{t}\) units of the finished goods. Finished
+goods are purchased at the nominal price, \(P_{t}\) from the
+representative finished goods-producing firm. The household receives
 nominal profits \(D_{t}(i)\) from each intermediate goods-producing firm
-\(i \in {[0; 1]}\) is paid out to the household. This allows the
-household to then carry \(M_{t}\) units of money into the next period,
-subject to the budget constraint:
+\(i \in {[0; 1]}\), at the end of period \(t\). The household then
+carries \(M_{t}\) units of money into period \(t + 1\), which is subject
+to the following budget constraint:
 
 \[\frac{M_{t-1}+T_{t}+B_{t-1}+W_{t}h_{t}+D_{t}}{P_{t}} \ge C_{t} + \frac{M_{t} + \frac{B_{t}}{r_{t}}}{P_{t}}\]
 
-\(\forall\) \(t=0,1,2,...,\) where
+for all \(t=0,1,2,...,\) where
 
 \[D_{t}= \int_{0}^{1}D_{t}{(i)}\;di\]
 
-is the total profits received at \(t\).
+represents total profits received for the period. The household's
+preferences are described by the following expected utility function:
 
-The household's preferences are described by the expected utility
-function
+\[E_{0}\sum_{t=0}^{\infty}\beta^{t}a_{t}[ln(C_{t} - \gamma C_{t-1}) + v(\frac{M_{t}}{P_{t}Z_{t}}, u_t)-(\frac{\phi_m}{2})(\frac{M_t/P_t}{zM_{t-1}/P_{t-1}}-1)^{2}(\frac{M_{t}}{P_{t}Z_{t}})-h_{t}]\]
 
-\[\begin{aligned}
-EU(\cdot_t) = E_{0}\sum_{t=0}^{\infty}\beta^{t}a_{t}[ln(C_{t} - \gamma C_{t-1}) + v(\frac{M_{t}}{P_{t}Z_{t}}, u_t)\\-
-(\frac{\phi_m}{2})(\frac{M_t/P_t}{zM_{t-1}/P_{t-1}}-1)^{2}(\frac{M_{t}}{P_{t}Z_{t}})-h_{t}]
-\end{aligned}\]
-
-where \(0<\beta<1\) and \(0 \le \gamma \le1\). The preference shock
-\(a_{t}\) follows the stationary autoregressive process:
+Both the discount factor and the habit formation parameter lie between
+zero and one, with \(0<\beta<1\) and \(0 \ge \gamma \le1\). The
+preference shock \(a_{t}\) follows the stationary autoregressive process
+below:
 
 \[\ln(a_{t})=\rho_{a} \ln(a_{t-1}) + \varepsilon_{at} \tag{2}\]
 
-\(\forall\) \(t=0,1,2,...,\) with \(0 \leq \rho_{a} \le 1\), and the
-serially uncorrelated innovation
-\(\varepsilon_{at} \sim norm(0,\sigma_{a})\). Utility is additively
-separable across consumption, real balances, and hours worked such that
-a specification for the model's IS curve that excludes any money and
-employment terms. For balanced growth, real balances \(M_{t}=P_{t}\) is
-introduced into the utility function through the function \(v\) scaled
-by the aggregate productivity shock \(Z_{t}\), a random walk process
-with drift:
+for all \(t=0,1,2,...,\) with \(0 \le \rho_{a} \le 1\), where the
+serially uncorrelated innovation \(\varepsilon_{at}\) is normally
+distributed with a mean of zero and standard deviation \(\sigma_{a}\).
+Total utility is a combination of the utility obtained from consumption,
+real balances, and hours worked, which implies additive seperability, so
+as to imply a specification for the model's IS curve that does not
+include terms involving money and employment. As shown by King, Plosser,
+and Rebelo (1988), additive separability also implies that a logarithmic
+specification over consumption is necessary for the model to be
+consistent with balanced growth. Also for balanced growth, real balances
+\(M_{t}=P_{t}\) enter utility through the function \(v\) after being
+scaled by the aggregate productivity shock \(Z_{t}\). This follows a
+random walk with drift:
 
 \[\ln(Z_{t})= \ln{z} + \ln(Z_{t-1}) + \varepsilon_{zt} \tag{3}\]
 
-where \(\epsilon_{zt} \sim norm(0,\sigma_{z})\). The money demand shock
-\(u_{t}\) is a stationary autoregressive process:
+where the serially uncorrelated error term or innovation is normally
+distributed with zero mean and standard deviation \(\sigma_{z}\). The
+shock \(u_{t}\) to money demand follows the stationary autoregressive
+process:
 
-\[\ln(u_{t})= \rho_{u} \ln(u_{t-1}) + \varepsilon_{ut} \tag{4}\]
-\(\forall \ t=0,1,2,...\) with \(0 \leq \rho_{u} <1\), where
-\(\varepsilon_{ut} \sim norm(0,\sigma_{u})\). The magnitude of the real
-balances adjustment cost is \(\phi_{m} \ge 0\). In steady state this
-will equal zero. The household therefore chooses \(Ct, ht, Bt\), and
-\(Mt \ \forall \ t = 0, 1, 2,...,\) such that expected utility is
-maximised, subject to the budget constraint (1)
-\(\forall \ t = 0,1,2,...,\)
+\[\ln(u_{t})= \rho_{u} \ln(u_{t-1}) + \varepsilon_{ut} \tag{4}\] for all
+\(t=0,1,2,...\) with \(0 \le \rho_{u} <1\), where the serially
+uncorrelated innovation \(\varepsilon_{ut}\) is normally distributed
+with mean zero and standard deviation \(\sigma_{u}\). Finally, the
+parameter \(\phi_{m} \ge 0\) governs the magnitude of the adjustment
+cost for real balances, adapted from Nelson (2002) and Andres,
+Lopez-Salido, and Nelson (2004, 2009) to take the quadratic functional
+form used here. Since these costs subtract from utility along with hours
+worked, they have the interpretation as a time cost, and are scaled by
+the average growth rate parameter \(z\) from (3) so as to equal zero in
+the model's steady state. Thus, the household chooses \(Ct, ht, Bt\),
+and \(Mt\) for all \(t = 0, 1, 2,...,\) to maximize expected utility
+subject to the budget constraint (1) for all \(t = 0,1,2,...,\)
+
+The Household preferences are characterised by the following expected
+utility function:
+
+\[ EU(\cdot_t) = E_{0} \sum_{t=0}^\infty \beta^ta_t U(\cdot_t) = E_{0} \sum_{t=0}^\infty \beta^ta_t[\ln(C_{t}-\gamma C_{t-1})+v(\frac{M_t}{P_tZ_t},u_t)-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{zM_{t-1}}{P_{t-1}}}-1)^2(\frac{M_t}{P_tZ_t})-h_t]\]
 
 Given the Household budget constraint:
 
 \[ \left[ \frac{M_{t-1} + T_t +B_{t-1} + W_th_t+D_t}{P_t} \ge C_t + \frac{M_t+\frac{B_t}{r_t}}{P_t} \right]\]
 
-We can combine the expected utility and budget constraint above, to
-obtain the LaGrangian for the Household:
+Combining the expected utility and budget constraint above, we can write
+the LaGrangian for the Household:
 
 \[  \mathcal{L}(\cdot_t) = a_tU( \cdot_{t}) + \beta E_t \mathcal{L}(\cdot_{t+1}) + \Lambda_t \left[ \frac{M_{t-1} + T_t +B_{t-1} + W_th_t+D_t}{P_t}-C_t - \left(\frac{M_t+\frac{B_t}{r_t}}{P_t} \right) \right] \]
 
@@ -209,7 +399,7 @@ where:
 & + E_{0} \sum_{t=0}^\infty\left[ \Lambda_t \left( \frac{M_{t-1} + T_t +B_{t-1} + W_th_t+D_t}{P_t}-C_t - \left(\frac{M_t+\frac{B_t}{r_t}}{P_t} \right) \right) \right] \end{aligned}\]
 
 \hypertarget{the-foc-with-respect-to-c_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(C_t\):}{The FOC with respect to C\_t:}}\label{the-foc-with-respect-to-c_t}}
 
 \[\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial C_t}= a_t(\frac{1}{C_t-\gamma C_{t-1}})-\Lambda_t + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t})\]
@@ -221,7 +411,7 @@ Equate to zero and solve:
 \[\Lambda_t =  a_t(\frac{1}{C_t-\gamma C_{t-1}}) + E_t\beta a_{t+1}(-\gamma)(\frac{1}{C_{t+1}-\gamma C_t}) \tag{5}\]
 
 \hypertarget{the-foc-with-respect-to-h_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(h_t\):}{The FOC with respect to h\_t:}}\label{the-foc-with-respect-to-h_t}}
 
 \[\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial h_t}= (-1)( a_t) + (\frac{W_t}{P_t})(\Lambda_t)\]
@@ -233,10 +423,10 @@ Equate to zero and solve:
 \[ a_t = (\frac{W_t}{P_t})(\Lambda_t) \tag{6}\]
 
 \hypertarget{the-foc-with-respect-to-b_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(B_t\):}{The FOC with respect to B\_t:}}\label{the-foc-with-respect-to-b_t}}
 
-\[\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial B_t}= (\frac{-1}{r_t P_t})(\Lambda_t) + E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})\]
+\[\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial B_t}= (\frac{-1}{r_t P_t})(\Lambda_t) + E_t\beta \Lambda_{t+1}(\frac{1}{P_{t+1}})\]
 
 Equate to zero and solve:
 
@@ -254,10 +444,10 @@ As such, the equation can be rewritten as:
 \[\Lambda_t = \beta(r_t)E_t(\frac{\Lambda_{t+1}}{\pi_{t+1}}) \tag{7}\]
 
 \hypertarget{the-foc-with-respect-to-m_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(M_t\):}{The FOC with respect to M\_t:}}\label{the-foc-with-respect-to-m_t}}
 
-\[\frac{\partial \mathcal{L}(C_t, h_t, B_t, M_t)}{\partial M_t}=a_t[v_1(\frac{M_t}{P_tZ_t}, u_t) \frac{1}{P_t Z_t}-\phi_m(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)(\frac{\frac{1}{P_{t}}}{\frac{ZM_{t-1}}{P_{t-1}}})(\frac{M_t}{P_tZ_t})-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)^2(\frac{1}{P_tZ_t})]\]
+\[\frac{\partial L(C_t, h_t, B_t, M_t)}{\partial M_t}=a_t[v_1(\frac{M_t}{P_tZ_t}, u_t) \frac{1}{P_t Z_t}-\phi_m(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)(\frac{\frac{1}{P_{t}}}{\frac{ZM_{t-1}}{P_{t-1}}})(\frac{M_t}{P_tZ_t})-\frac{\phi_m}{2}(\frac{\frac{M_t}{P_t}}{\frac{z_tM_{t-1}}{P_{t-1}}}-1)^2(\frac{1}{P_tZ_t})]\]
 \[ + \Lambda_t[-\frac{1}{P_t}] + E_t\beta a_{t+1} \left[-\phi_m(\frac{M_{t+1}/P_{t+1}}{ZM_t/P_t}-1)(-\frac{M_{t+1}/P_{t+1}}{zM_{t}^2/P_{t}})(\frac{M_{t+1}}{P_{t+1}Z_{t+1}}) \right]+E_t \beta \Lambda_{t+1}(\frac{1}{P_{t+1}})\]
 
 where:
@@ -297,7 +487,7 @@ We can rewrite (8) to yield:
 \end{array} \tag{9}\]
 
 \hypertarget{the-representative-finished-goods-producing-firm}{%
-\section{The Representative Finished Goods-Producing
+\subsection{The Representative Finished Goods-Producing
 Firm}\label{the-representative-finished-goods-producing-firm}}
 
 The representative finished goods-producing firm uses \(Y_t(i)\) units
@@ -315,21 +505,21 @@ markup shock follows the stationary autoregressive process
 
 \[\ln(\theta_t)=(1-\rho_{\theta})\ln(\theta)+\rho_{\theta}\ln(\theta_{t-1})+\varepsilon_{\theta t} \tag{10}\]
 
-\(\forall \ t=0,1,2,...,\), where
-\(\varepsilon_{\theta t} \sim norm(0,\sigma_{\theta})\). The finished
-goods-producing firm thus faces the problem of maximising its profits
-for each period \(t\), by their choice of
-\(Y_t(i) \ \forall \ i \in [0,1]\)
+for all \(t=0,1,2,...,\), where the serially uncorrelated innovation
+\(\varepsilon_{\theta t}\) is normally distributed with mean zero and
+standard deviation \(\sigma_{\theta}\). Thus, during each period \(t\),
+the finished good-producing firm chooses \(Y_t(i)\) for all
+\(i \in [0,1]\) to maximize its profits, which are given by
 
 \[P_t[\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}} - \int_0^1P_t(i)Y_t(i) \;di\]
 
 The Langrangian function from which the first order conditions are
 derived, is as follows:
 
-\[\mathcal{L} = \int_0^1P_t(i)Y_t(i) \; di +\lambda_t[Y_t - (\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} \;di)^{\frac{\theta_t}{\theta_t-1}}]\]
+\[L = \int_0^1P_t(i)Y_t(i) \; di +\lambda_t[Y_t - (\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} \;di)^{\frac{\theta_t}{\theta_t-1}}]\]
 
 \hypertarget{the-foc-with-respect-to-y_ti}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(Y_t(i)\):}{The FOC with respect to Y\_t(i):}}\label{the-foc-with-respect-to-y_ti}}
 
 \[\frac{\partial L}{\partial Y_t(i)} = P_t(i) - \lambda_t[{\frac{\theta_t}{\theta_t-1}} (\int_0^1 Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di)^{\frac{\theta_t}{\theta_t-1} -1} \frac{\theta_t-1}{\theta_t} Y_t(i)^{\frac{\theta_t-1}{\theta_t} -1}] = 0\]
@@ -365,7 +555,7 @@ Therefore:
 \[Y_t(i) = (\frac{P_t(i)}{P_t})^{-\theta_t} Y_t\]
 
 \hypertarget{the-representative-intermediate-goods-producing-firm}{%
-\section{The Representative Intermediate Goods-Producing
+\subsection{The Representative Intermediate Goods-Producing
 Firm}\label{the-representative-intermediate-goods-producing-firm}}
 
 During each period \(t=0,1,2,...,\) the representative intermediate
@@ -402,7 +592,7 @@ As such, the Bellman Equation can be constructed as:
 \[-(\frac{P_{t+1}(i)}{P_{t+1}}]^{-\theta_{t+1}}(\frac{W_{t+1}}{P_{t+1}})(\frac{Y_{t+1}}{Z_{t+1}})-\frac{\phi_p}{2}[\frac{P_{t+1}(i)}{\pi_{t}^a \pi^{1-a}P_{t}(i)}]^2Y_{t+1}]\]
 
 \hypertarget{the-foc-with-respect-to-p_ti}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(P_t(i)\)}{The FOC with respect to P\_t(i)}}\label{the-foc-with-respect-to-p_ti}}
 
 \[ \frac{\partial v}{\partial P_t(i)} = \beta^t\Lambda_t(1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{1}{P_t})Y_t-\beta^t\Lambda_t[(-\theta_t\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{1}{P_t})(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})]\]
@@ -420,7 +610,7 @@ multiply through by \(\frac{P_t}{\Lambda_t Y_t}\):
 and (11) with equality for all \(t=0,1,2,...,\)
 
 \hypertarget{the-efficient-level-of-output-and-output-gap}{%
-\section{The Efficient Level of Output and Output
+\subsection{The Efficient Level of Output and Output
 Gap}\label{the-efficient-level-of-output-and-output-gap}}
 
 A social planner for this economy who can overcome the frictions
@@ -438,7 +628,7 @@ such, the Bellman Equation of this model is:
 \[v(Q_{t-1}) = a_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di] + \beta E_tv(Q_t,Q_{t+1}) + \Xi [Z_t(\int_0^1n_t(i) di)^{\frac{\theta_t}{\theta_t-1}} - Q_t]\]
 
 \hypertarget{the-foc-with-respect-to-q_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(Q_t\):}{The FOC with respect to Q\_t:}}\label{the-foc-with-respect-to-q_t}}
 
 \[\frac{\partial v(Q_{t-1})}{\partial Q_t} = \frac{a_t}{Q_t-\gamma Q_{t-1}} + \beta E_t\frac{\partial v(Q_t, Q_{t+1})}{\partial Q_t} - \Xi =0\]
@@ -457,7 +647,7 @@ Multiply through by \((-1)\):
 \[ \frac{a_t}{Q_t-\gamma Q_{t-1}} - \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (\gamma)  = \Xi\]
 
 \hypertarget{the-foc-with-respect-to-n_t}{%
-\subsection{\texorpdfstring{The FOC with respect to
+\subsubsection{\texorpdfstring{The FOC with respect to
 \(n_t\):}{The FOC with respect to n\_t:}}\label{the-foc-with-respect-to-n_t}}
 
 \[\frac{\partial v(Q_{t-1})}{\partial n_t} = a_t (-1) + \Xi Z_t \frac{\theta_t}{\theta_t -1} (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{\theta_t}{\theta_t - 1} (\frac{\theta_t -1}{\theta_t}) n_t(i)^{\frac{\theta_t -1}{\theta_t}-1}=0\]
@@ -476,36 +666,36 @@ Therefore
 \newpage
 
 \hypertarget{log-linearisation}{%
-\chapter{Log-Linearisation:}\label{log-linearisation}}
+\section{Log-Linearisation:}\label{log-linearisation}}
 
 \hypertarget{obtaining-the-final-system-of-equations}{%
-\section{Obtaining the final system of
+\subsection{Obtaining the final system of
 equations:}\label{obtaining-the-final-system-of-equations}}
 
 \hypertarget{conditions}{%
-\subsection{Conditions:}\label{conditions}}
+\subsubsection{Conditions:}\label{conditions}}
 
 To rewrite the equations into a usable system of equations that can be
 log-linearised, we make use of the following series of steady state,
 stationary or equilibrium equations and variables:
 
 \hypertarget{a}{%
-\subsubsection{A:}\label{a}}
+\paragraph{A:}\label{a}}
 
 \[ Y_{t}(i)=Y_{t}, h_{t}(i)=h_{t}, D_{t}(i)=D_{t}, \text { and } P_{t}(i)=P_{t} \text { for all } i \in[0,1] \text { and } t=0,1,2, \ldots \]
 
 \hypertarget{b}{%
-\subsubsection{B:}\label{b}}
+\paragraph{B:}\label{b}}
 
 \[ M_{t}=M_{t-1}+T_{t} \text { and } B_{t}=B_{t-1}=0 \]
 
 \hypertarget{c}{%
-\subsubsection{C:}\label{c}}
+\paragraph{C:}\label{c}}
 
 \[ y_{t}=Y_{t} / Z_{t}, c_{t}=C_{t} / Z_{t}, m_{t}=\left(M_{t} / P_{t}\right) / Z_{t}, q_{t}=Q_{t} / Z_{t}, \lambda_{t}=Z_{t} \Lambda_{t}, \text { and } z_{t}=Z_{t} / Z_{t-1} \]
 
 \hypertarget{d}{%
-\subsubsection{D:}\label{d}}
+\paragraph{D:}\label{d}}
 
 In steady state we can write the following, per their definitions:
 
@@ -514,12 +704,14 @@ In steady state we can write the following, per their definitions:
 & \text {and } \theta_{t}=\theta \end{aligned}\]
 
 \hypertarget{imposing-the-coniditions}{%
-\subsection{Imposing The Coniditions:}\label{imposing-the-coniditions}}
+\subsubsection{Imposing The
+Coniditions:}\label{imposing-the-coniditions}}
 
 Firstly, we combine equation (11) and (12) from Section 3.3
 \protect\hyperlink{the-representative-intermediate-goods-producing-firm}{The
 Representative Intermediate Goods-Producing Firm} and impose the above
-conditions to obtain equation (1) from the appendix of ``THE PAPER'':
+conditions to obtain equation (1) from the appendix of ``Belongia and
+Ireland (2020)'':
 
 \[Y_{t} = C_t + \frac{\phi_{p}}{2} \cdot \left[ \frac{\pi_{t}}{{\pi_{t-1}}^{\alpha} \pi^{1-\alpha}} -1 \right]^{2} \cdot Y_t \]
 
@@ -536,11 +728,7 @@ Household}:
 
 \[\ln \left(Z_{t}\right)=\ln (z) + \ln(Z_{t-1}) +\varepsilon_{z t}\]
 
-\begin{itemize}
-\tightlist
-\item
-  Subtract both sides by \(\ln(Z_{t-1})\)
-\end{itemize}
+Subtract both sides by \(\ln(Z_{t-1})\)
 
 \[\ln \left(z_{t}\right)=\ln (z)+\varepsilon_{z t} \tag{3}\]
 
@@ -573,7 +761,7 @@ Rewrite equation (9) from
 \end{aligned}\]
 
 \hypertarget{applying-the-taylor-method-of-linear-approximation}{%
-\section{Applying The Taylor Method of Linear
+\subsection{Applying the Taylor Method of Linear
 Approximation}\label{applying-the-taylor-method-of-linear-approximation}}
 
 We apply the Taylor throughout the following section as follows:
@@ -592,10 +780,12 @@ Using the approximation: \[\begin{aligned}
 \end{aligned}\]
 
 \hypertarget{uhligs-method-of-linearisation}{%
-\section{Uhlig's Method of
+\subsection{Uhlig's Method of
 Linearisation}\label{uhligs-method-of-linearisation}}
 
 Applying Uhlig's method requires the following:
+
+\newpage
 
 For the function \(f(x_t)\) i.e., we use the fact that:
 
@@ -618,9 +808,9 @@ For the following sections, we show the steps to reach the final
 log-linearised equations (19) to (31) from in Section 2.7 of ``THE
 PAPER''.
 
-\hypertarget{equation-1-from-the-appendix-of-the-paper}{%
-\section{Equation (1) from the appendix of ``THE
-PAPER''}\label{equation-1-from-the-appendix-of-the-paper}}
+\hypertarget{equation-1-from-the-appendix-of-belongia-and-ireland-2020}{%
+\subsection{Equation (1) from the appendix of ``Belongia and Ireland
+(2020)''}\label{equation-1-from-the-appendix-of-belongia-and-ireland-2020}}
 
 Recall the results from equation (11), (12), and the Budget Constraint:
 
@@ -657,7 +847,7 @@ p_{1}^{SS}&=\frac{\phi_{p} \cdot y}{2}\\\left[\frac{dp_{1}}{dy_{t}} \right]^{SS}
 \end{aligned}\]
 
 \hypertarget{p1}{%
-\subsection{p1}\label{p1}}
+\subsubsection{p1}\label{p1}}
 
 Therefore, we can rewrite \(p_{1}\) using the Taylor method, as:
 
@@ -667,7 +857,7 @@ p_{1} = \frac{\phi_{p} \cdot y}{2} + \frac{\phi_{p}}{2} y \cdot \hat{y_{t}} + \f
 \end{aligned}\]
 
 \hypertarget{p2}{%
-\subsection{p2}\label{p2}}
+\subsubsection{p2}\label{p2}}
 
 and for \(p_{2}\)
 
@@ -689,7 +879,7 @@ p_{2} &= \phi_{p} y + \phi_{p} y \hat{y}_{t} + \frac{\phi_{p} y}{\pi} \pi \hat{\
 \end{aligned}\]
 
 \hypertarget{p3}{%
-\subsection{p3}\label{p3}}
+\subsubsection{p3}\label{p3}}
 
 Lastly, repeating the same process for the last term \(p_{3}\)
 
@@ -724,7 +914,7 @@ y_{t} - y &= c_t - c
 \end{aligned}\]
 
 \hypertarget{equation-19-in-paper}{%
-\section{Equation (19) in paper:}\label{equation-19-in-paper}}
+\subsection{Equation (19) in paper:}\label{equation-19-in-paper}}
 
 From equation (5)
 \[\Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right]\]
@@ -744,10 +934,10 @@ Once again, for simplicity, we separate the equation into two parts:
 \[\lambda_{t}=\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)\
 = a_1 + \beta \gamma E_t (a_2)\]
 
-Now we can determine the taylor approximations individually
+Now we can determine the Taylor approximations individually:
 
 \hypertarget{a1}{%
-\subsection{a1}\label{a1}}
+\subsubsection{a1}\label{a1}}
 
 \[\begin{aligned}
 \left[ a_{1} \right]^{SS} &=  \frac{a z}{z c -\gamma c} = \frac{a z}{(z  -\gamma)c }
@@ -777,7 +967,7 @@ The similarity between \(a_1\) and \(a_2\) means that some of the steps
 will yield very similar results:
 
 \hypertarget{a2}{%
-\subsection{a2}\label{a2}}
+\subsubsection{a2}\label{a2}}
 
 \[\begin{aligned}
 \left[ a_{2} \right]^{SS} &= \left[ a_{1} \right]^{SS} / z\\
@@ -798,7 +988,7 @@ Thus, we have
 \lambda = \frac{a z}{(z  -\gamma)c } - \beta \gamma \frac{a}{(z-\gamma) c}\]
 
 \hypertarget{lambda}{%
-\subsection{Lambda}\label{lambda}}
+\subsubsection{Lambda}\label{lambda}}
 
 \[\begin{aligned}
 \lambda_t &= \overbrace{
@@ -912,7 +1102,7 @@ yielding the final result:
 \[(z-\gamma)(z-\beta \gamma) \hat{\lambda}_{t}=(z-\gamma)\left(z-\beta \gamma p_{a}\right) \hat{a}_{t}-\gamma z \hat{z}_{t}+z \gamma \hat{y}_{t-1}+\beta \gamma z E_{t} \hat{y}_{t+1}-\left(z^{2}+\beta \gamma^{2}\right) \hat{y}_{t}\]
 
 \hypertarget{equation-20}{%
-\section{Equation (20)}\label{equation-20}}
+\subsection{Equation (20)}\label{equation-20}}
 
 From Equation (7)
 
@@ -937,7 +1127,7 @@ Now, substituting each variable in the fashion similar to
 \end{array}\]
 
 \hypertarget{equation-21}{%
-\section{Equation (21)}\label{equation-21}}
+\subsection{Equation (21)}\label{equation-21}}
 
 \[1=\frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)\right]\]
 
@@ -951,7 +1141,7 @@ z_2 = \left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_
 \end{aligned}\]
 
 \hypertarget{z1}{%
-\subsection{Z1}\label{z1}}
+\subsubsection{Z1}\label{z1}}
 
 \[\begin{aligned}
 z_{1}^{SS}&= \frac{z}{z q-\gamma q} \\
@@ -974,7 +1164,7 @@ Now we can expand the linearisation equation for \(z_1\)
 + \frac{z \gamma}{(z q-\gamma q)^2} q \cdot \hat{q}_{t-1}\]
 
 \hypertarget{z2}{%
-\subsection{Z2}\label{z2}}
+\subsubsection{Z2}\label{z2}}
 
 \[\begin{aligned}
 z_{2}^{SS} &= \left(\frac{a}{a}\right)\left(\frac{1}{z q-\gamma q}\right) \\
@@ -1019,19 +1209,19 @@ Now for \(\beta \gamma E_t z_2\), using
 
 \[\begin{aligned}
 \beta \gamma E_t z_2
-&= \beta \gamma \left[ \frac{1}{z q-\gamma q}
+=& \beta \gamma \left[ \frac{1}{z q-\gamma q}
 + \left(\frac{1}{z q-\gamma q}\right) \cdot E_t\hat{a}_{t+1}
 -\left(\frac{1}{z q-\gamma q}\right) \cdot E_t\hat{a}_{t}
--\left(\frac{1}{z q-\gamma q}\right) \cdot zE_t\hat{z}_{t+1}
--\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
+-\left(\frac{1}{z q-\gamma q}\right) \cdot zE_t\hat{z}_{t+1} \right.\\
+& \left. -\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\gamma}{(z q-\gamma q)^{2}} \cdot q E_t\hat{q}_{t} \right]\\
-&= \beta \gamma \left[ \frac{1}{z q-\gamma q}
+=& \beta \gamma \left[ \frac{1}{z q-\gamma q}
 + \left(\frac{1}{z q-\gamma q}\right) \cdot \rho_a\hat{a}_t
 -\left(\frac{1}{z q-\gamma q}\right) \cdot \hat{a}_{t}
 -0
 -\frac{q^2}{(zq-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
 +\frac{\gamma}{(z q-\gamma q)^{2}} \cdot q \hat{q}_{t} \right]\\
-&= \frac{\beta \gamma}{z q-\gamma q}
+=& \frac{\beta \gamma}{z q-\gamma q}
 + \left(\frac{\beta \gamma}{z q-\gamma q}\right) \cdot \rho_a\hat{a}_t
 -\left(\frac{\beta \gamma}{z q-\gamma q}\right) \cdot \hat{a}_{t}
 -\frac{\beta \gamma q^2}{(z q-\gamma q)^2} \cdot E_t\hat{q}_{t+1}
@@ -1039,7 +1229,7 @@ Now for \(\beta \gamma E_t z_2\), using
 \end{aligned}\]
 
 \hypertarget{together}{%
-\subsection{Together}\label{together}}
+\subsubsection{Together}\label{together}}
 
 Now, we can write out \(0 = z_1 - \beta \gamma E_t z_2\)
 
@@ -1111,7 +1301,7 @@ to yield the final solution:
 \end{aligned}\]
 
 \hypertarget{equation-22}{%
-\section{Equation (22)}\label{equation-22}}
+\subsection{Equation (22)}\label{equation-22}}
 
 \[\begin{aligned} x_{t}=y_{t} / q_{t} \\
 \text{Steady State: } x = y/p \end{aligned}\]
@@ -1124,14 +1314,12 @@ Now,
 \therefore \quad \hat{x}_{t}=\hat{y}_{t}-\hat{q}_{t} \end{aligned}\]
 
 \hypertarget{equation-23}{%
-\section{Equation (23)}\label{equation-23}}
+\subsection{Equation (23)}\label{equation-23}}
 
 Starting from equation (13)
 
 \[\begin{array}{l} (1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})] \\
 +\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0 \end{array}\]
-
-\newpage
 
 Substituting for the equilibrium Conditions and using (6):
 
@@ -1160,20 +1348,20 @@ log-linearise using Uhlig's Method:
 First we separate the four terms, for simplicity:
 
 \hypertarget{term-1}{%
-\subsection{Term 1:}\label{term-1}}
+\subsubsection{Term 1:}\label{term-1}}
 
 \[\begin{aligned} \theta_{t}-1 & = \theta e^{\hat{\theta}_{t}} \\
 & = \theta\left(1+\hat{\theta}_{t}\right) \end{aligned}\]
 
 \hypertarget{term-2}{%
-\subsection{Term 2:}\label{term-2}}
+\subsubsection{Term 2:}\label{term-2}}
 
 \[\begin{aligned} \theta_{t}\left(\frac{a_{t}}{\lambda_{t}}\right) &= \theta e^{\hat{\theta}_{t}}\left(\frac{a e^{\hat{a}_{t}}}{\lambda \hat{e}^{\hat{\lambda}_t}}\right)\\
 &= \frac{\theta a}{\lambda}\left(1+\hat{\theta}_{t}+\hat{a}_{t}-\hat{\lambda}_{t}\right)\\
 & = \frac{\theta}{\lambda}\left(1+\hat{\theta}_{t} \right)+ \frac{\theta}{\lambda} \left(\hat{a}_{t}-\hat{\lambda}_{t}\right)\end{aligned}\]
 
 \hypertarget{term-3}{%
-\subsection{Term 3:}\label{term-3}}
+\subsubsection{Term 3:}\label{term-3}}
 
 \[\begin{aligned}
 -\phi_{p}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}\right) &= -\phi_{p}\left(\frac{\pi e^{\pi_{t}}}{\pi^{\alpha} e^{\alpha \hat{\pi}_{t-1}} \pi^{1-\alpha}}-1\right)\left(\frac{\pi e^{\hat{\pi}_t}}{\pi^{\alpha} e^{\alpha \hat{\pi}_{t-1}} \pi^{1-\alpha}}\right)\\
@@ -1182,7 +1370,7 @@ First we separate the four terms, for simplicity:
  \end{aligned}\]
 
 \hypertarget{term-4}{%
-\subsection{Term 4:}\label{term-4}}
+\subsubsection{Term 4:}\label{term-4}}
 
 \[\begin{aligned}
 &\beta \phi_{p} E_{t}\left[\left(\frac{\lambda_{t+1} y_{t+1}}{\lambda_{t} y_{t}}\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}\right)\right] \\
@@ -1198,7 +1386,7 @@ Putting all the components together then yields:
 
 Simplify using
 \[\lambda=\frac{\theta}{\theta-1}, \quad \hat{e}_{t}=-\left(\frac{1}{\phi_{p}}\right) \hat{\theta}_{t} \text {, and } \psi=\frac{(\theta-1)}{\phi_{p}}\]
-i.e.~
+i.e.
 \[ 1 - \frac{1}{\lambda} = 1/\theta, \\ \frac{\theta}{\lambda} = \theta - 1 \]
 
 \[\begin{aligned} \theta \left(1+\hat{\theta}_{t}\right)\cdot \left[ 1 - \frac{1}{\lambda} \right] =& \frac{\theta}{\lambda} \left(\hat{a}_{t}-\hat{\lambda}_{t}\right) - \phi_p\left[\hat{\pi}_{t}-\alpha \hat{\pi}_{t-1}\right] + \beta \phi_{p} E_{t}\left[ \hat{\pi}_{t+1}-\alpha \hat{\pi}_{t}\right]\\
@@ -1213,7 +1401,7 @@ yields the final result:
 \end{aligned}\]
 
 \hypertarget{equation-24}{%
-\section{Equation (24)}\label{equation-24}}
+\subsection{Equation (24)}\label{equation-24}}
 
 \[\ln \left(r_{t} / r\right)=\rho_{r} \ln \left(r_{t-1} / r\right)+\rho_{\pi} \ln \left(\pi_{t-1} / \pi\right)+\rho_{x} \ln \left(x_{t-1} / x\right)+\varepsilon_{r t}\]
 
@@ -1224,7 +1412,7 @@ each variable of the equation yields the required result:
 & \therefore \quad \hat{r}_{t}=\rho_{r} \hat{r}_{t-1}+\rho_{\pi} \hat{\pi}_{t-1}+\rho x \hat{x}_{t-1}+\varepsilon_{r t} \end{aligned}\]
 
 \hypertarget{equation-25}{%
-\section{Equation (25)}\label{equation-25}}
+\subsection{Equation (25)}\label{equation-25}}
 
 Starting Form Equation (9) and using the conditions from section
 \protect\hyperlink{c}{C:}
@@ -1260,7 +1448,7 @@ Now, to simplify the linearisation process, we consider the equation (9)
 in parts:
 
 \hypertarget{term-1-1}{%
-\subsection{Term 1:}\label{term-1-1}}
+\subsubsection{Term 1:}\label{term-1-1}}
 
 \[\begin{aligned}
 \frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]
@@ -1270,7 +1458,7 @@ in parts:
 \end{aligned}\]
 
 \hypertarget{term-5}{%
-\subsection{Term 5:}\label{term-5}}
+\subsubsection{Term 5:}\label{term-5}}
 
 \[\begin{aligned} \lambda_{t}\left(1-\frac{1}{r_{t}}\right) 
 &=\lambda e^{\hat{\lambda}_{t}}\left(1-\frac{e^{-\hat{r}_{t}}}{r}\right)\\
@@ -1288,7 +1476,7 @@ term to the other side of the equality, we get:
 \end{aligned}\]
 
 \hypertarget{term-2-1}{%
-\subsection{Term 2:}\label{term-2-1}}
+\subsubsection{Term 2:}\label{term-2-1}}
 
 \[\begin{aligned}&a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}-1\right)^{2}\\
 =& \left(\frac{\phi_{m}}{2}\right) \left[ \frac{a_{t} z_{t}^{2} m_{t}^{2}}{z^{2} m_{t-1}^{2}} - 2 \frac{a_{t} z_{t} m_{t}}{z m_{t-1}} + a_{t} \right]\\
@@ -1299,7 +1487,7 @@ term to the other side of the equality, we get:
 \end{aligned}\]
 
 \hypertarget{term-3-1}{%
-\subsection{Term 3:}\label{term-3-1}}
+\subsubsection{Term 3:}\label{term-3-1}}
 
 \[\begin{aligned} &-a_{t} \phi_{m}\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}} - 1\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}\right)\\
 =& e^{\hat{a}_{t}} \phi_{m}\left[\frac{z m e^{\hat{z}_{t}+\hat{m}_{t}}}{z m e^{\hat{m}_{t-1}}}-1\right]\left[\frac{z m e^{\hat{z}_{t}+\hat{m}_{t}}}{z m e^{\hat{m}_{t-1}}}\right]\\
@@ -1308,7 +1496,7 @@ term to the other side of the equality, we get:
 \end{aligned}\]
 
 \hypertarget{term-4-1}{%
-\subsection{Term 4:}\label{term-4-1}}
+\subsubsection{Term 4:}\label{term-4-1}}
 
 \[\begin{aligned}&\beta \phi_{m} E_{t}\left[e^{\hat{a}_{t+1}}\left(\frac{z m e^{\hat{z}_{t+1}+\hat{m}_{t+1}}}{z m e^{\hat{m}_{t}}}-1\right)\left(\frac{z m e^{\hat{z}_{t+1}+\hat{m}_{t+1}}}{z m e^{\hat{m}_{t}}}\right)^{2} \left(\frac{z}{z e^{\hat{z}_{t+1}}}\right)\right] \\
 =&\beta \phi_{m} E_{t}\left\{\exp \left(\hat{z}_{t+1}+\hat{m}_{t+1}+\hat{a}_{t+1}-\hat{m}_{t}+2 \hat{z}_{t+1}+2 \hat{m}_{t+1}-2 \hat{m}_{t}-\hat{z}_{t+1}\right)\right. \\
@@ -1319,7 +1507,7 @@ term to the other side of the equality, we get:
 \end{aligned}\]
 
 \hypertarget{adding-the-terms-together-for-the-final-solution}{%
-\subsection{Adding The Terms Together for the Final
+\subsubsection{Adding The Terms Together for the Final
 Solution:}\label{adding-the-terms-together-for-the-final-solution}}
 
 \[\begin{aligned} &\frac{a_{t}}{\delta} \left( \hat{u}_{t}-\hat{m}_{t} \right) - \phi_m \left[\hat{z}_{t}+\hat{m}_{t}-\hat{m}_{t-1}\right] + \beta \phi_{m} E_{t}\left\{\hat{m}_{t+1}\right\} - \beta \phi_m \hat{m}_{t} \\
@@ -1338,7 +1526,7 @@ Assuming \(a_t = 1\) the final solution follows:
 \end{aligned}\]
 
 \hypertarget{equation-26}{%
-\section{Equation (26)}\label{equation-26}}
+\subsection{Equation (26)}\label{equation-26}}
 
 \[\mu_{t}=z_{t}\left(m_{t} / m_{t-1}\right) \pi_{t}\]
 
@@ -1352,7 +1540,7 @@ Applying uhlig's Method:
 \end{aligned}\]
 
 \hypertarget{equation-27}{%
-\section{Equation (27)}\label{equation-27}}
+\subsection{Equation (27)}\label{equation-27}}
 
 This equation
 
@@ -1374,7 +1562,7 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 \end{aligned}\]
 
 \hypertarget{equation-28}{%
-\section{Equation (28)}\label{equation-28}}
+\subsection{Equation (28)}\label{equation-28}}
 
 \[\begin{aligned}
 & \ln \left(a_{t}\right)=p_{a} \ln \left(a_{t-1}\right)+\varepsilon_{a t} \\
@@ -1385,7 +1573,7 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 \end{aligned}\]
 
 \hypertarget{equation-29}{%
-\section{Equation (29)}\label{equation-29}}
+\subsection{Equation (29)}\label{equation-29}}
 
 \[\begin{aligned}
 \ln(z_t)=\ln(z) + \varepsilon_{z t}\\
@@ -1395,7 +1583,7 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 \end{aligned}\]
 
 \hypertarget{equation-30}{%
-\section{Equation (30)}\label{equation-30}}
+\subsection{Equation (30)}\label{equation-30}}
 
 \[\begin{aligned}
 & \ln \left(u_{t}\right)=p_{u} \ln \left(u_{t-1}\right)+\varepsilon_{u t} \\
@@ -1406,7 +1594,7 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 \end{aligned}\]
 
 \hypertarget{equation-31}{%
-\section{Equation (31)}\label{equation-31}}
+\subsection{Equation (31)}\label{equation-31}}
 
 \[\begin{aligned}
 & \ln \left(\theta_{t}\right)=\left(1-\rho_{\theta}\right) \ln (\theta)+\rho_{\theta} \ln \left(\theta_{t-1}\right)+\varepsilon_{\theta t} \\
@@ -1429,5 +1617,374 @@ We can rewrite:
 \Rightarrow - & \left(1 / \phi_{p}\right) \cdot \hat{\theta}_{t} =  \hat{e}_t = -\left(1 / \phi_{p}\right) \left[ \rho_{\theta} \hat{\theta}_{t-1}+\varepsilon_{\theta t} \right]\\
 \Rightarrow \quad &\hat{e}_t =  \rho_{e} \hat{e}_{t-1}+\varepsilon_{e t}
 \end{aligned}\]
+
+\newpage
+
+\hypertarget{data-and-calibration-methods}{%
+\section{Data and Calibration
+Methods}\label{data-and-calibration-methods}}
+
+Impulse response functions show the movement of macroeconomic variables
+back to steady state in response to a shock. This paper makes use of
+these graphs to compare different approaches to monetary policy, namely
+the Taylor (TR) rule, the zero Interest Rate (IR) rule, the Flexible
+Money Growth (FMG) rule, and the Constant Money Growth (CMG) rule.
+
+To construct these functions, parameter values are inserted into the
+log-linearised equations from the previous section. Some of the
+parameter values are found via our own calculations. Upon researching
+calibrated values of the Phillips Curve slope, we found Hazell et
+al.~(2020)'s estimation of the Phillips Curve slope. For the rest,
+posterior parameter values from Belongia \& Ireland (2020) are used. We
+use the mean posterior values as opposed to the prior values so that all
+parameters are estimated values, since calibration is based on estimates
+believed to be true. The prior values are those that match the steady
+state values. The table below lists the different parameter values used.
+
+TABLE
+
+The steady state growth rate was calculated in accordance with Belongia
+\& Ireland (2020)'s method. 1983-2019 quarterly GDP data from FRED is
+used, which is then converted into per capita terms by dividing by the
+civilian noninstitutional population. The trend of the quarterly GDP per
+capita data is then extracted using a Hodrick-Prescott filter with a
+smoothing parameter of 1600. After this, the average of the natural log
+change in quarterly GDP is calculated as 1.00037. In order to calculate
+the steady state interest rate, we use FRED's quarterly interest rate
+data between 1983 and 2019. The average of this data is then divided by
+four to get 0.98783908.
+
+rho\_pi, rho\_x and rho\_r are only used for the Taylor rule
+calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and rho\_mx
+replace rho\_pi, rho\_x and rho\_r, due to the switch from equation 24
+to 33. When calibrating the CMG rule, these parameters are set to zero.
+Under the FMG rule, we set rho\_mm, rho\_mpi and rho\_mx equal to 1, 0
+and -0.125 respectively. This is in accordance to Belongia \& Ireland
+(2020).
+
+To conduct robustness checks for z\_ss, r\_ss, beta, and psi, we replace
+them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three
+values are taken from Ireland (2010), and we have replaced the value for
+the Phillips Curve slope with the mean posterior value from Belongia \&
+Ireland (2020). When comparing our impulse response functions to those
+using these values, we conclude that they are similar, implying that the
+values used are appropriate. The following section compares the impulse
+response functions under each rule after a small and positive
+productivity, preference, cost push, and money demand shocks are
+induced.
+
+\newpage
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{productivity-shock}{%
+\subsection{Productivity Shock}\label{productivity-shock}}
+
+The figure below shows the impulse response functions of the output
+growth, inflation, nominal interest rate, money growth rate and output
+gap after a positive productivity shock. The graphs depict the way in
+which each of these macroeconomic variables change under the Taylor (TR)
+rule, the Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule
+and the Constant Money Growth (CMG) rule.
+
+GRAPH
+
+The impulse response functions (IRF) of the output growth of the TR
+rule, IR rule, FMG rule, and CMG rule in response to a productivity
+shock are illustrated in the first of the graphs above. The effect of
+the TR rule and the IR rule on output growth is identical. The IRF of
+output growth under the FMG rule, TR rule and IR rule jumps above 0.002.
+Under these three rules, it then slowly moves down to zero at a
+decreasing rate. The IRF of output growth under the IR rule moves
+faster, and reaches zero after 12 periods, whereas under the FMG rule,
+it is more gradual and reaches zero at around 14 periods. Under both
+rules, the trajectory of output growth crosses the zero line, but not by
+much and moves upwards toward zero again. Under the CMG rule, however,
+the IRF starts below zero, and moves up to cross the zero line just past
+two periods. It then proceeds to increase but at a decreasing rate until
+approximately six periods. Thereafter, it gradually moves back to steady
+state. The trajectory of output growth of all three rules represented
+here takes more than 20 periods to settle around the steady state.
+
+The IRF of inflation rate under both the CMG rule and FMG rule responds
+to a shock in productivity, however it follows different trajectories
+toward zero under the two rules. Under the FMG rule, the IRF jumps to
+just below steady state, and crosses the zero line at around three
+periods. It rises minimally until a turning point at 10 periods,
+afterwhich is returns to zero by 20 periods. The trajectory of the
+inflation rate under this rule does not stray far from steady state.
+Alternatively, the IRF of inflation under the CMG rule experiences a
+bigger fluctuation in response to the productivity shock. It jumps down
+to approximately -0.0008 and declines further until two periods have
+passed. From there, it increases steadily at an increasing rate towards
+zero. It does not, however, reach zero within 20 periods, as the IRF
+under the FMG rule does.
+
+Similar to the inflation rate, nominal interest rates under both the CMG
+rule and FMG rule respond to a shock in productivity. Both IRFs start
+above 0.0008. The IRF under the CMG rule declines steadily at an
+increasing rate towards zero, but under the FMG rule it first increases
+slightly before starting to decline after approximately two periods. The
+trajectory of the nominal interest rate then crosses the zero line just
+before 14 periods. At around 18 periods the IRF starts moving back to
+zero. Although the graph shows that the trajectory of the nominal
+interest rate moves close to zero under both scenarios, it takes more
+than 20 periods to reach steady state.
+
+The nominal money growth rate under the TR rule and IR rule in response
+to a productivity shock have identical IRFs. Both jump to above 0.001
+and decline steadily to reach zero by 20 periods. Alternatively, the IRF
+under the FMG rule increases at an increasing rate, after reaching a
+point of inflection after about five periods, after which it increases
+at a decreasing rate. The trajectory of the money growth rate reaches a
+turning point between eight and nine periods, after which it declines to
+just above steady state by 20 periods.
+
+In response to a productivity shock, the IRF of output gap under the FMG
+rule first declines, and then returns to steady state by eight periods.
+It then increases slightly, but almost reaches steady state again after
+20 periods have passed. The output gap under the CMG rule behaves
+differently in response to such a shock. The IRF also declines at first,
+but from a starting point of -0.004 (as opposed to -0.001). Just after
+four periods, it reaches a turning point from which it increases at a
+decreasing rate. The trajectory of the output gap does not reach steady
+state within 20 periods.
+
+Contractionary monetary policy refers to increases in interest rates so
+as to decrease the supply of money in the economy in order to lower
+inflation (Chen, 2020). After a small positive shock to productivity,
+the CMG rule displays signs of this policy, with nominal interest rates
+jumping up before slowly returning to steady state. The FMG rule results
+in an increase in output growth, after which a rise in the money growth
+and a decrease in the nominal interest rate allows for the output growth
+to return to steady state without significant changes to inflation.
+Under both the TR rule and the IR rule, money growth increases to
+accommodate the increase in output, so that the output gap remains
+stable. It appears as though the CMG responds the least efficiently to
+the shock, with large fluctuations in inflation, as well as decreases in
+output growth, and a negative output gap.
+
+\hypertarget{preference-shock}{%
+\subsection{Preference Shock}\label{preference-shock}}
+
+The figure below shows the response of the chosen macroeconomic
+variables to a positive preference shock. As explained above, each panel
+shows the response of the given variable under each of the four rules. A
+preference shock refers to a shock to the utility aspect of the economy
+(Chugh, 2015:147). As such, it affects the macroeconomic variables from
+the demand side (Malik et al., 2019:12).
+
+The output growth of all four scenarios starts above zero in response to
+a preference shock, in order of IR rule, TR Rule, FMG rule and CMG rule
+from lowest to highest. The trajectory of the output growth under all
+scenarios then declines, however, under the TR Rule, FMG rule and CMG
+rule, it becomes negative. Under the TR rule, the IRF stays very close
+to zero. The trajectory of the output growth of the FMG and CMG rules
+decrease further below zero but start to move back to steady state
+between six and eight periods. The IRF under the FMG rule reaches zero
+around 12 periods, whereas under the CMG rule, it increases more
+gradually, nearing it at 20 periods. The IRF of output growth under the
+IR rule experienced the smallest jump up after the shock and returned to
+steady state after four periods.
+
+Inflation under the CMG rule jumps to above 0.0002 in response to a
+preference shock. The IRF proceeds to increase further for two periods,
+after which it declines steadily past zero. It is still declining after
+18 periods. The IRFs under both the FMG rule and the TR rule experience
+a small jump and start between zero and 0.0001. Under the TR rule, the
+IRF remains close to steady state, and gradually proceeds to zero by 20
+periods. Under the FMG rule, it sharply declines to cross the zero line
+and reaches a turning point between seven and eight periods. It
+increases to cross the zero line again at around 17 periods. It remains
+slightly above steady state after 20 periods.
+
+The nominal interest rate under the TR rule does not experience an
+immediate jump in response to a preference shock. Instead, the IRF
+slowly increases up to 0.0003 until it starts to decrease after six
+periods. It slowly moves down towards zero, but does not reach steady
+state within 20 periods. The nominal interest rate under the FMG rule
+and CMG rule both jump down minimally in response to a preference shock.
+Starting at -0.0001, however, the IRF of the nominal interest rate under
+the FMG rule increases and then plateaus below 0.0001, whereas that of
+the CMG rule remains level for approximately two periods, after which it
+starts to increase. After 14 periods, it reaches a turning point where
+it starts to return to zero, however, it does not reach steady state
+within 20 periods.
+
+The money growth rate under the FMG rule does not jump immediately after
+a preference shock. The IRF declines from zero at a decreasing rate. It
+reaches a turning point between seven and eight periods after the shock,
+after which it increases steadily. The IRF of the money growth rate
+crosses the zero line just before 16 periods and proceeds to rise. It is
+still moving away from steady state at 20 periods. The money growth rate
+in response to the shock under the TR rule jumps to below -0.004 and
+remains there for approximately three periods. It then starts increasing
+and returns to steady state between nine and 10 periods, after which it
+moves away from steady state again in the positive direction. Unlike the
+money growth rate under the FMG rule, however, it starts moving back
+towards the steady state before 20 periods. It does not reach steady
+state within 20 periods.
+
+The output gap under the TR rule does not deviate from steady state
+significantly in response to a preference shock. The IRF experiences a
+small positive jump, but returns to steady state between 10 and 12
+periods. The trajectory of the output gap under the FMG rule jumps up
+slightly more than under the TR rule, but instead of returning to zero
+immediately, it increases first. After two periods, it starts to
+decrease, and crosses the zero line after approximately seven periods.
+After this point, it deviates slightly negatively from steady state, but
+slowly moves back. By 20 periods, it has returned close to steady state.
+
+The FMG rule displays a delayed response to the preference shock, with
+eventual contractionary policy. The nominal interest rate first
+decreases, after which it increases significantly. Along with this
+increase in the interest rate, the money growth rate declines. As a
+result, inflation minimally decreases, and the output growth and gap
+remain stable. The same cannot be said, however, for the CMG rule, where
+the money growth does not change to accomodate for the shock. Under this
+rule, inflation responds in a volatile manner. Additionally, the output
+growth and gap experience the biggest jumps under this rule. Under the
+TR rule, money growth decreases before it starts to increase. Interest
+rates do not respond immediately, but eventually increase. These changes
+result in inflation and the output gap being kept stable. The jump in
+output growth is also minimal. Macroeconomic factors under the IR rule
+do respond strongly to a preference shock. There is only a very small
+positive change in output growth.
+
+\hypertarget{money-demand-shock}{%
+\subsection{Money Demand Shock}\label{money-demand-shock}}
+
+The figure below shows the response of the chosen macroeconomic
+variables to a positive money demand shock. As explained above, each
+panel shows the response of the given variable under each of the four
+rules. According to Lorenzoni (2006), output volatility may be
+attributed to demand shocks. A positive money demand shock increases
+households' spending, leading to a rise in inflation.
+
+As seen in the first impulse response function above, there is a
+negative effect on output growth under both the CMG rate and FMG rate
+rules after a positive money demand shock. The IRF of output growth
+starts at approximately -0.001 under the FMG rate rule and approximately
+-0.003 under the CMG rate rule. The IRF increases at a decreasing rate
+under both rules, with the trajectory of output growth under the FMG
+rate rule crossing the zero line first. Under both, the IRFs begin
+decreasing, with the FMG rate rule reaching the steady state at 14
+periods, but then proceeds to slightly decrease below the steady state
+thereafter. Under the CMG rate rule, the IRF does not reach the steady
+state within twenty periods.
+
+Inflation under both the CMG rate rule and the FMG rate rule is impacted
+negatively by the money demand shock. The negative effect under the CMG
+rate rule is larger than under the FMG rate rule. Under the CMG rate
+rule, the IRF starts at -0.0005 and approximately -0.00005 under the FMG
+rate rule. Under the CMG rate rule, the IRF initially decreases before
+increasing at two periods. It increases at a decreasing rate and reaches
+the steady state at 18 periods, before surpassing the steady state and
+continues to increase. Under the FMG rate rule, the IRF increases until
+eight periods, then slightly decreases. The trajectory of Inflation
+reaches, and remains at, the steady state after 18 periods.
+
+The nominal interest rate under both the FMG rate rule and CMG rate rule
+experiences a positive shock and the IRFs start at 0.0008. Initially,
+the IRF under the CMG rate rule declines at a faster rate than under the
+FMG rate rule. However, at seven periods, the IRF under the FMG rate
+rule drops below the CMG rate rule. Under the FMG rate rule, the IRF of
+the nominal interest rate reaches the steady state at 13 periods but
+continues to decrease at a decreasing rate. Under the CMG rate rule, the
+IRF does not reach the steady state within 20 periods.
+
+As seen in the graph above, after the shock, the money growth rate is
+identically impacted by the TR rule and the IR rule. There is an initial
+positive effect on the money growth rate, however the IRF begins to
+decline, where it meets the steady state at 10 periods. Thereafter, the
+IRF of the money growth rate drops below the steady state and continues
+to decrease at a decreasing rate. Under the FMG rule, the IRF of the
+money growth rate starts at zero and initially increases. After nine
+periods, the IRF begins to decrease and meets the steady state after 18
+periods, thereafter, dropping below the steady state.
+
+The output gap is negatively affected by the shock under both the
+constant money growth rate rule and the flexible money growth rate rule.
+Under the FMG rate rule, the IRF of the output gap starts at -0.001 and
+initially decreases. After three periods, the IRF increases to meet the
+steady state at eight periods. It increases at a decreasing rate and
+begins to stabilise after 13 periods. Under the CMG rate rule, the IRF
+of the output gap starts at 0.003 and decreases until the 4th period. It
+then increases at a decreasing rate and does not reach the steady state
+within 20 periods.
+
+\hypertarget{cost-push-shock}{%
+\subsection{Cost Push Shock}\label{cost-push-shock}}
+
+The figure below shows the response of the chosen macroeconomic
+variables to a positive cost push shock. As explained above, each panel
+shows the response of the given variable under each of the four rules. A
+cost push shock results in higher inflation due to an increase in the
+price of production, causing a decrease in aggregate supply.
+
+Under the four rules, output growth is not significantly affected by the
+cost push shock. However, under the IR rule, output growth is positively
+affected, as the IRF starts at 0,01 and decreases to meet the steady
+state after approximately 12 periods.
+
+Under the TR rule, the FMG rate rule and the CMG rate rule, there is a
+positive effect of the cost push shock on inflation, which is to be
+expected. Under the FMG rule, the IRF of inflation starts at 0.015 and
+sharply decreases for the first three periods, thereafter, decreases
+more subtly until reaching the steady state after 12 periods. Under the
+CMG rule, the IRF starts at 0.00125 and decreases to surpass the zero
+line before four periods. It then increases but does not reach the
+steady state within 20 periods. Under the TR, the IRF starts at 0.0025
+and decreases to meet the steady state after 4 periods.
+
+The nominal interest rate is affected by the shock under the CMG rate
+rule and the FMG rate rule in a similar fashion, as a response to the
+shock. Under both, there is a positive effect of the shock on nominal
+interest rate, where the IRF starts at 0.008. It then declines at a
+faster rate under the FMG rate rule initially, but after six periods,
+the IRF declines at a faster rate under the CMG rate rule. Under the CMG
+rate rule, the IRF reaches the steady state sooner, at 13 periods, than
+the FMG, which does not reach the steady state within 20 periods. Under
+the TR, the IRF starts at zero and slightly increases before decreasing
+and merging with the steady state after eight periods.
+
+There is a positive effect on the money growth rate under the IR rule
+and the TR rule. Under the IR rule, the IRF of the money demand growth
+rate starts at approximately 0.003 and decreases sharply to below the
+steady state after two periods. At the 4th period, the IRF increases to
+meet the steady state after 18 periods. Under the TR rule, the positive
+effect is smaller, as the IRF of the money growth rate starts at 0.0015.
+It then decreases to meet the steady state after three periods but
+increases again. After eight periods, the IRF decreases once again to
+meet the steady state after 18 periods. Under the FMG rate rule, the IRF
+starts at zero and steadily increases before decreasing after nine
+periods. The IRF of the money growth rate does not reach the steady
+state within 20 periods.
+
+Under the TR rule, there is no significant impact of the shock on the
+output gap. Under the IR rule, the CMG rate rule and the FMG rate rule,
+there is a negative impact of the cost push shock on the output gap. The
+smallest effect on the output gap is under the IR rule where the IRF of
+the output gap starts at just below zero and initially increases to
+cross the zero line. It then starts to decrease after 14 periods and
+moves towards the steady state, however, it does not reach it within 20
+periods. Under the CMG rate rule, the IRF of the output gap starts at
+approximately -0.01 and initially decreases before increasing after four
+periods. It does not reach the steady state within 20 periods. Under the
+IR rule, the IRF of the output gap starts at -0.035 and remains there
+until two periods have passed. After that point, it increases at a
+decreasing rate and meets the steady state after 14 periods.
+
+\newpage
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\bibliography{Tex/ref}
+
+
+
+
 
 \end{document}

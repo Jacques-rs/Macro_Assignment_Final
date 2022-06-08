@@ -52,4 +52,6 @@ rsconnect/
 desktop.ini
 
 # Any files in data folder may be too large
-/data/
+/data
+
+
