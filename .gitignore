@@ -50,6 +50,7 @@ rsconnect/
 
 # Unwanted google drive files
 desktop.ini
+*/desktop.ini
 
 # Any files in data folder may be too large
 /data
