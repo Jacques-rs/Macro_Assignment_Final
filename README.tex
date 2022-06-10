@@ -492,29 +492,29 @@ Firm}\label{the-representative-finished-goods-producing-firm}}
 
 The representative finished goods-producing firm uses \(Y_t(i)\) units
 of each intermediate good \(i \in [0,1]\). These intermediate goods are
-bought at the nominal price \(P_t(i)\) in order to produce \(Y_t\) units
-of the final good according to the technology described by
+bought at the nominal price \(P_t(i)\) to produce \(Y_t\) units of the
+final good according to the technology described by
 
 \[[\int_0^1Y_t(i)^{\frac{(\theta_t-1)}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}} \ge Y_t\]
 
-where \(\theta_t\) translates into a random shock to the intermediate
-goods-producing firms' desired markup of price over marginal cost and
-therefore acts like a cost push shock of the kind introduced into the
-New Keynesian model by Clarida, Gali, and and Gertler (1999). Here, this
-markup shock follows the stationary autoregressive process
+Here, \(\theta_t\) represents a random shock to the intermediate
+goods-producing firms' preferred markup of price over marginal cost. It
+acts like a cost push shock of the kind introduced into the New
+Keynesian model by Clarida, Gali \& Gertler (1999). This markup shock
+follows the stationary autoregressive process
 
 \[\ln(\theta_t)=(1-\rho_{\theta})\ln(\theta)+\rho_{\theta}\ln(\theta_{t-1})+\varepsilon_{\theta t} \tag{10}\]
 
 for all \(t=0,1,2,...,\), where the serially uncorrelated innovation
-\(\varepsilon_{\theta t}\) is normally distributed with mean zero and
-standard deviation \(\sigma_{\theta}\). Thus, during each period \(t\),
-the finished good-producing firm chooses \(Y_t(i)\) for all
-\(i \in [0,1]\) to maximize its profits, which are given by
+\(\varepsilon_{\theta t}\) follows a normal distribution with a mean of
+zero and a standard deviation \(\sigma_{\theta}\). Therefore, in each
+period \(t\), the finished good-producing firm chooses \(Y_t(i)\) for
+all \(i \in [0,1]\) to maximize its profits, which are given by
 
 \[P_t[\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} di]^{\frac{\theta_t}{\theta_t-1}} - \int_0^1P_t(i)Y_t(i) \;di\]
 
-The Langrangian function from which the first order conditions are
-derived, is as follows:
+The first order conditions are derived from the following Langrangian
+function:
 
 \[L = \int_0^1P_t(i)Y_t(i) \; di +\lambda_t[Y_t - (\int_0^1Y_t(i)^{\frac{\theta_t-1}{\theta_t}} \;di)^{\frac{\theta_t}{\theta_t-1}}]\]
 
@@ -558,33 +558,34 @@ Therefore:
 \subsection{The Representative Intermediate Goods-Producing
 Firm}\label{the-representative-intermediate-goods-producing-firm}}
 
-During each period \(t=0,1,2,...,\) the representative intermediate
-goods-producing firm hires \(h_t(i)\) units of labour from the
-representative household to manufacture \(Y_t(i)\) units of intermediate
+In each period \(t=0,1,2,...,\) the representative intermediate
+goods-producing firm uses \(h_t(i)\) units of labour from the
+representative household to produce \(Y_t(i)\) units of intermediate
 good \(i\) according to the technology described by:
 
 \[Z_th_t(i) \ge Y_t(i) \tag{11}\]
 
-where \(Z_t\) is the aggregate productivity shock introduced in (3).
+Here, \(Z_t\) represents the aggregate productivity shock introduced in
+(3).
 
-The quadratic cost of adjusting its nominal price between periods is
-given by:
+In order to change its nominal price between periods, the firm undergoes
+a quadratic cost of adjustment, given by:
 
 \[\frac{\phi_p}{2}[\frac{P_t(i)}{{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}}-1]^2Y_t\]
 
-The firm chooses \(P_t(i)\) for all \(t = 0,1,2,...\) to maximise its
-total real market value proportional to:
+In order to maximise its total real market value proportional to:
 
-\[E_0\sum_{t=0}^\infty \beta^t\Lambda_t[\frac{D_t(i)}{P_t}]\]
+\[E_0\sum_{t=0}^\infty \beta^t\Lambda_t[\frac{D_t(i)}{P_t}]\] the firm
+chooses \(P_t(i)\) for all \(t = 0,1,2,...\).
 
-where the firm's real profits are measured by:
+Here, the firm's real profits are measured by:
 
 \[\frac{D_t(i)}{P_t}=[\frac{P_t(i)}{P_t}]^{1-\theta_t}Y_t-[\frac{P_t(i)}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}]^2Y_t\tag{12}\]
 
-The Value function of this optimisation problem is:
+The Value Function of this optimisation problem is:
 \[v=maxE_t\sum_{t=0}^\infty\beta^t\Lambda_t{\frac{D_t(i)}{P_t}}\]
 
-As such, the Bellman Equation can be constructed as:
+From this, the Bellm an Equation can be constructed as:
 
 \[v=\beta^t\Lambda_t{\frac{D_t(i)}{P_t}} + \beta^{t+1}E_t\Lambda_{t+1}{\frac{D_{t+1}(i)}{P_{t+1}}}\]
 \[v=\beta^t\Lambda_t[(\frac{P_t(i)}{P_t})^{1-\theta_t}Y_t-(\frac{P_t(i)}{P_t})^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})^2Y_t] + \beta^{t+1}E_t\Lambda_{t+1}[(\frac{P_{t+1}(i)}{P_{t+1}})^{1-\theta_{t+1}}Y_{t+1}\]
@@ -1641,7 +1642,11 @@ parameters are estimated values, since calibration is based on estimates
 believed to be true. The prior values are those that match the steady
 state values. The table below lists the different parameter values used.
 
-TABLE
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,height=0.5\textheight]{./figures/Table.jpeg}
+\caption{Table}
+\end{figure}
 
 The steady state growth rate was calculated in accordance with Belongia
 \& Ireland (2020)'s method. 1983-2019 quarterly GDP data from FRED is
@@ -1868,8 +1873,10 @@ rules. According to Lorenzoni (2006), output volatility may be
 attributed to demand shocks. A positive money demand shock increases
 households' spending, leading to a rise in inflation.
 
-\begin{figure}[H]
-\includegraphics[width=0.65\linewidth]{./figures/money-demand-shock} \caption{Plots of Impulse Response Functions for a Money Demand Shock}\label{fig:Plot of Money Demand Shock IRFs}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,height=0.5\textheight]{./figures/money-demand-shock.jpeg}
+\caption{Plots of Impulse Response Functions for a Money Demand Shock}
 \end{figure}
 
 As seen in the first impulse response function above, there is a
