@@ -1416,9 +1416,7 @@ The FMG rule displays a delayed response to the preference shock, with eventual 
 
 The figure below shows the response of the chosen macroeconomic variables to a positive money demand shock. As explained above, each panel shows the response of the given variable under each of the four rules. According to Lorenzoni (2006), output volatility may be attributed to demand shocks. A positive money demand shock increases households' spending, leading to a rise in inflation. 
 
-```{r Plot of Money Demand Shock IRFs, fig.cap="Plots of Impulse Response Functions for a Money Demand Shock", echo=FALSE, out.width='65%'}
-knitr::include_graphics("./figures/money-demand-shock.jpeg")
-```
+![Plots of Impulse Response Functions for a Money Demand Shock](./figures/money-demand-shock.jpeg){height="50%"}
 
 As seen in the first impulse response function above, there is a negative effect on output growth under both the CMG rate and FMG rate rules after a positive money demand shock. The IRF of output growth starts at approximately -0.001 under the FMG rate rule and approximately -0.003 under the CMG rate rule. The IRF increases at a decreasing rate under both rules, with the trajectory of output growth under the FMG rate rule crossing the zero line first. Under both, the IRFs begin decreasing, with the FMG rate rule reaching the steady state at 14 periods, but then proceeds to slightly decrease below the steady state thereafter. Under the CMG rate rule, the IRF does not reach the steady state within twenty periods. 
 
