@@ -85,7 +85,7 @@ editor_options:
 # Introduction
 
 According to Belongia and Ireland (2020), nominal interest rate
-management has been the Federal Reserve's approach to stabilise the
+management has been the Federal Reserve's approach to stabilise the economy's
 output gap and inflation. The Taylor rule is a good predictor of the
 nominal interest rate management. Interest rate management has been
 endorsed by literature and has shown advantages over the management of
@@ -1444,7 +1444,7 @@ The historic success of the federal reserve bank based on an interest rate rule 
 
 Belongia, M.T. & Ireland, P.N. 2020. A Reconsideration of Money Growth Rules. Journal of Economic Dynamics and Control, 135(104312):1-27. 
 
-Chen, J. 2020. Contractionary Policy [Online]. Available: https://www.investopedia.com/terms/c/contractionary-policy [June, 2022]. 
+Chen, J. 2020. Contractionary Policy [Online]. Available: https://www.investopedia.com/terms/c/contractionary-policy.asp [June, 2022]. 
 
 Chugh, S.K. 2015. Modern Macroeconomics. Massachusetts: MIT Press.
 
@@ -1464,6 +1464,6 @@ Poole, W. 1970. Optimal Choice of Monetary Policy Instruments in a Simple Stocha
 
 # Appendix 
 
-![Parameter Values](./figures/Table.jpeg){height="50%" width="80%"}
+![Parameter Values](./figures/table-param.jpeg){height="70%" width="90%"}
 
 
