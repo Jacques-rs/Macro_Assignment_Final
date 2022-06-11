@@ -1229,7 +1229,7 @@ To conduct robustness checks for z_ss, r_ss, beta, and psi, we replace them with
 
 # Results
 
-This section presents the impulse response functions (IRFs) of macroeconomic variables under various rules, in response to the different shocks. In the IRFs, in order to distinguish between the rules, different colours have been assigned to each rule. The Taylor (TR) rule is black, the Interest Rate (IR) rule is green, the Constant Money Growth (CMG) rule is purple and the Flexible Money Growth (FMG) rule is blue.
+This section presents the impulse response functions (IRFs) of macroeconomic variables under various rules, in response to the different shocks. In order to distinguish between the rules, different colours have been assigned to each rule in the visualisations of the IRFs. The Taylor (TR) rule is black, the Interest Rate (IR) rule is green, the Constant Money Growth (CMG) rule is purple and the Flexible Money Growth (FMG) rule is blue.
 
 ## Productivity Shock 
 
