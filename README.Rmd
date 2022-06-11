@@ -477,7 +477,7 @@ $$x_t = Y_t/Q_t \tag{15}$$
 
 # Log-Linearisation:
 
-## Equation (1) from the appendix of "Belongia and Ireland (2020)"
+## Equation (1*)
 
 
 
@@ -563,7 +563,7 @@ y_{t} - y &= c_t - c
 ## Equation (19) in paper:
 
 
-Once again, for simplicity, we separate the equation into two parts:
+Using equation (5*) and again, rewriting for simplicity, we separate the equation into two parts:
 
 $$\lambda_{t}=\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)\
 = a_1 + \beta \gamma E_t (a_2)$$
@@ -734,7 +734,7 @@ $$(z-\gamma)(z-\beta \gamma) \hat{\lambda}_{t}=(z-\gamma)\left(z-\beta \gamma p_
 
 ## Equation (20)
 
-From Equation (7)
+From Equation (7*) we have
 
 $$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right) \tag{7*}$$
 
@@ -758,7 +758,7 @@ $$\begin{array}{l}
 
 ## Equation (21)
 
-From equation (14*)
+From equation (14*) it follows that
 
 $$1=\frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)\right]$$
 
@@ -930,6 +930,8 @@ $$\begin{aligned}
 
 ## Equation (22)
 
+From the definition of the output gap $x_t$
+
 $$\begin{aligned} x_{t}=y_{t} / q_{t} \\
 \text{Steady State: } x = y/p \end{aligned}$$
 
@@ -1014,6 +1016,8 @@ $$\begin{aligned} &-\hat{e}_t =  \psi \left(\hat{a}_{t}-\hat{\lambda}_{t}\right)
 
 ## Equation (24)
 
+From the monetary policy interest rate rule
+
 $$\ln \left(r_{t} / r\right)=\rho_{r} \ln \left(r_{t-1} / r\right)+\rho_{\pi} \ln \left(\pi_{t-1} / \pi\right)+\rho_{x} \ln \left(x_{t-1} / x\right)+\varepsilon_{r t}$$
 
 Directly applying Uhlig's method using $r_t=r\cdot e^{\hat{r}_t}$ for
@@ -1024,14 +1028,10 @@ $$\begin{aligned} & \ln \left[\frac{r e^{\hat{r} t}}{r}\right]=\operatorname{\rh
 
 ## Equation (25)
 
-Starting Form Equation (9) and using the conditions from section [C:]
+Starting Form Equation (9*)
 
 $$ \begin{aligned}
-&\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}-1\right)^{2} \\
-&-a_{t} \phi_{m}\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}} - 1\right)\left(\frac{Z_t m_t }{z Z_{t-1}m_{t-1}}\right) \\
-&+\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{Z_{t+1} m_{t+1} }{z Z_{t}m_{t}}-1\right)\left(\frac{Z_{t+1} m_{t+1} }{z Z_{t}m_{t}}\right)^{2}\left(\frac{z }{z_{t+1}}\right)\right] \\
-&=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)\\
-\Rightarrow \ &\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)^{2} \\
+&\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)^{2} \\
 &-a_{t} \phi_{m}\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}\right) \\
 &+\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}-1\right)\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}\right)^{2}\left(\frac{z}{z_{t+1}}\right)\right] \\
 &=\lambda_{t}\left(1-\frac{1}{r_{t}}\right) \\
