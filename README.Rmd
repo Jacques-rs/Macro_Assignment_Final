@@ -1358,9 +1358,7 @@ $$\begin{aligned}
 
 Impulse response functions show the movement of macroeconomic variables back to steady state in response to a shock. This paper makes use of these graphs to compare different approaches to monetary policy, namely the Taylor (TR) rule, the zero Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule, and the Constant Money Growth  (CMG) rule. 
 
-To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell, Herreño, Nakamura & Steinsson (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. In Appendix, the different parameter values used in figure . 
-
-![Parameter Values](./figures/Table.jpeg){height="50%" width="80%"}
+To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell, Herreño, Nakamura & Steinsson (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. In Appendix, the different parameter values used in figure 9.1. 
 
 The steady state growth rate was calculated in accordance with Belongia & Ireland (2020)’s method. 1983-2019 quarterly GDP data from FRED is used, which is then converted into per capita terms by dividing by the civilian noninstitutional population. The trend of the quarterly GDP per capita data is then extracted using a Hodrick-Prescott filter with a smoothing parameter of 1600. After this, the average of the natural log change in quarterly GDP is calculated as 1.00037. In order to calculate the steady state interest rate, we use FRED’s quarterly interest rate data between 1983 and 2019. The average of this data is then divided by four to get 0.98783908. 
 
@@ -1474,5 +1472,10 @@ Ireland, P.N. 2011. A New Keynesian Perspective on the Great Recession. Journal 
 
 Poole, W. 1970. Optimal Choice of Monetary Policy Instruments in a Simple Stochastic Macro Model. Quarterly Journal of Economics, 84: 197-216.
 
+\newpage
+
+# Appendix 
+
+![Parameter Values](./figures/Table.jpeg){height="50%" width="80%"}
 
 
