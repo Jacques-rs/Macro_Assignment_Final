@@ -851,7 +851,7 @@ $$\begin{aligned}
 + \beta \gamma z E_{t} \hat{y}_{t+1}
 \end{aligned}$$
 
-From the Appendix, we can use the fact that
+From the Appendix of "Belongia and Ireland (2020)", we can use the fact that
 
 $$y \lambda=\frac{(z-\beta \gamma)}{(z-\gamma)}$$
 
@@ -1177,7 +1177,7 @@ $$ \begin{aligned}
 
 \newpage
 
-As indicated in the Appendix of the paper, substituting for the steady
+As indicated in the Appendix of "Belongia and Ireland (2020)", substituting for the steady
 state conditions in equation (9) yields
 
 $$\begin{aligned}
