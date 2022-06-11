@@ -1345,7 +1345,7 @@ Impulse response functions show the movement of macroeconomic variables back to 
 
 To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell et al. (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. The table below lists the different parameter values used. 
 
-![Table](./figures/Table.jpeg){height="50%"}
+![Parameter Values](./figures/Table.jpeg){height="50%", width="80%"}
 
 The steady state growth rate was calculated in accordance with Belongia & Ireland (2020)’s method. 1983-2019 quarterly GDP data from FRED is used, which is then converted into per capita terms by dividing by the civilian noninstitutional population. The trend of the quarterly GDP per capita data is then extracted using a Hodrick-Prescott filter with a smoothing parameter of 1600. After this, the average of the natural log change in quarterly GDP is calculated as 1.00037. In order to calculate the steady state interest rate, we use FRED’s quarterly interest rate data between 1983 and 2019. The average of this data is then divided by four to get 0.98783908. 
 
@@ -1361,9 +1361,7 @@ To conduct robustness checks for z_ss, r_ss, beta, and psi, we replace them with
 
 The figure below shows the impulse response functions of the output growth, inflation, nominal interest rate, money growth rate and output gap after a positive productivity shock. The graphs depict the way in which each of these macroeconomic variables change under the Taylor (TR) rule, the Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule and the Constant Money Growth (CMG)  rule. 
 
-\begin{figure}[H]
-\includegraphics[width=0.65\linewidth]{./figures/productivity-shock} \caption{Plots of Impulse Response Functions for a Productivity Shock}\label{fig:Productivity Shock}
-\end{figure}
+![Plots of Impulse Response Functions for a Productivity Shock](./figures/productivity-shock.jpeg){height="60%", width="80%"}
 
 The impulse response functions (IRF) of the output growth of the TR rule, IR rule, FMG rule, and CMG rule in response to a productivity shock are illustrated in the first of the graphs above. The effect of the TR rule and the IR rule on output growth is identical. The IRF of output growth under the FMG rule, TR rule and IR rule jumps above 0.002. Under these three rules, it then slowly moves down to zero at a decreasing rate. The IRF of output growth under the IR rule moves faster, and reaches zero after 12 periods, whereas under the FMG rule, it is more gradual and reaches zero at around 14 periods. Under both rules, the trajectory of output growth crosses the zero line, but not by much and moves upwards toward zero again. Under the CMG rule, however, the IRF starts below zero, and moves up to cross the zero line just past two periods. It then proceeds to increase but at a decreasing rate until approximately six periods. Thereafter, it gradually moves back to steady state. The trajectory of output growth of all three rules represented here takes more than 20 periods to settle around the steady state. 
 
@@ -1381,9 +1379,7 @@ Contractionary monetary policy refers to increases in interest rates so as to de
 
 The figure below shows the response of the chosen macroeconomic variables to a positive preference shock. As explained above, each panel shows the response of the given variable under each of the four rules. A preference shock refers to a shock to the utility aspect of the economy (Chugh, 2015:147). As such, it affects the macroeconomic variables from the demand side (Malik et al., 2019:12). 
 
-\begin{figure}[H]
-\includegraphics[width=0.65\linewidth]{./figures/preference-shock} \caption{Plots of Impulse Response Functions for a Preference Shock}\label{fig:Plot of Preference Shock}
-\end{figure}
+![Plots of Impulse Response Functions for a Preference Shock](./figures/preference-shock.jpeg){height="60%", width="80%"}
 
 The output growth of all four scenarios starts above zero in response to a preference shock, in order of IR rule, TR Rule, FMG rule and CMG rule from lowest to highest. The trajectory of the output growth under all scenarios then declines, however, under the TR Rule, FMG rule and CMG rule, it becomes negative. Under the TR rule, the IRF stays very close to zero. The trajectory of the output growth of the FMG and CMG rules decrease further below zero but start to move back to steady state between six and eight periods. The IRF under the FMG rule reaches zero around 12 periods, whereas under the CMG rule, it increases more gradually, nearing it at 20 periods. The IRF of output growth under the IR rule experienced the smallest jump up after the shock and returned to steady state after four periods. 
 
@@ -1401,7 +1397,7 @@ The FMG rule displays a delayed response to the preference shock, with eventual 
 
 The figure below shows the response of the chosen macroeconomic variables to a positive money demand shock. As explained above, each panel shows the response of the given variable under each of the four rules. According to Lorenzoni (2006), output volatility may be attributed to demand shocks. A positive money demand shock increases households' spending, leading to a rise in inflation. 
 
-![Plots of Impulse Response Functions for a Money Demand Shock](./figures/money-demand-shock.jpeg){height="50%"}
+![Plots of Impulse Response Functions for a Money Demand Shock](./figures/money-demand-shock.jpeg){height="60%", width="80%"}
 
 As seen in the first impulse response function above, there is a negative effect on output growth under both the CMG rate and FMG rate rules after a positive money demand shock. The IRF of output growth starts at approximately -0.001 under the FMG rate rule and approximately -0.003 under the CMG rate rule. The IRF increases at a decreasing rate under both rules, with the trajectory of output growth under the FMG rate rule crossing the zero line first. Under both, the IRFs begin decreasing, with the FMG rate rule reaching the steady state at 14 periods, but then proceeds to slightly decrease below the steady state thereafter. Under the CMG rate rule, the IRF does not reach the steady state within twenty periods. 
 
@@ -1417,9 +1413,7 @@ The output gap is negatively affected by the shock under both the constant money
 
 The figure below shows the response of the chosen macroeconomic variables to a positive cost push shock. As explained above, each panel shows the response of the given variable under each of the four rules. A cost push shock results in higher inflation due to an increase in the price of production, causing a decrease in aggregate supply. 
 
-\begin{figure}[H]
-\includegraphics[width=0.65\linewidth]{./figures/cost-push-shock} \caption{Plots of Impulse Response Functions for a Cost Push Shock}\label{fig:Plot of Cost Push Shock IRF}
-\end{figure}
+![Plots of Impulse Response Functions for a Cost Push Shock](./figures/cost-push-shock.jpeg){height="60%", width="80%"}
 
 Under the four rules, output growth is not significantly affected by the cost push shock. However, under the IR rule, output growth is positively affected, as the IRF starts at 0,01 and decreases to meet the steady state after approximately 12 periods. 
 
