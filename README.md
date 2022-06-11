@@ -144,7 +144,7 @@ preferences are described by the following expected utility function:
 $$E_{0}\sum_{t=0}^{\infty}\beta^{t}a_{t}[ln(C_{t} - \gamma C_{t-1}) + v(\frac{M_{t}}{P_{t}Z_{t}}, u_t)-(\frac{\phi_m}{2})(\frac{M_t/P_t}{zM_{t-1}/P_{t-1}}-1)^{2}(\frac{M_{t}}{P_{t}Z_{t}})-h_{t}]$$
 
 Both the discount factor and the habit formation parameter lie
-between zero and one, with $0<\beta<1$ and $0 \ge \gamma \le1$. The
+between zero and one, with $0<\beta<1$ and $0 \le \gamma \le1$. The
 preference shock $a_{t}$ follows the stationary autoregressive process below:
 
 $$\ln(a_{t})=\rho_{a} \ln(a_{t-1}) + \varepsilon_{at} \tag{2}$$
@@ -1038,7 +1038,7 @@ $$\begin{aligned}
 &\delta_{r} =\left(\frac{\delta}{r}\right)\left(\frac{\theta}{\theta-1}\right)
 \end{aligned}$$
 
-Now, to simplify the linearisation process, we consider the equation (9)
+Now, to simplify the linearisation process, we consider the equation (9*)
 in parts:
 
 ### Term 1:
@@ -1114,6 +1114,8 @@ $$\begin{aligned}\therefore \quad & \delta_r (r-1) \hat{\lambda} - \delta_r(r-1)
 
 ## Equation (26)
 
+From the growth rate of money, we have
+
 $$\mu_{t}=z_{t}\left(m_{t} / m_{t-1}\right) \pi_{t}$$
 
 Applying uhlig's Method:
@@ -1127,15 +1129,15 @@ $$\begin{aligned}
 
 ## Equation (27)
 
-This equation
+Starting from the output growth rate
 
 $$g_{t}=\left(y_{t} / y_{t-1}\right) z_{t}$$
 
-Using the Steady State solution
+Now, using the Steady State solution
 
 $$g = z$$
 
-\newpage
+
 
 Yields the following solution, using Uhlig's method:
 
@@ -1148,6 +1150,8 @@ g_{t}&=\left(\frac{y_{t}}{y_{t-1}}\right) z_{t}\\
 
 ## Equation (28)
 
+Equation (2*) simply becomes
+
 $$\begin{aligned}
 & \ln \left(a_{t}\right)=p_{a} \ln \left(a_{t-1}\right)+\varepsilon_{a t} \\
 & \ln \left(a e^{\hat{a}_{t}}\right)=p_{a} \ln \left(a e^{\hat{a}_{t-1}}\right)+\varepsilon_{a t} \\
@@ -1158,6 +1162,8 @@ $$\begin{aligned}
 
 ## Equation (29)
 
+The log-linearization of equation (3*) also follows simply
+
 $$\begin{aligned}
 \ln(z_t)=\ln(z) + \varepsilon_{z t}\\
 \Rightarrow \ln\left(z e^{\hat{z}_t}\right) =\ln (z)+\varepsilon_{z t}\\
@@ -1166,6 +1172,8 @@ $$\begin{aligned}
 \end{aligned}$$
 
 ## Equation (30)
+
+Similarly, equation (4*)...
 
 $$\begin{aligned}
 & \ln \left(u_{t}\right)=p_{u} \ln \left(u_{t-1}\right)+\varepsilon_{u t} \\
@@ -1176,6 +1184,8 @@ $$\begin{aligned}
 \end{aligned}$$
 
 ## Equation (31)
+
+Lastly, equation (10*) yields
 
 $$\begin{aligned}
 & \ln \left(\theta_{t}\right)=\left(1-\rho_{\theta}\right) \ln (\theta)+\rho_{\theta} \ln \left(\theta_{t-1}\right)+\varepsilon_{\theta t} \\
