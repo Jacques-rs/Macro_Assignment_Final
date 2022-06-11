@@ -1634,13 +1634,14 @@ Money Growth (FMG) rule, and the Constant Money Growth (CMG) rule.
 To construct these functions, parameter values are inserted into the
 log-linearised equations from the previous section. Some of the
 parameter values are found via our own calculations. Upon researching
-calibrated values of the Phillips Curve slope, we found Hazell et
-al.~(2020)'s estimation of the Phillips Curve slope. For the rest,
-posterior parameter values from Belongia \& Ireland (2020) are used. We
-use the mean posterior values as opposed to the prior values so that all
-parameters are estimated values, since calibration is based on estimates
-believed to be true. The prior values are those that match the steady
-state values. The table below lists the different parameter values used.
+calibrated values of the Phillips Curve slope, we found Hazell, Herreño,
+Nakamura \& Steinsson (2020)'s estimation of the Phillips Curve slope.
+For the rest, posterior parameter values from Belongia \& Ireland (2020)
+are used. We use the mean posterior values as opposed to the prior
+values so that all parameters are estimated values, since calibration is
+based on estimates believed to be true. The prior values are those that
+match the steady state values. In Appendix, the different parameter
+values used in figure .
 
 \begin{figure}
 \centering
@@ -1659,24 +1660,24 @@ the steady state interest rate, we use FRED's quarterly interest rate
 data between 1983 and 2019. The average of this data is then divided by
 four to get 0.98783908.
 
-rho\_pi, rho\_x and rho\_r are only used for the Taylor rule
-calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and rho\_mx
-replace rho\_pi, rho\_x and rho\_r, due to the switch from equation 24
-to 33. When calibrating the CMG rule, these parameters are set to zero.
-Under the FMG rule, we set rho\_mm, rho\_mpi and rho\_mx equal to 1, 0
-and -0.125 respectively. This is in accordance to Belongia \& Ireland
-(2020).
+\(rho_\pi\), \(rho_x\) and \(rho_r\) are only used for the Taylor rule
+calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and
+\(rho_mx\) replace \(rho_\pi\), \(rho_x\) and \(rho_r\), due to the
+switch from equation 24 to 33. When calibrating the CMG rule, these
+parameters are set to zero. Under the FMG rule, we set rho\_mm, rho\_mpi
+and rho\_mx equal to 1, 0 and -0.125 respectively. This is in accordance
+to Belongia \& Ireland (2020).
 
-To conduct robustness checks for z\_ss, r\_ss, beta, and psi, we replace
-them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three
-values are taken from Ireland (2010), and we have replaced the value for
-the Phillips Curve slope with the mean posterior value from Belongia \&
-Ireland (2020). When comparing our impulse response functions to those
-using these values, we conclude that they are similar, implying that the
-values used are appropriate. The following section compares the impulse
-response functions under each rule after a small and positive
-productivity, preference, cost push, and money demand shocks are
-induced.
+To conduct robustness checks for \(z\), \(r\), \(\beta\), and \(\psi\),
+we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The
+first three values are taken from Ireland (2011), and we have replaced
+the value for the Phillips Curve slope with the mean posterior value
+from Belongia \& Ireland (2020). When comparing our impulse response
+functions to those using these values, we conclude that they are
+similar, implying that the values used are appropriate. The following
+section compares the impulse response functions under each rule after a
+small and positive productivity, preference, cost push, and money demand
+shocks are induced.
 
 \newpage
 
@@ -2063,6 +2064,39 @@ rate rule is not enough evidence for this policy rule to take preference
 over others. The results from this paper suggest that a reconsideration
 of this rule for the more efficient flexible money growth rate rule is
 necessary.
+
+\newpage
+
+\hypertarget{reference-list}{%
+\section{Reference List}\label{reference-list}}
+
+Belongia, M.T. \& Ireland, P.N. 2020. A Reconsideration of Money Growth
+Rules. Journal of Economic Dynamics and Control, 135(104312):1-27.
+
+Chen, J. 2020. Contractionary Policy {[}Online{]}. Available:
+\url{https://www.investopedia.com/terms/c/contractionary-policy}
+{[}June, 2022{]}.
+
+Chugh, S.K. 2015. Modern Macroeconomics. Massachusetts: MIT Press.
+
+Lorenzoni, G. 2006. A Theory of Demand Shocks. Working Paper No.~12477.
+Cambridge, Massachusetts: National Bureau of Economic Research.
+
+Malik, K. Z., Ali, S.Z., Imtiaz, A. \& Aftab, A. 2019. Preference shocks
+in an RBC model with intangible capital. Cogent Economics \& Finance,
+7(1):1-14.
+
+Hazell, J., Herreño, J., Nakamura, E. \& Steinsson, J. 2020. The Slope
+of the Phillips Curve: Evidence from U.S. States. Working Paper
+No.~28005. Cambridge, Massachusetts: National Bureau of Economic
+Research.
+
+Ireland, P.N. 2011. A New Keynesian Perspective on the Great Recession.
+Journal of Money, Credit and Banking, 43(1):31-54.
+
+Poole, W. 1970. Optimal Choice of Monetary Policy Instruments in a
+Simple Stochastic Macro Model. Quarterly Journal of Economics, 84:
+197-216.
 
 \bibliography{Tex/ref}
 

@@ -1343,15 +1343,15 @@ $$\begin{aligned}
 
 Impulse response functions show the movement of macroeconomic variables back to steady state in response to a shock. This paper makes use of these graphs to compare different approaches to monetary policy, namely the Taylor (TR) rule, the zero Interest Rate (IR) rule, the Flexible Money Growth (FMG) rule, and the Constant Money Growth  (CMG) rule. 
 
-To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell et al. (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. The table below lists the different parameter values used. 
+To construct these functions, parameter values are inserted into the log-linearised equations from the previous section. Some of the parameter values are found via our own calculations. Upon researching calibrated values of the Phillips Curve slope, we found Hazell, Herreño, Nakamura & Steinsson (2020)’s estimation of the Phillips Curve slope. For the rest, posterior parameter values from Belongia & Ireland (2020) are used. We use the mean posterior values as opposed to the prior values so that all parameters are estimated values, since calibration is based on estimates believed to be true. The prior values are those that match the steady state values. In Appendix, the different parameter values used in figure . 
 
 ![Parameter Values](./figures/Table.jpeg){height="50%" width="80%"}
 
 The steady state growth rate was calculated in accordance with Belongia & Ireland (2020)’s method. 1983-2019 quarterly GDP data from FRED is used, which is then converted into per capita terms by dividing by the civilian noninstitutional population. The trend of the quarterly GDP per capita data is then extracted using a Hodrick-Prescott filter with a smoothing parameter of 1600. After this, the average of the natural log change in quarterly GDP is calculated as 1.00037. In order to calculate the steady state interest rate, we use FRED’s quarterly interest rate data between 1983 and 2019. The average of this data is then divided by four to get 0.98783908. 
 
-rho_pi, rho_x and rho_r are only used for the Taylor rule calibration. Under the FMG and CMG rules, rho_mm, rho_mpi and rho_mx replace rho_pi, rho_x and rho_r, due to the switch from equation 24 to 33. When calibrating the CMG rule, these parameters are set to zero. Under the FMG rule, we set rho_mm, rho_mpi and rho_mx equal to 1, 0 and -0.125 respectively. This is in accordance to Belongia & Ireland (2020).
+$rho_\pi$, $rho_x$ and $rho_r$ are only used for the Taylor rule calibration. Under the FMG and CMG rules, rho_mm, rho_mpi and $rho_mx$ replace $rho_\pi$, $rho_x$ and $rho_r$, due to the switch from equation 24 to 33. When calibrating the CMG rule, these parameters are set to zero. Under the FMG rule, we set rho_mm, rho_mpi and rho_mx equal to 1, 0 and -0.125 respectively. This is in accordance to Belongia & Ireland (2020).
 
-To conduct robustness checks for z_ss, r_ss, beta, and psi, we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three values are taken from Ireland (2010), and we have replaced the value for the Phillips Curve slope with the mean posterior value from Belongia & Ireland (2020). When comparing our impulse response functions to those using these values, we conclude that they are similar, implying that the values used are appropriate. The following section compares the impulse response functions under each rule after a small and positive productivity, preference, cost push, and money demand shocks are induced. 
+To conduct robustness checks for $z$, $r$, $\beta$, and $\psi$, we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three values are taken from Ireland (2011), and we have replaced the value for the Phillips Curve slope with the mean posterior value from Belongia & Ireland (2020). When comparing our impulse response functions to those using these values, we conclude that they are similar, implying that the values used are appropriate. The following section compares the impulse response functions under each rule after a small and positive productivity, preference, cost push, and money demand shocks are induced. 
 
 \newpage
 
@@ -1438,4 +1438,26 @@ Although  responses of inflation follow the similar trajectories under the CMG a
 Interest rate rules such as the simple rule developed by Taylor (1993) has proven successful as the policy decision tool of choice for the Federal Reserve Bank. Alternative policy rules exist, however, but the interest rate rule has curbed inflation and stabilised output with a good historical record. This paper displays the success of interest rate rules in protecting the economy in response to money demand shocks and efficiently adjusting after real shocks, and considers this success against alternative policy rules.  The first alternative, the constant money growth rate rule, offers little to compare. The impulse response functions from this paper highlight the shortcomings of this rule towards achieving stability in output following a money demand shock, and providing the correct responses to shocks other shocks. The impulse response functions in this paper suggest comparable results between interest rate rules and the flexible money growth rate rule. The response to a money demand shock by this rule achieves successful stabilisation of output alongside stabilisation of the nominal side of the economy. Furthermore, applying this over the period following the global financial crisis would have yielded a more efficient recovery in real output and inflation. 
 
 The historic success of the federal reserve bank based on an interest rate rule is not enough evidence for this policy rule to take preference over others. The results from this paper suggest that a reconsideration of this rule for the more efficient flexible money growth rate rule is necessary. 
+
+\newpage
+
+# Reference List
+
+Belongia, M.T. & Ireland, P.N. 2020. A Reconsideration of Money Growth Rules. Journal of Economic Dynamics and Control, 135(104312):1-27. 
+
+Chen, J. 2020. Contractionary Policy [Online]. Available: https://www.investopedia.com/terms/c/contractionary-policy [June, 2022]. 
+
+Chugh, S.K. 2015. Modern Macroeconomics. Massachusetts: MIT Press.
+
+Lorenzoni, G. 2006. A Theory of Demand Shocks. Working Paper No. 12477. Cambridge, Massachusetts: National Bureau of Economic Research. 
+
+Malik, K. Z., Ali, S.Z., Imtiaz, A. & Aftab, A. 2019. Preference shocks in an RBC model with intangible capital. Cogent Economics & Finance, 7(1):1-14.
+
+Hazell, J., Herreño, J., Nakamura, E. & Steinsson, J. 2020. The Slope of the Phillips Curve: Evidence from U.S. States. Working Paper No. 28005. Cambridge, Massachusetts: National Bureau of Economic Research. 
+
+Ireland, P.N. 2011. A New Keynesian Perspective on the Great Recession. Journal of Money, Credit and Banking, 43(1):31-54. 
+
+Poole, W. 1970. Optimal Choice of Monetary Policy Instruments in a Simple Stochastic Macro Model. Quarterly Journal of Economics, 84: 197-216.
+
+
 
