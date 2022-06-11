@@ -1474,19 +1474,14 @@ Money Growth (FMG) rule, and the Constant Money Growth (CMG) rule.
 To construct these functions, parameter values are inserted into the
 log-linearised equations from the previous section. Some of the
 parameter values are found via our own calculations. Upon researching
-calibrated values of the Phillips Curve slope, we found Hazell et
-al.~(2020)'s estimation of the Phillips Curve slope. For the rest,
-posterior parameter values from Belongia \& Ireland (2020) are used. We
-use the mean posterior values as opposed to the prior values so that all
-parameters are estimated values, since calibration is based on estimates
-believed to be true. The prior values are those that match the steady
-state values. The table below lists the different parameter values used.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth,height=0.5\textheight]{./figures/Table.jpeg}
-\caption{Parameter Values}
-\end{figure}
+calibrated values of the Phillips Curve slope, we found Hazell, Herreño,
+Nakamura \& Steinsson (2020)'s estimation of the Phillips Curve slope.
+For the rest, posterior parameter values from Belongia \& Ireland (2020)
+are used. We use the mean posterior values as opposed to the prior
+values so that all parameters are estimated values, since calibration is
+based on estimates believed to be true. The prior values are those that
+match the steady state values. In Appendix, the different parameter
+values used in figure 9.1.
 
 The steady state growth rate was calculated in accordance with Belongia
 \& Ireland (2020)'s method. 1983-2019 quarterly GDP data from FRED is
@@ -1499,24 +1494,24 @@ the steady state interest rate, we use FRED's quarterly interest rate
 data between 1983 and 2019. The average of this data is then divided by
 four to get 0.98783908.
 
-rho\_pi, rho\_x and rho\_r are only used for the Taylor rule
-calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and rho\_mx
-replace rho\_pi, rho\_x and rho\_r, due to the switch from equation 24
-to 33. When calibrating the CMG rule, these parameters are set to zero.
-Under the FMG rule, we set rho\_mm, rho\_mpi and rho\_mx equal to 1, 0
-and -0.125 respectively. This is in accordance to Belongia \& Ireland
-(2020).
+\(rho_\pi\), \(rho_x\) and \(rho_r\) are only used for the Taylor rule
+calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and
+\(rho_mx\) replace \(rho_\pi\), \(rho_x\) and \(rho_r\), due to the
+switch from equation 24 to 33. When calibrating the CMG rule, these
+parameters are set to zero. Under the FMG rule, we set rho\_mm, rho\_mpi
+and rho\_mx equal to 1, 0 and -0.125 respectively. This is in accordance
+to Belongia \& Ireland (2020).
 
-To conduct robustness checks for z\_ss, r\_ss, beta, and psi, we replace
-them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The first three
-values are taken from Ireland (2010), and we have replaced the value for
-the Phillips Curve slope with the mean posterior value from Belongia \&
-Ireland (2020). When comparing our impulse response functions to those
-using these values, we conclude that they are similar, implying that the
-values used are appropriate. The following section compares the impulse
-response functions under each rule after a small and positive
-productivity, preference, cost push, and money demand shocks are
-induced.
+To conduct robustness checks for \(z\), \(r\), \(\beta\), and \(\psi\),
+we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The
+first three values are taken from Ireland (2011), and we have replaced
+the value for the Phillips Curve slope with the mean posterior value
+from Belongia \& Ireland (2020). When comparing our impulse response
+functions to those using these values, we conclude that they are
+similar, implying that the values used are appropriate. The following
+section compares the impulse response functions under each rule after a
+small and positive productivity, preference, cost push, and money demand
+shocks are induced.
 
 \newpage
 
@@ -1526,10 +1521,10 @@ induced.
 This section presents the impulse response functions (IRFs) of
 macroeconomic variables under various rules, in response to the
 different shocks. In order to distinguish between the rules, different
-colours have been assigned to each rule in the visualisations of the
-IRFs. The Taylor (TR) rule is black, the Interest Rate (IR) rule is
-green, the Constant Money Growth (CMG) rule is purple and the Flexible
-Money Growth (FMG) rule is blue.
+colours have been assigned to each rule in the IRFs. The trajectory of
+the Taylor (TR) rule is shown with a black line, that of the Interest
+Rate (IR) rule is green, the Constant Money Growth (CMG) rule is purple
+and the Flexible Money Growth (FMG) rule is blue.
 
 \hypertarget{productivity-shock}{%
 \subsection{Productivity Shock}\label{productivity-shock}}
@@ -1558,18 +1553,18 @@ around 14 periods. Under both rules, the trajectory of output growth
 crosses the zero line, but not by much and moves upwards toward zero
 again. Under the CMG rule, however, the IRF starts below zero, and moves
 up to cross the zero line just past two periods. It then proceeds to
-increase but at a decreasing rate until approximately six periods.
-Thereafter, it gradually moves back to steady state. The trajectory of
-output growth of all three rules represented here takes more than 20
-periods to settle around the steady state.
+increase until approximately six periods. Thereafter, it gradually moves
+back to the steady state. The trajectory of output growth of all three
+rules represented here takes more than 20 periods to settle around the
+steady state.
 
 The IRF of inflation rate under both the CMG rule and FMG rule responds
 to a shock in productivity, however it follows different trajectories
 toward zero under the two rules. Under the FMG rule, the IRF jumps to
-just below steady state, and crosses the zero line at around three
-periods. It rises minimally until a turning point at 10 periods,
-afterwhich is returns to zero by 20 periods. The trajectory of the
-inflation rate under this rule does not stray far from steady state.
+just below the steady state, and crosses the zero line at around three
+periods. It rises minimally until a turning point at 10 periods, after
+which it returns to zero by 20 periods. The trajectory of the inflation
+rate under this rule does not stray far from the steady state.
 Alternatively, the IRF of inflation under the CMG rule experiences a
 bigger fluctuation in response to the productivity shock. It jumps down
 to approximately -0.0008 and declines further until two periods have
@@ -1586,7 +1581,7 @@ trajectory of the nominal interest rate then crosses the zero line just
 before 14 periods. At around 18 periods the IRF starts moving back to
 zero. Although the graph shows that the trajectory of the nominal
 interest rate moves close to zero under both scenarios, it takes more
-than 20 periods to reach steady state.
+than 20 periods to reach the steady state.
 
 The nominal money growth rate under the TR rule and IR rule in response
 to a productivity shock have identical IRFs. Both jump to above 0.001
@@ -1595,30 +1590,30 @@ under the FMG rule increases at an increasing rate, after reaching a
 point of inflection after about five periods, after which it increases
 at a decreasing rate. The trajectory of the money growth rate reaches a
 turning point between eight and nine periods, after which it declines to
-just above steady state by 20 periods.
+just above the steady state by 20 periods.
 
 In response to a productivity shock, the IRF of output gap under the FMG
-rule first declines, and then returns to steady state by eight periods.
-It then increases slightly, but almost reaches steady state again after
-20 periods have passed. The output gap under the CMG rule behaves
-differently in response to such a shock. The IRF also declines at first,
-but from a starting point of -0.004 (as opposed to -0.001). Just after
-four periods, it reaches a turning point from which it increases at a
-decreasing rate. The trajectory of the output gap does not reach steady
-state within 20 periods.
+rule first declines, and then returns to the steady state by eight
+periods. It then increases slightly, but almost reaches the steady state
+again after 20 periods have passed. The output gap under the CMG rule
+behaves differently in response to such a shock. The IRF also declines
+at first, but from a starting point of -0.004 (as opposed to -0.001).
+Just after four periods, it reaches a turning point from which it
+increases at a decreasing rate. The trajectory of the output gap does
+not reach the steady state within 20 periods.
 
 Contractionary monetary policy refers to increases in interest rates so
 as to decrease the supply of money in the economy in order to lower
 inflation (Chen, 2020). After a small positive shock to productivity,
 the CMG rule displays signs of this policy, with nominal interest rates
-jumping up before slowly returning to steady state. The FMG rule results
-in an increase in output growth, after which a rise in the money growth
-and a decrease in the nominal interest rate allows for the output growth
-to return to steady state without significant changes to inflation.
-Under both the TR rule and the IR rule, money growth increases to
-accommodate the increase in output, so that the output gap remains
-stable. It appears as though the CMG responds the least efficiently to
-the shock, with large fluctuations in inflation, as well as decreases in
+jumping up before slowly returning to the steady state. The FMG rule
+results in an increase in output growth, after which a rise in the money
+growth and a decrease in the nominal interest rate allows for the output
+growth to return to the steady state without significant changes to
+inflation. Under both the TR rule and the IR rule, money growth
+increases to accommodate the increase in output, so that the output gap
+remains stable. The CMG rule responds the least efficiently to the
+shock, with large fluctuations in inflation, as well as decreases in
 output growth, and a negative output gap.
 
 \hypertarget{preference-shock}{%
@@ -1639,39 +1634,39 @@ the demand side (Malik et al., 2019:12).
 
 The output growth of all four scenarios starts above zero in response to
 a preference shock, in order of IR rule, TR Rule, FMG rule and CMG rule
-from lowest to highest. The trajectory of the output growth under all
-scenarios then declines, however, under the TR Rule, FMG rule and CMG
+from lowest to highest. The trajectory of the output growth then
+declines under all rules. However, under the TR rule, FMG rule and CMG
 rule, it becomes negative. Under the TR rule, the IRF stays very close
 to zero. The trajectory of the output growth of the FMG and CMG rules
-decrease further below zero but start to move back to steady state
+decrease further below zero but start to move back to the steady state
 between six and eight periods. The IRF under the FMG rule reaches zero
 around 12 periods, whereas under the CMG rule, it increases more
 gradually, nearing it at 20 periods. The IRF of output growth under the
 IR rule experienced the smallest jump up after the shock and returned to
-steady state after four periods.
+the steady state after four periods.
 
-Inflation under the CMG rule jumps to above 0.0002 in response to a
+Inflation under the CMG rule jumps above 0.0002 in response to a
 preference shock. The IRF proceeds to increase further for two periods,
 after which it declines steadily past zero. It is still declining after
 18 periods. The IRFs under both the FMG rule and the TR rule experience
 a small jump and start between zero and 0.0001. Under the TR rule, the
-IRF remains close to steady state, and gradually proceeds to zero by 20
-periods. Under the FMG rule, it sharply declines to cross the zero line
-and reaches a turning point between seven and eight periods. It
+IRF remains close to the steady state, and gradually proceeds to zero by
+20 periods. Under the FMG rule, it sharply declines to cross the zero
+line and reaches a turning point between seven and eight periods. It
 increases to cross the zero line again at around 17 periods. It remains
-slightly above steady state after 20 periods.
+slightly above the steady state after 20 periods.
 
 The nominal interest rate under the TR rule does not experience an
 immediate jump in response to a preference shock. Instead, the IRF
 slowly increases up to 0.0003 until it starts to decrease after six
-periods. It slowly moves down towards zero, but does not reach steady
-state within 20 periods. The nominal interest rate under the FMG rule
-and CMG rule both jump down minimally in response to a preference shock.
-Starting at -0.0001, however, the IRF of the nominal interest rate under
-the FMG rule increases and then plateaus below 0.0001, whereas that of
+periods. It slowly moves down towards zero, but does not reach the
+steady state within 20 periods. The nominal interest rate under the FMG
+rule and CMG rule both jump down minimally in response to a preference
+shock, starting at -0.0001. The IRF of the nominal interest rate under
+the FMG rule, however, increases and then plateaus below 0.0001. That of
 the CMG rule remains level for approximately two periods, after which it
 starts to increase. After 14 periods, it reaches a turning point where
-it starts to return to zero, however, it does not reach steady state
+it starts to return to zero, however, it does not reach the steady state
 within 20 periods.
 
 The money growth rate under the FMG rule does not jump immediately after
@@ -1679,40 +1674,41 @@ a preference shock. The IRF declines from zero at a decreasing rate. It
 reaches a turning point between seven and eight periods after the shock,
 after which it increases steadily. The IRF of the money growth rate
 crosses the zero line just before 16 periods and proceeds to rise. It is
-still moving away from steady state at 20 periods. The money growth rate
-in response to the shock under the TR rule jumps to below -0.004 and
-remains there for approximately three periods. It then starts increasing
-and returns to steady state between nine and 10 periods, after which it
-moves away from steady state again in the positive direction. Unlike the
-money growth rate under the FMG rule, however, it starts moving back
-towards the steady state before 20 periods. It does not reach steady
-state within 20 periods.
+still moving away from the steady state at 20 periods. The money growth
+rate in response to the shock under the TR rule jumps to below -0.004
+and remains there for approximately three periods. It then starts
+increasing and returns to the steady state between nine and 10 periods,
+after which it moves away from the steady state again in the positive
+direction. Unlike the money growth rate under the FMG rule, however, it
+starts moving back towards the steady state before 20 periods. It does
+not reach the steady state within 20 periods.
 
-The output gap under the TR rule does not deviate from steady state
+The output gap under the TR rule does not deviate from the steady state
 significantly in response to a preference shock. The IRF experiences a
-small positive jump, but returns to steady state between 10 and 12
+small positive jump, but returns to the steady state between 10 and 12
 periods. The trajectory of the output gap under the FMG rule jumps up
 slightly more than under the TR rule, but instead of returning to zero
 immediately, it increases first. After two periods, it starts to
 decrease, and crosses the zero line after approximately seven periods.
-After this point, it deviates slightly negatively from steady state, but
-slowly moves back. By 20 periods, it has returned close to steady state.
+After this point, it deviates slightly negatively from the steady state,
+but slowly moves back. By 20 periods, it has returned close to the
+steady state.
 
-The FMG rule displays a delayed response to the preference shock, with
-eventual contractionary policy. The nominal interest rate first
-decreases, after which it increases significantly. Along with this
-increase in the interest rate, the money growth rate declines. As a
-result, inflation minimally decreases, and the output growth and gap
-remain stable. The same cannot be said, however, for the CMG rule, where
-the money growth does not change to accomodate for the shock. Under this
-rule, inflation responds in a volatile manner. Additionally, the output
-growth and gap experience the biggest jumps under this rule. Under the
-TR rule, money growth decreases before it starts to increase. Interest
-rates do not respond immediately, but eventually increase. These changes
-result in inflation and the output gap being kept stable. The jump in
-output growth is also minimal. Macroeconomic factors under the IR rule
-do respond strongly to a preference shock. There is only a very small
-positive change in output growth.
+The FMG rule displays signs of eventual contractionary policy. The
+nominal interest rate first decreases, after which it increases
+significantly. Along with this increase in the interest rate, the money
+growth rate declines. As a result, inflation minimally decreases, and
+the output growth and gap remain stable. The same cannot be said,
+however, for the CMG rule, where the money growth does not change to
+accommodate for the shock. Under this rule, inflation responds in a
+volatile manner. Additionally, the output growth and gap experience the
+biggest jumps under this rule. Under the TR rule, money growth decreases
+before it starts to increase. Interest rates do not respond immediately,
+but eventually increase. These changes result in inflation and the
+output gap being kept stable. The jump in output growth is also minimal.
+Macroeconomic factors under the IR rule do not respond strongly to a
+preference shock. There is only a very small positive change in output
+growth.
 
 \hypertarget{money-demand-shock}{%
 \subsection{Money Demand Shock}\label{money-demand-shock}}
@@ -1721,8 +1717,7 @@ The figure below shows the response of the chosen macroeconomic
 variables to a positive money demand shock. As explained above, each
 panel shows the response of the given variable under each of the four
 rules. According to Lorenzoni (2006), output volatility may be
-attributed to demand shocks. A positive money demand shock increases
-households' spending, leading to a rise in inflation.
+attributed to demand shocks.
 
 \begin{figure}
 \centering
@@ -1731,69 +1726,65 @@ households' spending, leading to a rise in inflation.
 \end{figure}
 
 As seen in the first impulse response function above, there is a
-negative effect on output growth under both the CMG rate and FMG rate
-rules after a positive money demand shock. The IRF of output growth
-starts at approximately -0.001 under the FMG rate rule and approximately
--0.003 under the CMG rate rule. The IRF increases at a decreasing rate
-under both rules, with the trajectory of output growth under the FMG
-rate rule crossing the zero line first. Under both, the IRFs begin
-decreasing, with the FMG rate rule reaching the steady state at 14
-periods, but then proceeds to slightly decrease below the steady state
-thereafter. Under the CMG rate rule, the IRF does not reach the steady
-state within twenty periods.
+negative effect on output growth under both the CMG and FMG rules after
+a positive money demand shock. The IRF of output growth starts at
+approximately -0.001 under the FMG rule and approximately -0.003 under
+the CMG rule. The IRF increases at a decreasing rate under both rules,
+with the trajectory of output growth under the FMG rule crossing the
+zero line first. Under both, the IRFs begin decreasing, with the FMG
+rule reaching the steady state at 14 periods, but then proceeds to
+slightly decrease below the steady state thereafter. Under the CMG rule,
+the IRF does not reach the steady state within twenty periods.
 
-Inflation under both the CMG rate rule and the FMG rate rule is impacted
+Inflation under both the CMG rule and the FMG rule is impacted
 negatively by the money demand shock. The negative effect under the CMG
-rate rule is larger than under the FMG rate rule. Under the CMG rate
-rule, the IRF starts at -0.0005 and approximately -0.00005 under the FMG
-rate rule. Under the CMG rate rule, the IRF initially decreases before
-increasing at two periods. It increases at a decreasing rate and reaches
-the steady state at 18 periods, before surpassing the steady state and
-continues to increase. Under the FMG rate rule, the IRF increases until
-eight periods, then slightly decreases. The trajectory of Inflation
-reaches, and remains at, the steady state after 18 periods.
+rule is larger than under the FMG rule. Under the CMG rule, the IRF
+starts at -0.0005 and approximately -0.00005 under the FMG rule. The IRF
+of inflation under the CMG rule initially decreases before increasing at
+two periods. It increases at a decreasing rate and reaches the steady
+state at 18 periods, before surpassing the steady state and continuing
+to increase. Under the FMG rule, the IRF increases until eight periods,
+then slightly decreases. The trajectory of inflation reaches, and
+remains at, the steady state after 18 periods.
 
-The nominal interest rate under both the FMG rate rule and CMG rate rule
+The nominal interest rate under both the FMG rule and CMG rule
 experiences a positive shock and the IRFs start at 0.0008. Initially,
-the IRF under the CMG rate rule declines at a faster rate than under the
-FMG rate rule. However, at seven periods, the IRF under the FMG rate
-rule drops below the CMG rate rule. Under the FMG rate rule, the IRF of
-the nominal interest rate reaches the steady state at 13 periods but
-continues to decrease at a decreasing rate. Under the CMG rate rule, the
-IRF does not reach the steady state within 20 periods.
+the IRF under the CMG rule declines at a faster rate than under the FMG
+rule. However, at seven periods, the IRF under the FMG rule drops below
+the CMG rule. Under the FMG rule, the IRF of the nominal interest rate
+reaches the steady state at 13 periods but continues to decrease at a
+decreasing rate. Under the CMG rule, the IRF does not reach the steady
+state within 20 periods.
 
-As seen in the graph above, after the shock, the money growth rate is
-identically impacted by the TR rule and the IR rule. There is an initial
-positive effect on the money growth rate, however the IRF begins to
-decline, where it meets the steady state at 10 periods. Thereafter, the
-IRF of the money growth rate drops below the steady state and continues
-to decrease at a decreasing rate. Under the FMG rule, the IRF of the
-money growth rate starts at zero and initially increases. After nine
-periods, the IRF begins to decrease and meets the steady state after 18
-periods, thereafter, dropping below the steady state.
+After the shock, the money growth rate is identically impacted by the TR
+rule and the IR rule. There is an initial positive effect on the money
+growth rate, however the IRF begins to decline, where it meets the
+steady state at 10 periods. Thereafter, the IRF of the money growth rate
+drops below the steady state and continues to decrease at a decreasing
+rate. Under the FMG rule, the IRF of the money growth rate starts at
+zero and initially increases. After nine periods, it begins to decrease
+and meets the steady state after 18 periods, thereafter, dropping below
+the steady state.
 
-The output gap is negatively affected by the shock under both the
-constant money growth rate rule and the flexible money growth rate rule.
-Under the FMG rate rule, the IRF of the output gap starts at -0.001 and
-initially decreases. After three periods, the IRF increases to meet the
-steady state at eight periods. It increases at a decreasing rate and
-begins to stabilise after 13 periods. Under the CMG rate rule, the IRF
-of the output gap starts at 0.003 and decreases until the 4th period. It
-then increases at a decreasing rate and does not reach the steady state
-within 20 periods.
+The output gap is negatively affected by the shock under both the CMG
+rule and the FMG rule. Under the FMG rule, the IRF of the output gap
+starts at -0.001 and initially decreases. After three periods, it
+increases to meet the steady state at eight periods. It increases at a
+decreasing rate and begins to stabilise after 13 periods. Under the CMG
+rule, the IRF of the output gap starts at 0.003 and decreases until the
+4th period. It then increases at a decreasing rate and does not reach
+the steady state within 20 periods.
 
-According to Belognia \& Ireland (2020) and Poole (1970), holding money
-growth constant results in a significant contribution of money demand
-shocks to additional macroeconomic volatility. A CMG rule fails to
-deliver the appropriate monetary response to other disturbances that
-require output and inflation to adjust, which can be seen in the above
-IRFs as the effect on inflation is much larger under the CMG rule than
-the FMG rule in response to the shock. It is evident that an FMG rule
-adjusts the rate of money growth in response to movements in the output
-gap, which may assist in the pursuence of stablisation by monetary
-policy. As depicted in the IRFs above, the TR rule is most successful in
-accomodating the money demand shock as the effect of the shock on
-inflation, nominal interest rate and output is smallest.
+According to Belognia \& Ireland (2020) and Poole (1970), money demand
+shocks result in higher volatility among macroeconomic variables under a
+rule that keeps money growth fixed. The inefficiency of the CMG rule's
+response to such a shock can be seen in the above IRFs as its effect on
+inflation is much larger than under the FMG rule. It is evident that an
+FMG rule adjusts the rate of money growth in response to movements in
+the output gap, which may assist in the pursuance of stablisation by
+monetary policy. As depicted in the IRFs above, the TR rule is most
+successful in accommodating the money demand shock as the effect of the
+shock on inflation, nominal interest rate and output is smallest.
 
 \hypertarget{cost-push-shock}{%
 \subsection{Cost Push Shock}\label{cost-push-shock}}
@@ -1802,7 +1793,8 @@ The figure below shows the response of the chosen macroeconomic
 variables to a positive cost push shock. As explained above, each panel
 shows the response of the given variable under each of the four rules. A
 cost push shock results in higher inflation due to an increase in the
-price of production, causing a decrease in aggregate supply.
+price of production, causing a decrease in aggregate supply (Kenton,
+2022).
 
 \begin{figure}
 \centering
@@ -1811,30 +1803,29 @@ price of production, causing a decrease in aggregate supply.
 \end{figure}
 
 Under the four rules, output growth is not significantly affected by the
-cost push shock. However, under the IR rule, output growth is positively
-affected, as the IRF starts at 0,01 and decreases to meet the steady
-state after approximately 12 periods.
+cost push shock. However, the IRF of the output growth under the IR rule
+jumps up, starting at 0,01 and decreases to meet the steady state after
+approximately 12 periods.
 
-Under the TR rule, the FMG rate rule and the CMG rate rule, there is a
-positive effect of the cost push shock on inflation, which is to be
-expected. Under the FMG rule, the IRF of inflation starts at 0.015 and
-sharply decreases for the first three periods, thereafter, decreases
-more subtly until reaching the steady state after 12 periods. Under the
-CMG rule, the IRF starts at 0.00125 and decreases to surpass the zero
-line before four periods. It then increases but does not reach the
-steady state within 20 periods. Under the TR, the IRF starts at 0.0025
-and decreases to meet the steady state after 4 periods.
+As expected, inflation under the TR, CMG and FMG rules responds
+positively to a cost push shock. Under the FMG rule, the IRF of
+inflation starts at 0.015 and sharply decreases for the first three
+periods, thereafter, decreases more subtly until reaching the steady
+state after 12 periods. Under the CMG rule, the IRF starts at 0.00125
+and decreases to surpass the zero line before four periods. It then
+increases but does not reach the steady state within 20 periods. Under
+the TR, the IRF starts at 0.0025 and decreases to meet the steady state
+after 4 periods.
 
-The nominal interest rate is affected by the shock under the CMG rate
-rule and the FMG rate rule in a similar fashion, as a response to the
-shock. Under both, there is a positive effect of the shock on nominal
-interest rate, where the IRF starts at 0.008. It then declines at a
-faster rate under the FMG rate rule initially, but after six periods,
-the IRF declines at a faster rate under the CMG rate rule. Under the CMG
-rate rule, the IRF reaches the steady state sooner, at 13 periods, than
-the FMG, which does not reach the steady state within 20 periods. Under
-the TR, the IRF starts at zero and slightly increases before decreasing
-and merging with the steady state after eight periods.
+The nominal interest rate under the CMG rule and the FMG rule is
+similarly affected by a cost push shock. Under both, there is a positive
+effect of the shock on nominal interest rate, where the IRF starts at
+0.008. It declines more rapidly under the FMG rule initially, but after
+six periods, the IRF decreases at a faster rate under the CMG rule.
+Under the CMG rule, the IRF reaches the steady state sooner, at 13
+periods, than the FMG, which does not reach the steady state within 20
+periods. Under the TR, the IRF starts at zero and slightly increases
+before decreasing and merging with the steady state after eight periods.
 
 There is a positive effect on the money growth rate under the IR rule
 and the TR rule. Under the IR rule, the IRF of the money demand growth
@@ -1844,34 +1835,34 @@ meet the steady state after 18 periods. Under the TR rule, the positive
 effect is smaller, as the IRF of the money growth rate starts at 0.0015.
 It then decreases to meet the steady state after three periods but
 increases again. After eight periods, the IRF decreases once again to
-meet the steady state after 18 periods. Under the FMG rate rule, the IRF
+meet the steady state after 18 periods. Under the FMG rule, the IRF
 starts at zero and steadily increases before decreasing after nine
 periods. The IRF of the money growth rate does not reach the steady
 state within 20 periods.
 
 Under the TR rule, there is no significant impact of the shock on the
-output gap. Under the IR rule, the CMG rate rule and the FMG rate rule,
-there is a negative impact of the cost push shock on the output gap. The
-smallest effect on the output gap is under the FMG rule where the IRF of
-the output gap starts at just below zero and initially increases to
-cross the zero line. It then starts to decrease after 14 periods and
-moves towards the steady state, however, it does not reach it within 20
-periods. Under the CMG rate rule, the IRF of the output gap starts at
+output gap. Under the IR rule, the CMG rule and the FMG rule, there is a
+negative impact of the cost push shock on the output gap. The smallest
+effect on the output gap is under the FMG rule where the IRF of the
+output gap starts at just below zero and initially increases to cross
+the zero line. It then starts to decrease after 14 periods and moves
+towards the steady state, however, it does not reach it within 20
+periods. Under the CMG rule, the IRF of the output gap starts at
 approximately -0.01 and initially decreases before increasing after four
 periods. It does not reach the steady state within 20 periods. Under the
 IR rule, the IRF of the output gap starts at -0.035 and remains there
 until two periods have passed. After that point, it increases at a
 decreasing rate and meets the steady state after 14 periods.
 
-Although responses of inflation follow the similar trajectories under
-the CMG and FMG, the FMG rule is more successful than the CMG rule in
+Although the responses of inflation follow similar trajectories under
+the CMG and FMG, the FMG rule is more successful than the CMG rule at
 minimising the volatility in the output gap in response to the cost push
-shock. Additionally, the FMG performs better in reducing the volatile
+shock. Additionally, the FMG performs better at reducing the volatile
 behaviour of the output gap than the IR rule. Under the TR rule, the
 output gap trajectory is least volatile in response to the shock. The
 cost push shock also resulted in larger positive disturbances in the
-nominal interest rates under the both of the money growth rules than the
-TR rule.
+nominal interest rates under both of the money growth rules than the TR
+rule.
 
 \newpage
 
@@ -1903,6 +1894,45 @@ rate rule is not enough evidence for this policy rule to take preference
 over others. The results from this paper suggest that a reconsideration
 of this rule for the more efficient flexible money growth rate rule is
 necessary.
+
+\newpage
+
+\hypertarget{reference-list}{%
+\section{Reference List}\label{reference-list}}
+
+Belongia, M.T. \& Ireland, P.N. 2020. A Reconsideration of Money Growth
+Rules. Journal of Economic Dynamics and Control, 135(104312):1-27.
+
+Chen, J. 2020. Contractionary Policy {[}Online{]}. Available:
+\url{https://www.investopedia.com/terms/c/contractionary-policy}
+{[}June, 2022{]}.
+
+Chugh, S.K. 2015. Modern Macroeconomics. Massachusetts: MIT Press.
+
+Kenton, W. 2022. Cost\_Push Inflation {[}Online{]}. Available:
+\url{https://www.investopedia.com/terms/c/costpushinflation.asp}
+{[}June, 2022{]}.
+
+Lorenzoni, G. 2006. A Theory of Demand Shocks. Working Paper No.~12477.
+Cambridge, Massachusetts: National Bureau of Economic Research.
+
+Malik, K. Z., Ali, S.Z., Imtiaz, A. \& Aftab, A. 2019. Preference shocks
+in an RBC model with intangible capital. Cogent Economics \& Finance,
+7(1):1-14.
+
+Hazell, J., Herreño, J., Nakamura, E. \& Steinsson, J. 2020. The Slope
+of the Phillips Curve: Evidence from U.S. States. Working Paper
+No.~28005. Cambridge, Massachusetts: National Bureau of Economic
+Research.
+
+Ireland, P.N. 2011. A New Keynesian Perspective on the Great Recession.
+Journal of Money, Credit and Banking, 43(1):31-54.
+
+Poole, W. 1970. Optimal Choice of Monetary Policy Instruments in a
+Simple Stochastic Macro Model. Quarterly Journal of Economics, 84:
+197-216.
+
+\newpage
 
 \hypertarget{appendix}{%
 \section{Appendix:}\label{appendix}}
@@ -2122,6 +2152,15 @@ For the function \(f(x_t)\) i.e., we use the fact that:
 For the following sections, we show the steps to reach the final
 log-linearised equations (19) to (31) from in Section 2.7 of ``Belongia
 and Ireland (2020)''.
+
+\hypertarget{figures-and-tables}{%
+\section{Figures and Tables}\label{figures-and-tables}}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth,height=0.5\textheight]{./figures/Table.jpeg}
+\caption{Parameter Values}
+\end{figure}
 
 \bibliography{Tex/ref}
 
