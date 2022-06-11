@@ -270,18 +270,6 @@ $$\begin{aligned}
 &=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
 \end{aligned} \tag{8}$$
 
-Using the fact that:
-
-$$v_1(\frac{M_t}{P_tZ_t},u_t) = \frac{1}{\delta}[\ln(m*) - \ln(\frac{M_t}{P_tZ_t}) + \ln(u_t)]$$
-
-We can rewrite (8) to yield:
-
-$$\begin{array}{l}
-\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(\frac{M_{t}}{P_{t} Z_{t}}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)^{2} \\
--a_{t} \phi_{m}\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}\right) \\
-+\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}-1\right)\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}\right)^{2}\left(\frac{z Z_{t}}{Z_{t+1}}\right)\right] \\
-=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
-\end{array} \tag{9}$$
 
 ## The Representative Finished Goods-Producing Firm
 
@@ -406,10 +394,15 @@ to maximize the social welfare function
 $$E_0\sum_{t=0}^{\infty}\beta^ta_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di]$$
 subject to
 
-$$Z_t[\int_0^1n_t(i) di]^{\frac{\theta_t}{\theta_t-1}} \ge Q_t$$ As
+$$Z_t[\int_0^1n_t(i) di]^{\frac{\theta_t}{\theta_t-1}} \ge Q_t$$ 
+
+As
 such, the Bellman Equation of this model is:
 
-$$v(Q_{t-1}) = a_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di] + \beta E_tv(Q_t,Q_{t+1}) + \Xi [Z_t(\int_0^1n_t(i) di)^{\frac{\theta_t}{\theta_t-1}} - Q_t]$$
+$$\begin{aligned}
+v(Q_{t-1}) = & a_t[\ln(Q_t-\gamma Q_{t-1})-\int_0^1n_t(i) di] \\
+& + \beta E_tv(Q_t,Q_{t+1}) + \Xi [Z_t(\int_0^1n_t(i) di)^{\frac{\theta_t}{\theta_t-1}} - Q_t]
+\end{aligned}$$
 
 ### The FOC with respect to $Q_t$:
 
@@ -426,7 +419,7 @@ Subbing $\frac{\partial v(Q_{t})}{\partial Q_{t}}$ back in gives:
 $$\frac{\partial v(Q_{t-1})}{\partial Q_t} = \frac{a_t}{Q_t-\gamma Q_{t-1}} + \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (-\gamma) - \Xi =0$$
 Multiply through by $(-1)$:
 
-$$ \frac{a_t}{Q_t-\gamma Q_{t-1}} - \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (\gamma)  = \Xi$$
+$$ \frac{a_t}{Q_t-\gamma Q_{t-1}} - \beta E_t\frac{a_{t+1}}{Q_{t+1}-\gamma Q_{t}} (\gamma)  = \Xi \tag{14.0}$$
 
 ### The FOC with respect to $n_t$:
 
@@ -435,157 +428,46 @@ $$ a_t + \Xi Z_t  (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\the
 $$  \Xi Z_t  (\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} n_t(i)^{\frac{-1}{\theta_t}}=a_t$$
 
 The Feasibility Constraint of this problem is:
+
 $$(\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{\theta_t}{\theta_t - 1} \ge \frac{Q_t}{Z_t}$$
 Rearranging the Feasibility Constraint gives:
 
 $$(\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} \ge (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}$$
+
 Therefore
 
 $$\Xi Z_t (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}n_t(i)^{\frac{-1}{\theta_t}}=a_t$$
+
+Given that the equation above is consistent for each i, we have $n_t(i)=n_t$, and
+
+$$\begin{aligned}&(\int_0^1n_t(i)^\frac{\theta_t -1}{\theta_t} di)^\frac{1}{\theta_t - 1} = (\frac{Q_t}{Z_t})^\frac{1}{\theta_t}\\
+&\Rightarrow n_t = \frac{Q_t}{Z_t}
+\end{aligned}$$
+
+Which yields:
+
+$$\Xi = a_t/Z_t$$
+
+
+and (14.0) can be written as:
+
+$$\frac{1}{Z_{t}}=\frac{1}{Q_{t}-\gamma Q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{Q_{t+1}-\gamma Q_{t}}\right)\right] \tag{14}$$
+
+
+From the definition of the output gap (say, $x_t$) we can use the efficient level of output to write:
+
+$$x_t = Y_t/Q_t \tag{15}$$
 
 \newpage
 
 # Log-Linearisation:
 
-## Obtaining the final system of equations:
-
-### Conditions:
-
-To rewrite the equations into a usable system of equations that can be
-log-linearised, we make use of the following series of steady state,
-stationary or equilibrium equations and variables:
-
-#### A:
-
-$$ Y_{t}(i)=Y_{t}, h_{t}(i)=h_{t}, D_{t}(i)=D_{t}, \text { and } P_{t}(i)=P_{t} \text { for all } i \in[0,1] \text { and } t=0,1,2, \ldots $$
-
-#### B:
-
-$$ M_{t}=M_{t-1}+T_{t} \text { and } B_{t}=B_{t-1}=0 $$
-
-#### C:
-
-$$ y_{t}=Y_{t} / Z_{t}, c_{t}=C_{t} / Z_{t}, m_{t}=\left(M_{t} / P_{t}\right) / Z_{t}, q_{t}=Q_{t} / Z_{t}, \lambda_{t}=Z_{t} \Lambda_{t}, \text { and } z_{t}=Z_{t} / Z_{t-1} $$
-
-#### D:
-
-In steady state we can write the following, per their definitions:
-
-$$\begin{aligned} & y_{t}=y,\ c_{t}=c,\ \pi_{t}=\pi,\ r_{t}=r, \ m_{t}=m,\ q_{t}=q,\ x_{t}=x,\ \\ 
-& \mu_{t}=\mu,\ g_{t}=g,\ \lambda_{t}=\lambda,\ a_{t}=a=1,\ z_{t}=z,\ u_{t}=u=1, \\ 
-& \text {and } \theta_{t}=\theta \end{aligned}$$
-
-### Imposing The Coniditions:
-
-Firstly, we combine equation (11) and (12) from Section 3.3 [The
-Representative Intermediate Goods-Producing Firm] and impose the above
-conditions to obtain equation (1) from the appendix of "Belongia and Ireland (2020)":
-
-$$Y_{t} = C_t + \frac{\phi_{p}}{2} \cdot \left[ \frac{\pi_{t}}{{\pi_{t-1}}^{\alpha} \pi^{1-\alpha}} -1 \right]^{2} \cdot Y_t $$
-
-Dividing both sides by $Z_t$ we can substitute for the necessary
-stationarity variables and rewrite as:
-
-$$y_{t}=c_{t}+\frac{\phi_{p}}{2}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)^{2} y_{t} \tag{1}$$
-
-Directly from Equations (2)-(4) in Section 3.1 [The Representative
-Household]:
-
-$$\ln \left(a_{t}\right)=\rho_{a} \ln \left(a_{t-1}\right)+\varepsilon_{a t} \tag{2}$$
-
-$$\ln \left(Z_{t}\right)=\ln (z) + \ln(Z_{t-1}) +\varepsilon_{z t}$$
-
-Subtract both sides by $\ln(Z_{t-1})$
-
-$$\ln \left(z_{t}\right)=\ln (z)+\varepsilon_{z t} \tag{3}$$
-
-$$\ln \left(u_{t}\right)=\rho_{u} \ln \left(u_{t-1}\right)+\varepsilon_{u t} \tag{4} $$
-
-From [The FOC with respect to $C_t$:]
-
-$$ \Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right] $$
-
-$$\Rightarrow \lambda_{t}=\frac{a_{t}z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right) \tag{5}$$
-
-$$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right) \tag{7}$$
-
-Rewrite equation (9) from [The FOC with respect to $M_t$:]
-
-$$\begin{aligned}
-&a_{t} v_{1}\left(\frac{M_{t}}{P_{t} Z_{t}}, u_{t}\right)-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)^{2} \\
-&-a_{t} \phi_{m}\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}\right) \\
-&+\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}-1\right)\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}\right)^{2}\left(\frac{z Z_{t}}{Z_{t+1}}\right)\right] \\
-&=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
-\end{aligned}$$
-
-$$\begin{aligned} & \frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)^{2} \\
-& -a_{t} \phi_{m}\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}\right) \\
-& +\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}-1\right)\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}\right)^{2}\left(\frac{z}{z_{t+1}}\right)\right] \\
-& =\lambda_{t}\left(1-\frac{1}{r_{t}}\right), \\
-\end{aligned}$$
-
-## Applying the Taylor Method of Linear Approximation
-
-We apply the Taylor throughout the following section as follows:
-
-For a function $f(x_t)$ input $x_t$ , we apply the Taylor method such
-that: $$f(x_t) = f(X^{SS}) + \frac{df(x)}{x_t} (x_t(i) - x^{SS})$$
-
-Using the approximation: $$\begin{aligned}
-&x_t - x^{SS} \approx x^{SS} \hat{x}_{t}
-\\
-&\text{where } \hat{x}_{t} = \ln(x_t)-\ln(x^{SS})
-\\
-&\text{For short, we write: } x^{SS} \equiv x
-\\
-&\text{(i.e. no time subscript)}
-\end{aligned}$$
-
-## Uhlig's Method of Linearisation
-
-Applying Uhlig's method requires the following:
-
-\newpage
-
-For the function $f(x_t)$ i.e., we use the fact that:
-
-1.  $$\hat{x}_t = \ln(x_t) - \ln(x) \\
-    \text{ where x } \equiv x^{SS}$$
-
-2.  Then, $f(^{SS})$ is used to simplify $f(x_t)$ where $x_t$ is
-    replaced accodring to $x_t = x \cdot e^{\hat{x}_t}$
-
-3.  Additionally, the approximation result
-    $e^{x_t+y_t} \approx 1+x_t+y_t$ is used for further simplification.
-
-4.  For the last step, all constants can be dropped.
-
-For the following sections, we show the steps to reach the final
-log-linearised equations (19) to (31) from in Section 2.7 of "THE
-PAPER".
-
 ## Equation (1) from the appendix of "Belongia and Ireland (2020)"
 
-Recall the results from equation (11), (12), and the Budget Constraint:
 
-$$Z_th_t(i) \ge Y_t(i) \tag{11}$$
-$$\frac{D_t(i)}{P_t}=[\frac{P_t(i)}{P_t}]^{1-\theta_t}Y_t-[\frac{P_t(i)}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}]^2Y_t\tag{12}$$
-$$\frac{M_{t-1}+T_{t}+B_{t-1}+W_{t} h_{t}+D_{t}}{P_{t}} \geq C_{t}+\frac{M_{t}+B_{t} / r_{t}}{P_{t}}$$
 
-We can now apply the equilibrium conditions to obtain the results:
+We can rewrite this equation, for the sake of simplicity:
 
-$$Z_th_t = Y_t $$
-$$\begin{aligned} \frac{D_t}{P_t} & =[\frac{P_t}{P_t}]^{1-\theta_t}Y_t - [\frac{P_t}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \\
-& = Y_t - (\frac{W_t}{P_t})(\frac{Y_t}{Z_t}) - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \end{aligned}$$
-$$\begin{aligned} C_{t} &= \frac{M_{t-1}+T_{t}+\frac{W_tY_t}{Z_t}+D_{t} - M_{t-1} - T_t}{P_{t}}\\
-& = \frac{W_tY_t}{Z_t P_t} + \frac{D_{t}}{P_t}
-\end{aligned}$$
-
-$$\begin{aligned} -Y_t  &= -\left[ \frac{D_t}{P_t} + (\frac{W_t}{P_t})(\frac{Y_t}{Z_t}) \right] - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \\
-\therefore Y_t & = C_t - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t
-\end{aligned}$$
-
-Finally, we can now rewrite & linearise the final equation:
 
 $$\begin{aligned}
 y_{t} &= c_t + \frac{\phi_{p}}{2} \cdot \left[ \frac{\pi_{t}}{{\pi_{t-1}}^{\alpha} \pi^{1-\alpha}} -1 \right]^{2} \cdot y\\
@@ -665,18 +547,6 @@ y_{t} - y &= c_t - c
 
 ## Equation (19) in paper:
 
-From equation (5)
-$$\Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right]$$
-
-Using
-$c_{t}=C_{t} / Z_{t} \  \lambda_{t}=Z_{t} \cdot \Lambda_{t}, \text{ and } z_t = Z_t / Z_{t-1}$
-we can rewrite the above equation using its stationary variables:
-
-$$\begin{aligned}
-\lambda_{t} / Z_t =\frac{a_{t}}{Z_{t} c_{t}-\gamma Z_{t-1} c_{t-1}}-\beta \gamma E_{t} \left(\frac{a_{t+1}}{Z_{t+1} c_{t+1}-\gamma Z_{t-1} c_{t}} \right)\\
-\text{ times each term with: } \left(Z_{t-1} / Z_{t-1}\right) \text{ and } (Z_{t} / Z_{t}) \text{ respectively} \\
-\lambda_{t} =\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)
-\end{aligned}$$
 
 Once again, for simplicity, we separate the equation into two parts:
 
@@ -851,7 +721,7 @@ $$(z-\gamma)(z-\beta \gamma) \hat{\lambda}_{t}=(z-\gamma)\left(z-\beta \gamma p_
 
 From Equation (7)
 
-$$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right)$$
+$$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right) \tag{7*}$$
 
 The steady state equation follows as
 
@@ -872,6 +742,8 @@ $$\begin{array}{l}
 \end{array}$$
 
 ## Equation (21)
+
+From equation (14*)
 
 $$1=\frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)\right]$$
 
@@ -1055,20 +927,10 @@ $$\begin{aligned} x_{t}=y_{t} / q_t\\
 
 ## Equation (23)
 
-Starting from equation (13)
+Starting from equation (13*)
 
-$$\begin{array}{l} (1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})] \\
-+\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0 \end{array}$$
 
-Substituting for the equilibrium Conditions and using (6):
-
-$$\begin{aligned} (1-\theta_t) + \theta_t (\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}})] \\
-+\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}}-1)(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}})(\frac{Y_{t+1}}{Y_t})=0 \end{aligned}$$
-
-$$\begin{aligned} \Rightarrow \theta_t - 1 = & \theta_t \frac{a_t}{\Lambda_t Z_t} - \phi_p[(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}}-1)(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}})] \\
-& +\beta\phi_pE_t(\frac{\Lambda_{t+1}Y_{t+1}}{\Lambda_{t}Y_t})(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}-1)(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}) \end{aligned}$$
-
-$$\begin{aligned} \therefore \theta_{t}-1=& \theta_{t}\left(\frac{a_{t}}{\lambda_{t}}\right)-\phi_{p}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}\right) \\
+$$\begin{aligned} \theta_{t}-1=& \theta_{t}\left(\frac{a_{t}}{\lambda_{t}}\right)-\phi_{p}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}\right) \\
 &+\beta \phi_{p} E_{t}\left[\left(\frac{\lambda_{t+1} y_{t+1}}{\lambda_{t} y_{t}}\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}\right)\right]
 \end{aligned}$$
 
@@ -1432,4 +1294,216 @@ Under the TR rule, there is no significant impact of the shock on the output gap
 Interest rate rules such as the simple rule developed by Taylor (1993) has proven successful as the policy decision tool of choice for the Federal Reserve Bank. Alternative policy rules exist, however, but the interest rate rule has curbed inflation and stabilised output with a good historical record. This paper displays the success of interest rate rules in protecting the economy in response to money demand shocks and efficiently adjusting after real shocks, and considers this success against alternative policy rules.  The first alternative, the constant money growth rate rule, offers little to compare. The impulse response functions from this paper highlight the shortcomings of this rule towards achieving stability in output following a money demand shock, and providing the correct responses to shocks other shocks. The impulse response functions in this paper suggest comparable results between interest rate rules and the flexible money growth rate rule. The response to a money demand shock by this rule achieves successful stabilisation of output alongside stabilisation of the nominal side of the economy. Furthermore, applying this over the period following the global financial crisis would have yielded a more efficient recovery in real output and inflation. 
 
 The historic success of the federal reserve bank based on an interest rate rule is not enough evidence for this policy rule to take preference over others. The results from this paper suggest that a reconsideration of this rule for the more efficient flexible money growth rate rule is necessary. 
+
+
+# Appendix:
+
+## Obtaining the final system of equations:
+
+### Conditions:
+
+To rewrite the equations into a usable system of equations that can be
+log-linearised, we make use of the following series of steady state,
+stationary or equilibrium equations and variables:
+
+#### A:
+
+$$Y_{t}(i)=Y_{t}, h_{t}(i)=h_{t}, D_{t}(i)=D_{t}, \text { and } P_{t}(i)=P_{t} \text { for all } i \in[0,1] \text { and } t=0,1,2, \ldots$$
+
+#### B:
+
+$$M_{t}=M_{t-1}+T_{t} \text { and } B_{t}=B_{t-1}=0$$
+
+#### C:
+
+$$y_{t}=Y_{t} / Z_{t}, c_{t}=C_{t} / Z_{t}, m_{t}=\left(M_{t} / P_{t}\right) / Z_{t}, q_{t}=Q_{t} / Z_{t}, \lambda_{t}=Z_{t} \Lambda_{t}, \text { and } z_{t}=Z_{t} / Z_{t-1}$$
+
+#### D:
+
+In steady state we can write the following, per their definitions:
+
+$$\begin{aligned} & y_{t}=y,\ c_{t}=c,\ \pi_{t}=\pi,\ r_{t}=r, \ m_{t}=m,\ q_{t}=q,\ x_{t}=x,\ \\ 
+& \mu_{t}=\mu,\ g_{t}=g,\ \lambda_{t}=\lambda,\ a_{t}=a=1,\ z_{t}=z,\ u_{t}=u=1, \\ 
+& \text {and } \theta_{t}=\theta \end{aligned}$$
+
+### Imposing The Coniditions:
+
+Firstly, we combine equation (11) and (12) from Section 3.3 [The
+Representative Intermediate Goods-Producing Firm] and impose the above
+conditions to obtain equation (1) from the appendix of "Belongia and Ireland (2020)":
+
+Recall the results from equation (11), (12), and the Budget Constraint:
+
+$$Z_th_t(i) \ge Y_t(i) \tag{11}$$
+$$\frac{D_t(i)}{P_t}=[\frac{P_t(i)}{P_t}]^{1-\theta_t}Y_t-[\frac{P_t(i)}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}]^2Y_t\tag{12}$$
+$$\frac{M_{t-1}+T_{t}+B_{t-1}+W_{t} h_{t}+D_{t}}{P_{t}} \geq C_{t}+\frac{M_{t}+B_{t} / r_{t}}{P_{t}}$$
+
+We can now apply the equilibrium conditions to obtain the results:
+
+$$Z_th_t = Y_t $$
+$$\begin{aligned} \frac{D_t}{P_t} & =[\frac{P_t}{P_t}]^{1-\theta_t}Y_t - [\frac{P_t}{P_t}]^{-\theta_t}(\frac{W_t}{P_t})(\frac{Y_t}{Z_t})-\frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \\
+& = Y_t - (\frac{W_t}{P_t})(\frac{Y_t}{Z_t}) - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \end{aligned}$$
+$$\begin{aligned} C_{t} &= \frac{M_{t-1}+T_{t}+\frac{W_tY_t}{Z_t}+D_{t} - M_{t-1} - T_t}{P_{t}}\\
+& = \frac{W_tY_t}{Z_t P_t} + \frac{D_{t}}{P_t}
+\end{aligned}$$
+
+$$\begin{aligned} -Y_t  &= -\left[ \frac{D_t}{P_t} + (\frac{W_t}{P_t})(\frac{Y_t}{Z_t}) \right] - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t \\
+\therefore Y_t & = C_t - \frac{\phi}{2}[\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}]^2Y_t
+\end{aligned}$$
+
+
+
+Dividing both sides by $Z_t$ we can substitute for the necessary
+stationarity variables and rewrite as:
+
+$$y_{t}=c_{t}+\frac{\phi_{p}}{2}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)^{2} y_{t} \tag{1*}$$
+
+Directly from Equations (2)-(4) in Section 3.1 [The Representative
+Household]:
+
+$$\ln \left(a_{t}\right)=\rho_{a} \ln \left(a_{t-1}\right)+\varepsilon_{a t} \tag{2*}$$
+
+$$\ln \left(Z_{t}\right)=\ln (z) + \ln(Z_{t-1}) +\varepsilon_{z t}$$
+
+Subtract both sides by $\ln(Z_{t-1})$
+
+$$\ln \left(z_{t}\right)=\ln (z)+\varepsilon_{z t} \tag{3*}$$
+
+$$\ln \left(u_{t}\right)=\rho_{u} \ln \left(u_{t-1}\right)+\varepsilon_{u t} \tag{4*} $$
+
+From equation (5) and (7):
+
+
+$$\Lambda_t = \frac{a_t}{C_t-\gamma C_{t-1}} - \beta \gamma E_t \left[ \frac{a_{t+1}}{C_{t+1} - \gamma C_t} \right] \tag{5}$$
+
+$$\Lambda_t = \beta(r_t)E_t(\frac{\Lambda_{t+1}}{\pi_{t+1}}) \tag{7}$$
+
+
+
+we can rewrite the above equation using the stationary variables:
+
+$$\begin{aligned}
+\lambda_{t} / Z_t =\frac{a_{t}}{Z_{t} c_{t}-\gamma Z_{t-1} c_{t-1}}-\beta \gamma E_{t} \left(\frac{a_{t+1}}{Z_{t+1} c_{t+1}-\gamma Z_{t-1} c_{t}} \right)\\
+\text{ Times each term with: } \left(Z_{t-1} / Z_{t-1}\right) \text{ and } (Z_{t} / Z_{t}) \text{ respectively} \\
+\lambda_{t} =\frac{a_{t} z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right)
+\end{aligned}$$
+
+$$\Rightarrow \lambda_{t}=\frac{a_{t}z_{t}}{z_{t} c_{t}-\gamma c_{t-1}}-\beta \gamma E_{t}\left(\frac{a_{t+1}}{z_{t+1} c_{t+1}-\gamma c_{t}}\right) \tag{5*}$$
+
+Similarly:
+
+$$\lambda_{t}=\beta r_{t} E_{t}\left(\frac{\lambda_{t+1}}{z_{t+1} \pi_{t+1}}\right) \tag{7*}$$
+
+
+Using the fact that:
+
+$$v_1(\frac{M_t}{P_tZ_t},u_t) = \frac{1}{\delta}[\ln(m*) - \ln(\frac{M_t}{P_tZ_t}) + \ln(u_t)]$$
+
+We can rewrite (8) to yield:
+
+$$\begin{array}{l}
+\frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(\frac{M_{t}}{P_{t} Z_{t}}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)^{2} \\
+-a_{t} \phi_{m}\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}-1\right)\left(\frac{M_{t} / P_{t}}{z M_{t-1} / P_{t-1}}\right) \\
++\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}-1\right)\left(\frac{M_{t+1} / P_{t+1}}{z M_{t} / P_{t}}\right)^{2}\left(\frac{z Z_{t}}{Z_{t+1}}\right)\right] \\
+=Z_{t} \Lambda_{t}\left(1-\frac{1}{r_{t}}\right)
+\end{array} \tag{9}$$
+
+
+And thus obtain:
+
+$$\begin{aligned} & \frac{a_{t}}{\delta}\left[\ln \left(m^{*}\right)-\ln \left(m_{t}\right)+\ln \left(u_{t}\right)\right]-a_{t}\left(\frac{\phi_{m}}{2}\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)^{2} \\
+& -a_{t} \phi_{m}\left(\frac{z_{t} m_{t}}{z m_{t-1}}-1\right)\left(\frac{z_{t} m_{t}}{z m_{t-1}}\right) \\
+& +\beta \phi_{m} E_{t}\left[a_{t+1}\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}-1\right)\left(\frac{z_{t+1} m_{t+1}}{z m_{t}}\right)^{2}\left(\frac{z}{z_{t+1}}\right)\right] \\
+& =\lambda_{t}\left(1-\frac{1}{r_{t}}\right), \\
+\end{aligned} \tag{9*}$$
+
+Equations (10) is used directly:
+
+$$\ln(\theta_t)=(1-\rho_{\theta})\ln(\theta)+\rho_{\theta}\ln(\theta_{t-1})+\varepsilon_{\theta t} \tag{10*}$$
+
+
+From equation (13), we rewrite:
+
+$$\begin{array}{l} (1-\theta_t)(\frac{P_t(i)}{P_t})^{-\theta_t} + \theta_t(\frac{P_t(i)}{P_t})^{-\theta_t-1}(\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t(i)}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}(i)})] \\
++\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)}-1)(\frac{P_{t+1}(i)}{\pi_t^a\pi^{1-a}P_{t}(i)})(\frac{Y_{t+1}}{Y_t})(\frac{P_t}{P_t(i)})=0 \end{array}$$
+
+$$\begin{aligned} (1-\theta_t) + \theta_t (\frac{W_t}{P_t})(\frac{1}{Z_t}) - \phi_p[(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}}-1)(\frac{P_t}{\pi_{t-1}^a \pi^{1-a}P_{t-1}})] \\
++\beta\phi_pE_t(\frac{\Lambda_{t+1}}{\Lambda_{t}})(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}}-1)(\frac{P_{t+1}}{\pi_t^a\pi^{1-a}P_{t}})(\frac{Y_{t+1}}{Y_t})=0 \end{aligned}$$
+
+$$\begin{aligned} \Rightarrow \theta_t - 1 = & \theta_t \frac{a_t}{\Lambda_t Z_t} - \phi_p[(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}}-1)(\frac{\pi_t}{\pi_{t-1}^a \pi^{1-a}})] \\
+& +\beta\phi_pE_t(\frac{\Lambda_{t+1}Y_{t+1}}{\Lambda_{t}Y_t})(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}-1)(\frac{\pi_{t+1}}{\pi_t^a\pi^{1-a}}) \end{aligned}$$
+
+$$\begin{aligned} \therefore \theta_{t}-1=& \theta_{t}\left(\frac{a_{t}}{\lambda_{t}}\right)-\phi_{p}\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t}}{\pi_{t-1}^{\alpha} \pi^{1-\alpha}}\right) \\
+&+\beta \phi_{p} E_{t}\left[\left(\frac{\lambda_{t+1} y_{t+1}}{\lambda_{t} y_{t}}\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}-1\right)\left(\frac{\pi_{t+1}}{\pi_{t}^{\alpha} \pi^{1-\alpha}}\right)\right]
+\end{aligned} \tag{13*}$$
+
+
+From equation (14) and (15)
+
+$$\frac{1}{Z_{t}}=\frac{1}{Q_{t}-\gamma Q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{Q_{t+1}-\gamma Q_{t}}\right)\right] \tag{14}$$
+
+$$x_t = Y_t/Q_t \tag{15}$$
+
+
+Which can be rewritten as:
+
+
+$$1=\frac{z_{t}}{z_{t} q_{t}-\gamma q_{t-1}}-\beta \gamma E_{t}\left[\left(\frac{a_{t+1}}{a_{t}}\right)\left(\frac{1}{z_{t+1} q_{t+1}-\gamma q_{t}}\right)\right] \tag{14*}$$
+
+and
+
+$$x_t = y_t/q_t \tag{15*}$$
+
+Lastly, the paper introduces: The monetary policy rule, The growth rate of money, and the growth rate of output with
+
+$$\ln \left(r_{t} / r\right)=\rho_{r} \ln \left(r_{t-1} / r\right)+\rho_{\pi} \ln \left(\pi_{t-1} / \pi\right)+\rho_{x} \ln \left(x_{t-1} / x\right)+\varepsilon_{r t}, \tag{16*}$$
+
+$$\mu_{t}=\left(\frac{M_{t} / P_{t}}{M_{t-1} / P_{t-1}}\right) \pi_{t}, \tag{17*}$$
+
+and
+
+$$g_{t}=Y_{t} / Y_{t-1} \tag{18*}$$
+
+
+
+## Applying the Taylor Method of Linear Approximation
+
+We apply the Taylor throughout the following section as follows:
+
+For a function $f(x_t)$ input $x_t$ , we apply the Taylor method such
+that: $$f(x_t) = f(X^{SS}) + \frac{df(x)}{x_t} (x_t(i) - x^{SS})$$
+
+Using the approximation: $$\begin{aligned}
+&x_t - x^{SS} \approx x^{SS} \hat{x}_{t}
+\\
+&\text{where } \hat{x}_{t} = \ln(x_t)-\ln(x^{SS})
+\\
+&\text{For short, we write: } x^{SS} \equiv x
+\\
+&\text{(i.e. no time subscript)}
+\end{aligned}$$
+
+## Uhlig's Method of Linearisation
+
+Applying Uhlig's method requires the following:
+
+\newpage
+
+For the function $f(x_t)$ i.e., we use the fact that:
+
+1.  $$\hat{x}_t = \ln(x_t) - \ln(x) \\
+    \text{ where x } \equiv x^{SS}$$
+
+2.  Then, $f(^{SS})$ is used to simplify $f(x_t)$ where $x_t$ is
+    replaced accodring to $x_t = x \cdot e^{\hat{x}_t}$
+
+3.  Additionally, the approximation result
+    $e^{x_t+y_t} \approx 1+x_t+y_t$ is used for further simplification.
+
+4.  For the last step, all constants can be dropped.
+
+For the following sections, we show the steps to reach the final
+log-linearised equations (19) to (31) from in Section 2.7 of "Belongia and Ireland (2020)".
+
+
 
