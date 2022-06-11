@@ -100,7 +100,7 @@ library(tidyverse)
 # Introduction
 
 According to Belongia and Ireland (2020), nominal interest rate
-management has been the Federal Reserve's approach to stabilise the
+management has been the Federal Reserve's approach to stabilise the economy's
 output gap and inflation. The Taylor rule is a good predictor of the
 nominal interest rate management. Interest rate management has been
 endorsed by literature and has shown advantages over the management of
