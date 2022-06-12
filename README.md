@@ -1884,14 +1884,18 @@ width="90%"}
 
 ## Hodrick Prescott Code
 
+```
 //Hodrick Prescott on GDP
 
 [Trend,Cyclical] = hpfilter(GDPC11,Smoothing=1600,DataVariables=3)
+```
 
 ## Calibration Code
 
 ### Taylor Rule Calibration Code
 
+
+```
 //Macros Project Calibration Taylor Rule
 
 // Preamble var c yhat lambdahat ahat zhat rhat pihat qhat xhat ehat
@@ -1987,9 +1991,13 @@ according to Belongia & Ireland (2020): Table 1
 End;
 
 stoch_simul(order=1,irf=40);
+```
+
 
 ### Interest Rate Rule Calibration Code
 
+
+```
 //Macros Project Calibration Interest Rate Rule
 
 // Preamble
@@ -2089,9 +2097,12 @@ Ireland (2020): Table 1
 end;
 
 stoch_simul(order=1,irf=40);
+```
+
 
 ### Constant Money Growth Rule Calibration Code
 
+```
 //Macros Project Calibration Constant Money Growth Rule
 
 //Preamble:
@@ -2188,9 +2199,12 @@ epsilon_e; stderr 0.01; // cost push shock; according to Belongia &
 Ireland (2020): Table 1
 
 end; stoch_simul(order=1,irf=40);
+```
 
 ### Flexible Money Growth Rule Calibration Code
 
+
+```
 //Macros Project Calibration Flexible Money Growth Rule
 
 //Preamble: var chat yhat lambdahat ahat zhat rhat qhat xhat ehat uhat
@@ -2289,3 +2303,4 @@ according to Belongia & Ireland (2020): Table 1
 end;
 
 stoch_simul(order=1,irf=20);
+```
