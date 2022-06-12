@@ -1502,9 +1502,9 @@ factor is equal to \(1/(1+r)\).
 calibration. Under the FMG and CMG rules, rho\_mm, rho\_mpi and
 \(rho_mx\) replace \(rho_\pi\), \(rho_x\) and \(rho_r\), due to the
 switch from equation 24 to 33. When calibrating the CMG rule, these
-parameters are set to zero. Under the FMG rule, we set rho\_mm, rho\_mpi
-and rho\_mx equal to 1, 0 and -0.125 respectively. This is in accordance
-to Belongia \& Ireland (2020).
+parameters are set to zero. Under the FMG rule, we set \(rho_mm\),
+\(rho_m\pi\) and \(rho_mx\) equal to 1, 0 and -0.125 respectively. This
+is in accordance to Belongia \& Ireland (2020).
 
 To conduct robustness checks for \(z\), \(r\), \(\beta\), and \(\psi\),
 we replace them with 1.0046, 1.0121, 0.9987, and 0.1 respectively. The
@@ -2173,6 +2173,13 @@ and Ireland (2020)''.
 \end{figure}
 
 \newpage
+
+\hypertarget{hodrick-prescott-code}{%
+\section{Hodrick Prescott Code:}\label{hodrick-prescott-code}}
+
+//Hodrick Prescott on GDP
+
+{[}Trend,Cyclical{]} = hpfilter(GDPC11,Smoothing=1600,DataVariables=3)
 
 \hypertarget{calibration-code}{%
 \section{Calibration Code}\label{calibration-code}}
