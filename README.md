@@ -499,6 +499,10 @@ $$x_t = Y_t/Q_t \tag{15}$$
 
 # Log-Linearisation:
 
+In the following section, we show the steps to reach the final
+log-linearised equations (19) to (31) from in Section 2.7 of "Belongia
+and Ireland (2020)", starting from the final system of equations shown in the [Appendix:].
+
 ## Equation (1\*)
 
 We can rewrite this equation, for the sake of simplicity:
@@ -1622,31 +1626,16 @@ rule.
 
 # Conclusion
 
-Interest rate rules such as the simple rule developed by Taylor (1993)
-has proven successful as the policy decision tool of choice for the
-Federal Reserve Bank. Alternative policy rules exist, however, but the
-interest rate rule has curbed inflation and stabilised output with a
-good historical record. This paper displays the success of interest rate
-rules in protecting the economy in response to money demand shocks and
-efficiently adjusting after real shocks, and considers this success
-against alternative policy rules. The first alternative, the constant
-money growth rate rule, offers little to compare. The impulse response
-functions from this paper highlight the shortcomings of this rule
-towards achieving stability in output following a money demand shock,
-and providing the correct responses to shocks other shocks. The impulse
-response functions in this paper suggest comparable results between
-interest rate rules and the flexible money growth rate rule. The
-response to a money demand shock by this rule achieves successful
-stabilisation of output alongside stabilisation of the nominal side of
-the economy. Furthermore, applying this over the period following the
-global financial crisis would have yielded a more efficient recovery in
-real output and inflation.
+Interest rate rules, such as the TR rule, have long been considered a successful policy decision tool of choice for the Federal Reserve Bank (Belongia & Ireland, 2020:2). Between 2009-2015, however, the Federal Reserve Bank’s response proved inadequate due to constraints from a nominal interest rate lower bound (Belongia & Ireland, 2020:2). Due to this, alternative rules, such as those that incorporate money growth, need to be investigated. This paper displays the success of interest rate rules in protecting the economy in response to money demand shocks and efficiently adjusting after real shocks, and compares this success against alternative policy rules, namely the FMG and the CMG. 
 
-The historic success of the federal reserve bank based on an interest
-rate rule is not enough evidence for this policy rule to take preference
-over others. The results from this paper suggest that a reconsideration
-of this rule for the more efficient flexible money growth rate rule is
-necessary.
+The results discussed in the previous section illustrate that monetarily, CMG rule does not respond appropriately to scenarios where adjusting output and inflation are necessary. The TR rule allows for the money growth rate to be changed. The FMG rule acts as an alternative to the TR rule but similarly lets money growth adjust slightly after changes to the output gap (Belongia & Ireland, 2020:34). As such, monetary policy can be used for stability in the short run without needing to alter long run money growth (Belongia & Ireland, 2020:34).
+
+
+The first alternative to interest rate rules, the CMG rule, offers little to compare. The IRFs from this paper highlight the shortcomings of this rule towards achieving stability in output following a money demand shock. The IRFs of the second alternative, the FMG rule, provide comparable results to the interest rate rules. The response to a money demand shock by this rule achieves successful stabilisation of output alongside stabilisation of the nominal side of the economy. It achieves this despite there being a slight delay in the implementation of the policy. Belongia & Ireland (2020:29-35) mention this delay but argue that shocks similar to that following the Global Financial Crisis had a more predictable nature that would negate this gap. Therefore, applying this rule over the period following the global financial could have provided policy-makers with a tool comparable to the interest rate rule. Furthermore, it removes the need for unconventional policy rules when approaching the Zero Lower Bound.
+
+
+The historic success of the federal reserve bank based on an interest rate rule is not enough evidence for this policy rule to take preference over others. Lowering the interest rate to the zero lower bound and the decreasing marginal returns from doing so suggests an alternative (or additional) policy rule is required. The results from this paper suggest that the consideration of the FMG rule is necessary, and adds to efficient where the interest rate rule falls short.
+
 
 \newpage
 
@@ -1883,29 +1872,30 @@ For the function $f(x_t)$ i.e., we use the fact that:
 
 4.  For the last step, all constants can be dropped.
 
-For the following sections, we show the steps to reach the final
-log-linearised equations (19) to (31) from in Section 2.7 of "Belongia
-and Ireland (2020)".
 
 \newpage
 
-# Table
+## Table
 
 ![Parameter Values](./figures/table-param.jpeg){height="70%"
 width="90%"}
 
 \newpage
 
-# Hodrick Prescott Code
+## Hodrick Prescott Code
 
+```
 //Hodrick Prescott on GDP
 
 [Trend,Cyclical] = hpfilter(GDPC11,Smoothing=1600,DataVariables=3)
+```
 
-# Calibration Code
+## Calibration Code
 
-## Taylor Rule Calibration Code
+### Taylor Rule Calibration Code
 
+
+```
 //Macros Project Calibration Taylor Rule
 
 // Preamble var c yhat lambdahat ahat zhat rhat pihat qhat xhat ehat
@@ -2001,9 +1991,13 @@ according to Belongia & Ireland (2020): Table 1
 End;
 
 stoch_simul(order=1,irf=40);
+```
 
-## Interest Rate Rule Calibration Code
 
+### Interest Rate Rule Calibration Code
+
+
+```
 //Macros Project Calibration Interest Rate Rule
 
 // Preamble
@@ -2103,9 +2097,12 @@ Ireland (2020): Table 1
 end;
 
 stoch_simul(order=1,irf=40);
+```
 
-## Constant Money Growth Rule Calibration Code
 
+### Constant Money Growth Rule Calibration Code
+
+```
 //Macros Project Calibration Constant Money Growth Rule
 
 //Preamble:
@@ -2202,9 +2199,12 @@ epsilon_e; stderr 0.01; // cost push shock; according to Belongia &
 Ireland (2020): Table 1
 
 end; stoch_simul(order=1,irf=40);
+```
 
-## Flexible Money Growth Rule Calibration Code
+### Flexible Money Growth Rule Calibration Code
 
+
+```
 //Macros Project Calibration Flexible Money Growth Rule
 
 //Preamble: var chat yhat lambdahat ahat zhat rhat qhat xhat ehat uhat
@@ -2303,3 +2303,4 @@ according to Belongia & Ireland (2020): Table 1
 end;
 
 stoch_simul(order=1,irf=20);
+```

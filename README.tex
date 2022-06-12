@@ -682,6 +682,11 @@ efficient level of output to write:
 \hypertarget{log-linearisation}{%
 \section{Log-Linearisation:}\label{log-linearisation}}
 
+In the following section, we show the steps to reach the final
+log-linearised equations (19) to (31) from in Section 2.7 of ``Belongia
+and Ireland (2020)'', starting from the final system of equations shown
+in the \protect\hyperlink{appendix}{Appendix:}.
+
 \hypertarget{equation-1}{%
 \subsection{Equation (1*)}\label{equation-1}}
 
@@ -1873,31 +1878,49 @@ rule.
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-Interest rate rules such as the simple rule developed by Taylor (1993)
-has proven successful as the policy decision tool of choice for the
-Federal Reserve Bank. Alternative policy rules exist, however, but the
-interest rate rule has curbed inflation and stabilised output with a
-good historical record. This paper displays the success of interest rate
-rules in protecting the economy in response to money demand shocks and
-efficiently adjusting after real shocks, and considers this success
-against alternative policy rules. The first alternative, the constant
-money growth rate rule, offers little to compare. The impulse response
-functions from this paper highlight the shortcomings of this rule
-towards achieving stability in output following a money demand shock,
-and providing the correct responses to shocks other shocks. The impulse
-response functions in this paper suggest comparable results between
-interest rate rules and the flexible money growth rate rule. The
-response to a money demand shock by this rule achieves successful
-stabilisation of output alongside stabilisation of the nominal side of
-the economy. Furthermore, applying this over the period following the
-global financial crisis would have yielded a more efficient recovery in
-real output and inflation.
+Interest rate rules, such as the TR rule, have long been considered a
+successful policy decision tool of choice for the Federal Reserve Bank
+(Belongia \& Ireland, 2020:2). Between 2009-2015, however, the Federal
+Reserve Bank's response proved inadequate due to constraints from a
+nominal interest rate lower bound (Belongia \& Ireland, 2020:2). Due to
+this, alternative rules, such as those that incorporate money growth,
+need to be investigated. This paper displays the success of interest
+rate rules in protecting the economy in response to money demand shocks
+and efficiently adjusting after real shocks, and compares this success
+against alternative policy rules, namely the FMG and the CMG.
+
+The results discussed in the previous section illustrate that
+monetarily, CMG rule does not respond appropriately to scenarios where
+adjusting output and inflation are necessary. The TR rule allows for the
+money growth rate to be changed. The FMG rule acts as an alternative to
+the TR rule but similarly lets money growth adjust slightly after
+changes to the output gap (Belongia \& Ireland, 2020:34). As such,
+monetary policy can be used for stability in the short run without
+needing to alter long run money growth (Belongia \& Ireland, 2020:34).
+
+The first alternative to interest rate rules, the CMG rule, offers
+little to compare. The IRFs from this paper highlight the shortcomings
+of this rule towards achieving stability in output following a money
+demand shock. The IRFs of the second alternative, the FMG rule, provide
+comparable results to the interest rate rules. The response to a money
+demand shock by this rule achieves successful stabilisation of output
+alongside stabilisation of the nominal side of the economy. It achieves
+this despite there being a slight delay in the implementation of the
+policy. Belongia \& Ireland (2020:29-35) mention this delay but argue
+that shocks similar to that following the Global Financial Crisis had a
+more predictable nature that would negate this gap. Therefore, applying
+this rule over the period following the global financial could have
+provided policy-makers with a tool comparable to the interest rate rule.
+Furthermore, it removes the need for unconventional policy rules when
+approaching the Zero Lower Bound.
 
 The historic success of the federal reserve bank based on an interest
 rate rule is not enough evidence for this policy rule to take preference
-over others. The results from this paper suggest that a reconsideration
-of this rule for the more efficient flexible money growth rate rule is
-necessary.
+over others. Lowering the interest rate to the zero lower bound and the
+decreasing marginal returns from doing so suggests an alternative (or
+additional) policy rule is required. The results from this paper suggest
+that the consideration of the FMG rule is necessary, and adds to
+efficient where the interest rate rule falls short.
 
 \newpage
 
@@ -2157,14 +2180,10 @@ For the function \(f(x_t)\) i.e., we use the fact that:
   For the last step, all constants can be dropped.
 \end{enumerate}
 
-For the following sections, we show the steps to reach the final
-log-linearised equations (19) to (31) from in Section 2.7 of ``Belongia
-and Ireland (2020)''.
-
 \newpage
 
 \hypertarget{table}{%
-\section{Table}\label{table}}
+\subsection{Table}\label{table}}
 
 \begin{figure}
 \centering
@@ -2175,46 +2194,49 @@ and Ireland (2020)''.
 \newpage
 
 \hypertarget{hodrick-prescott-code}{%
-\section{Hodrick Prescott Code}\label{hodrick-prescott-code}}
+\subsection{Hodrick Prescott Code}\label{hodrick-prescott-code}}
 
+\begin{verbatim}
 //Hodrick Prescott on GDP
 
-{[}Trend,Cyclical{]} = hpfilter(GDPC11,Smoothing=1600,DataVariables=3)
+[Trend,Cyclical] = hpfilter(GDPC11,Smoothing=1600,DataVariables=3)
+\end{verbatim}
 
 \hypertarget{calibration-code}{%
-\section{Calibration Code}\label{calibration-code}}
+\subsection{Calibration Code}\label{calibration-code}}
 
 \hypertarget{taylor-rule-calibration-code}{%
-\subsection{Taylor Rule Calibration
+\subsubsection{Taylor Rule Calibration
 Code}\label{taylor-rule-calibration-code}}
 
+\begin{verbatim}
 //Macros Project Calibration Taylor Rule
 
 // Preamble var c yhat lambdahat ahat zhat rhat pihat qhat xhat ehat
 uhat mhat mu ghat;
 
-varexo epsilon\_r epsilon\_a epsilon\_z epsilon\_u epsilon\_e;
+varexo epsilon_r epsilon_a epsilon_z epsilon_u epsilon_e;
 
-parameters z\_ss beta gamma rho\_a alpha psi rho\_r rho\_pi rho\_x
-delta\_r phi r\_ss rho\_u rho\_e;
+parameters z_ss beta gamma rho_a alpha psi rho_r rho_pi rho_x delta_r
+phi r_ss rho_u rho_e;
 
-// parameters we need to add for scenario 3: rho\_mm rho\_mpi rho\_mx;
+// parameters we need to add for scenario 3: rho_mm rho_mpi rho_mx;
 
-// Parameter Declaration z\_ss = 1.00037; // Detrended quarterly changes
-in log of GDP r\_ss = 0.98784; // From quarterly data divided by 4 beta
-= 0.99023; // 1/(r\_ss+1) from Gollier \& Hammitt (2014) gamma = 0.6741;
-// habit formation parameter alpha = 0.2337; // price index psi =
-0.0062; // Phillips curve slope from Hazell et al.~(2020) delta\_r =
-14.8716; // money demand semi-elasticity phi = 14.8854; // money demand
-adjustment cost rho\_r = 0.8373; // interest rate smoothing rho\_pi =
-0.2296; // policy response to inflation rho\_x = 0.2388; // policy
-response to output gap rho\_a = 0.9263; // preference shock persistence
-rho\_u = 0.9733; // money demand shock persistence rho\_e = 0.3330; //
-cost push shock persistence
+// Parameter Declaration z_ss = 1.00037; // Detrended quarterly changes
+in log of GDP r_ss = 0.98784; // From quarterly data divided by 4 beta =
+0.99023; // 1/(r_ss+1) from Gollier & Hammitt (2014) gamma = 0.6741; // habit
+formation parameter alpha = 0.2337; // price index psi = 0.0062; //
+Phillips curve slope from Hazell et al. (2020) delta_r = 14.8716; //
+money demand semi-elasticity phi = 14.8854; // money demand adjustment
+cost rho_r = 0.8373; // interest rate smoothing rho_pi = 0.2296; //
+policy response to inflation rho_x = 0.2388; // policy response to
+output gap rho_a = 0.9263; // preference shock persistence rho_u =
+0.9733; // money demand shock persistence rho_e = 0.3330; // cost push
+shock persistence
 
-// In accordance to Belongia \& Ireland (2020), the FMG rule requires
-the following parameters to be set: // rho\_mm = 1; // rho\_mpi = 0; //
-rho\_mx = -0.125;
+// In accordance to Belongia & Ireland (2020), the FMG rule requires the
+following parameters to be set: // rho_mm = 1; // rho_mpi = 0; // rho_mx
+= -0.125;
 
 // Model Declaration
 
@@ -2222,42 +2244,36 @@ model(linear);
 
 c = yhat; // A first-order Taylor approximation to Eq (1) implies this
 
-(z\_ss-beta\emph{gamma)}(z\_ss-gamma)\emph{lambdahat =
-gamma}z\_ss\emph{yhat(-1) - (z\_ss\^{}2 + beta}(gamma\^{}2))\emph{yhat +
-beta}gamma\emph{z\_ss}yhat(+1) +
-(z\_ss-beta\emph{gamma}rho\_a)\emph{(z\_ss-gamma)}ahat -
-gamma\emph{z\_ss}zhat; // Eq (19)
+(z_ss-beta*gamma)*(z_ss-gamma)*lambdahat = gamma*z_ss*yhat(-1) -
+(z_ss\^2 + beta*(gamma\^2))*yhat + beta*gamma*z_ss*yhat(+1) +
+(z_ss-beta*gamma*rho_a)*(z_ss-gamma)*ahat - gamma*z_ss*zhat; // Eq (19)
 
 lambdahat = rhat + lambdahat(+1) - pihat(+1); // Eq (20)
 
-0 = gamma\emph{z\_ss}qhat(-1) - (z\_ss\^{}2+beta\emph{(gamma\^{}2))}qhat
-+ beta\emph{gamma}z\_ss\emph{qhat(+1) +
-beta}gamma\emph{(z\_ss-gamma)}(1-rho\_a)\emph{ahat - gamma}z\_ss*zhat;
-// Eq (21)
+0 = gamma*z_ss*qhat(-1) - (z_ss\^2+beta*(gamma\^2))*qhat +
+beta*gamma*z_ss*qhat(+1) + beta*gamma*(z_ss-gamma)*(1-rho_a)*ahat -
+gamma*z_ss\*zhat; // Eq (21)
 
 xhat = yhat - qhat; // Output gap Eq (22)
 
 // Eq (19)-(22) define the model's New Keynesian IS relationship
 
-(1+beta\emph{alpha)}pihat = alpha\emph{pihat(-1) + beta}pihat(+1) -
-psi\emph{lambdahat + psi}ahat + ehat; // New Keynesian Phillips curve Eq
-(23)
+(1+beta*alpha)*pihat = alpha*pihat(-1) + beta*pihat(+1) -
+psi*lambdahat + psi*ahat + ehat; // New Keynesian Phillips curve Eq (23)
 
-// Scenario 1: Taylor rule rhat = rho\_r\emph{rhat(-1) +
-rho\_pi}pihat(-1) + rho\_x*xhat(-1) + epsilon\_r; // Eq (24) Taylor rule
-for monetary policy
+// Scenario 1: Taylor rule rhat = rho_r*rhat(-1) + rho_pi*pihat(-1) +
+rho_x\*xhat(-1) + epsilon_r; // Eq (24) Taylor rule for monetary policy
 
-// Scenario 2: replace Eq (24) with Eq (32) // r = -ln(r\_ss); // Eq
-(32) zero interest rate condition
+// Scenario 2: replace Eq (24) with Eq (32) // r = -ln(r_ss); // Eq (32)
+zero interest rate condition
 
 // Scenario 3: Money Growth Rules (replace Eq (24) with Eq (33)) // mu =
-rho\_mm\emph{mu(-1) + rho\_mpi}pi(-1) + rho\_mx*xhat(-1); // Eq (33)
-money growth rate rule
+rho_mm*mu(-1) + rho_mpi*pi(-1) + rho_mx\*xhat(-1); // Eq (33) money
+growth rate rule
 
-delta\_r\emph{(r\_ss-1)}lambdahat - delta\_r\emph{(r\_ss-1)}ahat - uhat
-+ phi\emph{zhat = phi}mhat(-1) - (1 + (1 + beta)\emph{phi)}mhat +
-beta\emph{phi}mhat(+1) - delta\_r*rhat; // Eq (25) money demand
-relationship
+delta_r*(r_ss-1)*lambdahat - delta_r*(r_ss-1)*ahat - uhat + phi*zhat =
+phi*mhat(-1) - (1 + (1 + beta)*phi)*mhat + beta*phi*mhat(+1) -
+delta_r\*rhat; // Eq (25) money demand relationship
 
 mu = zhat + mhat - mhat(-1) + pihat ; // Eq (26) determines the growth
 rate of the nominal money stock
@@ -2265,35 +2281,37 @@ rate of the nominal money stock
 ghat = yhat - yhat(-1) + zhat; // Eq (27) determines the growth rate of
 aggregate output
 
-ahat = rho\_a*ahat(-1) + epsilon\_a; // Eq (28) preference shock
+ahat = rho_a\*ahat(-1) + epsilon_a; // Eq (28) preference shock
 
-zhat = epsilon\_z; // Eq (29) productivity shock
+zhat = epsilon_z; // Eq (29) productivity shock
 
-uhat = rho\_u*uhat(-1) + epsilon\_u; // Eq (30) money demand shock
+uhat = rho_u\*uhat(-1) + epsilon_u; // Eq (30) money demand shock
 
-ehat = rho\_e*ehat(-1) + epsilon\_e; // Eq (31) cost push shock
-
-End;
-
-steady (solve\_algo=0); check;
-
-// Define shocks: shocks; var epsilon\_r; stderr 0.0016; // monetary
-policy shock; value according to Belongia \& Ireland (2020): Table 1 var
-epsilon\_a; stderr 0.0066; // preference shock; according to Belongia \&
-Ireland (2020): Table 1 var epsilon\_z; stderr 0.0066; // productivity
-shock; according to Belongia \& Ireland (2020): Table 1 var epsilon\_u;
-stderr 0.0066; // money demand shock; according to Belongia \& Ireland
-(2020): Table 1 var epsilon\_e; stderr 0.0016; // cost push shock;
-according to Belongia \& Ireland (2020): Table 1
+ehat = rho_e\*ehat(-1) + epsilon_e; // Eq (31) cost push shock
 
 End;
 
-stoch\_simul(order=1,irf=40);
+steady (solve_algo=0); check;
+
+// Define shocks: shocks; var epsilon_r; stderr 0.0016; // monetary
+policy shock; value according to Belongia & Ireland (2020): Table 1 var
+epsilon_a; stderr 0.0066; // preference shock; according to Belongia &
+Ireland (2020): Table 1 var epsilon_z; stderr 0.0066; // productivity
+shock; according to Belongia & Ireland (2020): Table 1 var epsilon_u;
+stderr 0.0066; // money demand shock; according to Belongia & Ireland
+(2020): Table 1 var epsilon_e; stderr 0.0016; // cost push shock;
+according to Belongia & Ireland (2020): Table 1
+
+End;
+
+stoch_simul(order=1,irf=40);
+\end{verbatim}
 
 \hypertarget{interest-rate-rule-calibration-code}{%
-\subsection{Interest Rate Rule Calibration
+\subsubsection{Interest Rate Rule Calibration
 Code}\label{interest-rate-rule-calibration-code}}
 
+\begin{verbatim}
 //Macros Project Calibration Interest Rate Rule
 
 // Preamble
@@ -2301,28 +2319,28 @@ Code}\label{interest-rate-rule-calibration-code}}
 var c yhat lambdahat ahat zhat rhat qhat xhat ehat uhat mhat mu ghat
 pihat;
 
-varexo epsilon\_a epsilon\_z epsilon\_u epsilon\_e; //epsilon\_r;
-parameters z\_ss beta gamma rho\_a alpha psi rho\_x delta\_r phi r\_ss
-rho\_u rho\_e; //rho\_r rho\_pi;
+varexo epsilon_a epsilon_z epsilon_u epsilon_e; //epsilon_r; parameters
+z_ss beta gamma rho_a alpha psi rho_x delta_r phi r_ss rho_u rho_e;
+//rho_r rho_pi;
 
-// parameters we need to add for scenario 3: rho\_mm rho\_mpi rho\_mx;
+// parameters we need to add for scenario 3: rho_mm rho_mpi rho_mx;
 
-// Parameter Declaration z\_ss = 1.00037; // Detrended quarterly changes
-in log of GDP r\_ss = 0.98784; // From quarterly data divided by 4 beta
-= 0.99023; // 1/(r\_ss+1) from Gollier (2014)
+// Parameter Declaration z_ss = 1.00037; // Detrended quarterly changes
+in log of GDP r_ss = 0.98784; // From quarterly data divided by 4 beta =
+0.99023; // 1/(r_ss+1) from Gollier (2014)
 
 gamma = 0.6741; // habit formation parameter alpha = 0.2337; // price
-index psi = 0.0062; // Phillips curve slope from Hazell et al.~(2020)
-delta\_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
-money demand adjustment cost //rho\_r = 0.8373; // interest rate
-smoothing //rho\_pi = 0.2296; // policy response to inflation rho\_x =
-0.2388; // policy response to output gap rho\_a = 0.9263; // preference
-shock persistence rho\_u = 0.9733; // money demand shock persistence
-rho\_e = 0.3330; // cost push shock persistence
+index psi = 0.0062; // Phillips curve slope from Hazell et al. (2020)
+delta_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
+money demand adjustment cost //rho_r = 0.8373; // interest rate
+smoothing //rho_pi = 0.2296; // policy response to inflation rho_x =
+0.2388; // policy response to output gap rho_a = 0.9263; // preference
+shock persistence rho_u = 0.9733; // money demand shock persistence
+rho_e = 0.3330; // cost push shock persistence
 
-// In accordance to Belongia \& Ireland (2020), the FMG rule requires
-the following parameters to be set: // rho\_mm = 1; // rho\_mpi = 0; //
-rho\_mx = -0.125;
+// In accordance to Belongia & Ireland (2020), the FMG rule requires the
+following parameters to be set: // rho_mm = 1; // rho_mpi = 0; // rho_mx
+= -0.125;
 
 // Model Declaration
 
@@ -2330,41 +2348,36 @@ model(linear);
 
 c = yhat; // A first-order Taylor approximation to Eq (1) implies this
 
-(z\_ss-beta\emph{gamma)}(z\_ss-gamma)\emph{lambdahat =
-gamma}z\_ss\emph{yhat(-1) - (z\_ss\^{}2 + beta}(gamma\^{}2))\emph{yhat +
-beta}gamma\emph{z\_ss}yhat(+1) +
-(z\_ss-beta\emph{gamma}rho\_a)\emph{(z\_ss-gamma)}ahat -
-gamma\emph{z\_ss}zhat; // Eq (19)
+(z_ss-beta*gamma)*(z_ss-gamma)*lambdahat = gamma*z_ss*yhat(-1) -
+(z_ss\^2 + beta*(gamma\^2))*yhat + beta*gamma*z_ss*yhat(+1) +
+(z_ss-beta*gamma*rho_a)*(z_ss-gamma)*ahat - gamma*z_ss*zhat; // Eq (19)
 
 lambdahat = rhat + lambdahat - pihat; // Eq (20)
 
-0 = gamma\emph{z\_ss}qhat(-1) - (z\_ss\^{}2+beta\emph{(gamma\^{}2))}qhat
-+ beta\emph{gamma}z\_ss\emph{qhat(+1) +
-beta}gamma\emph{(z\_ss-gamma)}(1-rho\_a)\emph{ahat - gamma}z\_ss*zhat;
-// Eq (22)
+0 = gamma*z_ss*qhat(-1) - (z_ss\^2+beta*(gamma\^2))*qhat +
+beta*gamma*z_ss*qhat(+1) + beta*gamma*(z_ss-gamma)*(1-rho_a)*ahat -
+gamma*z_ss\*zhat; // Eq (22)
 
 xhat = yhat - qhat; // Output gap Eq (22)
 
 // Eq (19)-(22) define the model's New Keynesian IS relationship
 
-(1+beta\emph{alpha)}pihat = alpha\emph{pihat(-1) + beta}pihat(+1) -
-psi\emph{lambdahat + psi}ahat + ehat; // New Keynesian Phillips curve Eq
-(23)
+(1+beta*alpha)*pihat = alpha*pihat(-1) + beta*pihat(+1) -
+psi*lambdahat + psi*ahat + ehat; // New Keynesian Phillips curve Eq (23)
 
-// Scenario 1: Taylor rule //r = rho\_r\emph{r(-1) + rho\_pi}pihat(-1) +
-rho\_x*x(-1) + epsilon\_r; // Eq (24) Taylor rule for monetary policy
+// Scenario 1: Taylor rule //r = rho_r*r(-1) + rho_pi*pihat(-1) +
+rho_x\*x(-1) + epsilon_r; // Eq (24) Taylor rule for monetary policy
 
-// Scenario 2: replace Eq (24) with Eq (32) rhat = -ln(r\_ss); // Eq
-(32) zero interest rate condition
+// Scenario 2: replace Eq (24) with Eq (32) rhat = -ln(r_ss); // Eq (32)
+zero interest rate condition
 
 // Scenario 3: Money Growth Rules (replace Eq (24) with Eq (33)) // mu =
-rho\_mm\emph{mu(-1) + rho\_mpi}pi(-1) + rho\_mx*x(-1); // Eq (33) money
-growth rate rule
+rho_mm*mu(-1) + rho_mpi*pi(-1) + rho_mx\*x(-1); // Eq (33) money growth
+rate rule
 
-delta\_r\emph{(r\_ss-1)}lambdahat - delta\_r\emph{(r\_ss-1)}ahat - uhat
-+ phi\emph{zhat = phi}mhat(-1) - (1 + (1 + beta)\emph{phi)}mhat +
-beta\emph{phi}mhat(+1) - delta\_r*rhat; // Eq (25) money demand
-relationship
+delta_r*(r_ss-1)*lambdahat - delta_r*(r_ss-1)*ahat - uhat + phi*zhat =
+phi*mhat(-1) - (1 + (1 + beta)*phi)*mhat + beta*phi*mhat(+1) -
+delta_r\*rhat; // Eq (25) money demand relationship
 
 mu = zhat + mhat - mhat(-1) + pihat ; // Eq (26) determines the growth
 rate of the nominal money stock
@@ -2372,13 +2385,13 @@ rate of the nominal money stock
 ghat = yhat - yhat(-1) + zhat; // Eq (27) determines the growth rate of
 aggregate output
 
-ahat = rho\_a*ahat(-1) + epsilon\_a; // Eq (28) preference shock
+ahat = rho_a\*ahat(-1) + epsilon_a; // Eq (28) preference shock
 
-zhat = epsilon\_z; // Eq (29) productivity shock
+zhat = epsilon_z; // Eq (29) productivity shock
 
-uhat = rho\_u*uhat(-1) + epsilon\_u; // Eq (30) money demand shock
+uhat = rho_u\*uhat(-1) + epsilon_u; // Eq (30) money demand shock
 
-ehat = rho\_e*ehat(-1) + epsilon\_e; // Eq (31) cost push shock
+ehat = rho_e\*ehat(-1) + epsilon_e; // Eq (31) cost push shock
 
 end;
 
@@ -2386,23 +2399,25 @@ steady; check;
 
 // Define shocks:
 
-shocks; //var epsilon\_r; stderr 0.0016; // monetary policy shock; value
-according to Belongia \& Ireland (2020): Table 1 var epsilon\_a; stderr
-0.0066; // preference shock; according to Belongia \& Ireland (2020):
-Table 1 var epsilon\_z; stderr 0.0066; // productivity shock; according
-to Belongia \& Ireland (2020): Table 1 var epsilon\_u; stderr 0.0066; //
-money demand shock; according to Belongia \& Ireland (2020): Table 1 var
-epsilon\_e; stderr 0.0016; // cost push shock; according to Belongia \&
+shocks; //var epsilon_r; stderr 0.0016; // monetary policy shock; value
+according to Belongia & Ireland (2020): Table 1 var epsilon_a; stderr
+0.0066; // preference shock; according to Belongia & Ireland (2020):
+Table 1 var epsilon_z; stderr 0.0066; // productivity shock; according
+to Belongia & Ireland (2020): Table 1 var epsilon_u; stderr 0.0066; //
+money demand shock; according to Belongia & Ireland (2020): Table 1 var
+epsilon_e; stderr 0.0016; // cost push shock; according to Belongia &
 Ireland (2020): Table 1
 
 end;
 
-stoch\_simul(order=1,irf=40);
+stoch_simul(order=1,irf=40);
+\end{verbatim}
 
 \hypertarget{constant-money-growth-rule-calibration-code}{%
-\subsection{Constant Money Growth Rule Calibration
+\subsubsection{Constant Money Growth Rule Calibration
 Code}\label{constant-money-growth-rule-calibration-code}}
 
+\begin{verbatim}
 //Macros Project Calibration Constant Money Growth Rule
 
 //Preamble:
@@ -2410,23 +2425,22 @@ Code}\label{constant-money-growth-rule-calibration-code}}
 var c yhat lambdahat ahat zhat rhat qhat xhat ehat uhat mhat mu ghat
 pihat;
 
-varexo epsilon\_a epsilon\_z epsilon\_u epsilon\_e; //epsilon\_r
+varexo epsilon_a epsilon_z epsilon_u epsilon_e; //epsilon_r
 
-parameters z\_ss beta gamma rho\_a alpha psi rho\_x delta\_r phi r\_ss
-rho\_u rho\_e rho\_r rho\_pi rho\_mm rho\_mpi rho\_mx; //rho\_pi; //not
-in scenario 3
+parameters z_ss beta gamma rho_a alpha psi rho_x delta_r phi r_ss rho_u
+rho_e rho_r rho_pi rho_mm rho_mpi rho_mx; //rho_pi; //not in scenario 3
 
-// Parameter Declaration z\_ss = 1.00037; // Detrended quarterly changes
-in log of GDP r\_ss = 0.98784; // From quarterly data divided by 4 beta
-= 0.99023; // 1/(r\_ss+1) from Gollier (2014)
+// Parameter Declaration z_ss = 1.00037; // Detrended quarterly changes
+in log of GDP r_ss = 0.98784; // From quarterly data divided by 4 beta =
+0.99023; // 1/(r_ss+1) from Gollier (2014)
 
 gamma = 0.6741; // habit formation parameter alpha = 0.2337; // price
-index psi = 0.0062; // Phillips curve slope from Hazell et al.~(2020)
-delta\_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
-money demand adjustment cost rho\_r = 0.8373; // interest rate smoothing
-//rho\_pi = 0.2296; // policy response to inflation rho\_x = 0.2388; //
-policy response to output gap rho\_a = 0.9263; // preference shock
-persistence rho\_u = 0.9733; // money demand shock persistence rho\_e =
+index psi = 0.0062; // Phillips curve slope from Hazell et al. (2020)
+delta_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
+money demand adjustment cost rho_r = 0.8373; // interest rate smoothing
+//rho_pi = 0.2296; // policy response to inflation rho_x = 0.2388; //
+policy response to output gap rho_a = 0.9263; // preference shock
+persistence rho_u = 0.9733; // money demand shock persistence rho_e =
 0.3330; // cost push shock persistence
 
 //Model:
@@ -2437,40 +2451,36 @@ model(linear);
 
 // Eq (19)-(22) define the model's New Keynesian IS relationship:
 
-(z\_ss-beta\emph{gamma)}(z\_ss-gamma)\emph{lambdahat =
-gamma}z\_ss\emph{yhat(-1) - (z\_ss\^{}2 + beta}(gamma\^{}2))\emph{yhat +
-beta}gamma\emph{z\_ss}yhat(+1) +
-(z\_ss-beta\emph{gamma}rho\_a)\emph{(z\_ss-gamma)}ahat -
-gamma\emph{z\_ss}zhat; // Equation (19)
+(z_ss-beta*gamma)*(z_ss-gamma)*lambdahat = gamma*z_ss*yhat(-1) -
+(z_ss\^2 + beta*(gamma\^2))*yhat + beta*gamma*z_ss*yhat(+1) +
+(z_ss-beta*gamma*rho_a)*(z_ss-gamma)*ahat - gamma*z_ss*zhat; // Equation
+(19)
 
 lambdahat = rhat + lambdahat(+1) - pihat(+1); // Equation (20)
 
-0 = gamma\emph{z\_ss}qhat(-1) - (z\_ss\^{}2+beta\emph{(gamma\^{}2))}qhat
-+ beta\emph{gamma}z\_ss\emph{qhat(+1) +
-beta}gamma\emph{(z\_ss-gamma)}(1-rho\_a)\emph{ahat - gamma}z\_ss*zhat;
-// Equation (22)
+0 = gamma*z_ss*qhat(-1) - (z_ss\^2+beta*(gamma\^2))*qhat +
+beta*gamma*z_ss*qhat(+1) + beta*gamma*(z_ss-gamma)*(1-rho_a)*ahat -
+gamma*z_ss\*zhat; // Equation (22)
 
 xhat = yhat - qhat; // Equation (22) - Output Gap
 
-//New Keynesian Phillips Curve: (1+beta\emph{alpha)}pihat =
-alpha\emph{pihat(-1) + beta}pihat(+1) - psi\emph{lambdahat + psi}ahat +
-ehat; // Equation (23)
+//New Keynesian Phillips Curve: (1+beta*alpha)*pihat = alpha*pihat(-1) +
+beta*pihat(+1) - psi*lambdahat + psi*ahat + ehat; // Equation (23)
 
-// Scenario 1: Taylor rule //rhat = rho\_r\emph{rhat(-1) +
-rho\_pi}pihat(-1) + rho\_x*xhat(-1) + epsilon\_r; // Equation (24)
-Taylor rule for monetary policy
+// Scenario 1: Taylor rule //rhat = rho_r*rhat(-1) + rho_pi*pihat(-1) +
+rho_x\*xhat(-1) + epsilon_r; // Equation (24) Taylor rule for monetary
+policy
 
 // Scenario 2: replace Equation (24) with Equation (32) //rhat =
--ln(r\_ss); // Equation (32) (with zero interest rate condition)
+-ln(r_ss); // Equation (32) (with zero interest rate condition)
 
 // Scenario 3: Money Growth Rules (replace Equation (24) with Equation
 (33)) mu = 0; // Eq (33) money growth rate rule;
 
-delta\_r\emph{(r\_ss-1)}lambdahat - delta\_r\emph{(r\_ss-1)}ahat - uhat
-+ phi\emph{zhat = phi}mhat(-1) - (1 + (1 + beta)\emph{phi)}mhat +
-beta\emph{phi}mhat(+1) - delta\_r\emph{rhat; // Equation (25) money
-demand relationship //implies that: mhat = delta\_r}(r\_ss-1)\emph{yhat
-- delta\_r}rhat + uhat
+delta_r*(r_ss-1)*lambdahat - delta_r*(r_ss-1)*ahat - uhat + phi*zhat =
+phi*mhat(-1) - (1 + (1 + beta)*phi)*mhat + beta*phi*mhat(+1) -
+delta_r*rhat; // Equation (25) money demand relationship //implies that:
+mhat = delta_r*(r_ss-1)*yhat - delta_r*rhat + uhat
 
 mu = zhat + mhat - mhat(-1) + pihat ; // Equation (26) determines the
 growth rate of the nominal money stock
@@ -2479,14 +2489,14 @@ ghat = yhat - yhat(-1) + zhat; // Equation (27) determines the growth
 rate of aggregate output
 
 //Dynamics of preference, productivity, money demand and cost push
-shocks: ahat = rho\_a*ahat(-1) + epsilon\_a; // Equation (28) preference
+shocks: ahat = rho_a\*ahat(-1) + epsilon_a; // Equation (28) preference
 shock
 
-zhat = epsilon\_z; // Equation (29) productivity shock
+zhat = epsilon_z; // Equation (29) productivity shock
 
-uhat = rho\_u*uhat(-1) + epsilon\_u; // Equation (30) money demand shock
+uhat = rho_u\*uhat(-1) + epsilon_u; // Equation (30) money demand shock
 
-ehat = rho\_e*ehat(-1) + epsilon\_e; // Equation (31) cost push shock
+ehat = rho_e\*ehat(-1) + epsilon_e; // Equation (31) cost push shock
 
 end;
 
@@ -2494,46 +2504,47 @@ steady; check;
 
 // Define shocks:
 
-shocks; //var epsilon\_r; stderr 0.0016; // monetary policy shock; value
-according to Belongia \& Ireland (2020): Table 1 var epsilon\_a; stderr
-0.01; // preference shock; according to Belongia \& Ireland (2020):
-Table 1 var epsilon\_z; stderr 0.01; // productivity shock; according to
-Belongia \& Ireland (2020): Table 1 var epsilon\_u; stderr 0.01; //
-money demand shock; according to Belongia \& Ireland (2020): Table 1 var
-epsilon\_e; stderr 0.01; // cost push shock; according to Belongia \&
+shocks; //var epsilon_r; stderr 0.0016; // monetary policy shock; value
+according to Belongia & Ireland (2020): Table 1 var epsilon_a; stderr
+0.01; // preference shock; according to Belongia & Ireland (2020): Table
+1 var epsilon_z; stderr 0.01; // productivity shock; according to
+Belongia & Ireland (2020): Table 1 var epsilon_u; stderr 0.01; // money
+demand shock; according to Belongia & Ireland (2020): Table 1 var
+epsilon_e; stderr 0.01; // cost push shock; according to Belongia &
 Ireland (2020): Table 1
 
-end; stoch\_simul(order=1,irf=40);
+end; stoch_simul(order=1,irf=40);
+\end{verbatim}
 
 \hypertarget{flexible-money-growth-rule-calibration-code}{%
-\subsection{Flexible Money Growth Rule Calibration
+\subsubsection{Flexible Money Growth Rule Calibration
 Code}\label{flexible-money-growth-rule-calibration-code}}
 
+\begin{verbatim}
 //Macros Project Calibration Flexible Money Growth Rule
 
 //Preamble: var chat yhat lambdahat ahat zhat rhat qhat xhat ehat uhat
 mhat mu ghat pihat;
 
-varexo epsilon\_a epsilon\_z epsilon\_u epsilon\_e; //epsilon\_r
+varexo epsilon_a epsilon_z epsilon_u epsilon_e; //epsilon_r
 
-parameters z\_ss beta gamma rho\_a alpha psi delta\_r phi r\_ss rho\_u
-rho\_e rho\_mm rho\_mpi rho\_mx; //rho\_r rho\_pi rho\_x; //not in
-scenario 3
+parameters z_ss beta gamma rho_a alpha psi delta_r phi r_ss rho_u rho_e
+rho_mm rho_mpi rho_mx; //rho_r rho_pi rho_x; //not in scenario 3
 
-// Parameter Declaration z\_ss = 1.00037; // Detrended quarterly changes
-in log of GDP r\_ss = 0.98784; // From quarterly data divided by 4 beta
-= 0.99023; // 1/(r\_ss+1) from Gollier (2014)
+// Parameter Declaration z_ss = 1.00037; // Detrended quarterly changes
+in log of GDP r_ss = 0.98784; // From quarterly data divided by 4 beta =
+0.99023; // 1/(r_ss+1) from Gollier (2014)
 
 gamma = 0.6741; // habit formation parameter alpha = 0.2337; // price
-index psi = 0.0062; // Phillips curve slope from Hazell et al.~(2020)
-delta\_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
-money demand adjustment cost //rho\_r = 0.8373; // interest rate
-smoothing (not in scenario 3) //rho\_pi = 0.2296; // policy response to
-inflation (not in scenario 3) //rho\_x = 0.2388; // policy response to
-output gap (not in scenario 3) rho\_a = 0.9263; // preference shock
-persistence rho\_u = 0.9733; // money demand shock persistence rho\_e =
-0.3330; // cost push shock persistence rho\_mm = 1; rho\_mpi = 0;
-rho\_mx = -0.125;
+index psi = 0.0062; // Phillips curve slope from Hazell et al. (2020)
+delta_r = 14.8716; // money demand semi-elasticity phi = 14.8854; //
+money demand adjustment cost //rho_r = 0.8373; // interest rate
+smoothing (not in scenario 3) //rho_pi = 0.2296; // policy response to
+inflation (not in scenario 3) //rho_x = 0.2388; // policy response to
+output gap (not in scenario 3) rho_a = 0.9263; // preference shock
+persistence rho_u = 0.9733; // money demand shock persistence rho_e =
+0.3330; // cost push shock persistence rho_mm = 1; rho_mpi = 0; rho_mx =
+-0.125;
 
 // Model:
 
@@ -2544,41 +2555,37 @@ yhat;
 
 // Eq (19)-(22) define the model's New Keynesian IS relationship:
 
-(z\_ss-beta\emph{gamma)}(z\_ss-gamma)\emph{lambdahat =
-gamma}z\_ss\emph{yhat(-1) - (z\_ss\^{}2 + beta}(gamma\^{}2))\emph{yhat +
-beta}gamma\emph{z\_ss}yhat(+1) +
-(z\_ss-beta\emph{gamma}rho\_a)\emph{(z\_ss-gamma)}ahat -
-gamma\emph{z\_ss}zhat; // Equation (19)
+(z_ss-beta*gamma)*(z_ss-gamma)*lambdahat = gamma*z_ss*yhat(-1) -
+(z_ss\^2 + beta*(gamma\^2))*yhat + beta*gamma*z_ss*yhat(+1) +
+(z_ss-beta*gamma*rho_a)*(z_ss-gamma)*ahat - gamma*z_ss*zhat; // Equation
+(19)
 
 lambdahat = rhat + lambdahat(+1) - pihat(+1); // Equation (20)
 
-0 = gamma\emph{z\_ss}qhat(-1) - (z\_ss\^{}2+beta\emph{(gamma\^{}2))}qhat
-+ beta\emph{gamma}z\_ss\emph{qhat(+1) +
-beta}gamma\emph{(z\_ss-gamma)}(1-rho\_a)\emph{ahat - gamma}z\_ss*zhat;
-// Equation (22)
+0 = gamma*z_ss*qhat(-1) - (z_ss\^2+beta*(gamma\^2))*qhat +
+beta*gamma*z_ss*qhat(+1) + beta*gamma*(z_ss-gamma)*(1-rho_a)*ahat -
+gamma*z_ss\*zhat; // Equation (22)
 
 xhat = yhat - qhat; // Equation (22) - Output Gap
 
-//New Keynesian Phillips Curve: (1+beta\emph{alpha)}pihat =
-alpha\emph{pihat(-1) + beta}pihat(+1) - psi\emph{lambdahat + psi}ahat +
-ehat; // Equation (23)
+//New Keynesian Phillips Curve: (1+beta*alpha)*pihat = alpha*pihat(-1) +
+beta*pihat(+1) - psi*lambdahat + psi*ahat + ehat; // Equation (23)
 
-// Scenario 1: Taylor rule //rhat = rho\_r\emph{rhat(-1) +
-rho\_pi}pihat(-1) + rho\_x*xhat(-1) + epsilon\_r; // Equation (24)
-Taylor rule for monetary policy
+// Scenario 1: Taylor rule //rhat = rho_r*rhat(-1) + rho_pi*pihat(-1) +
+rho_x\*xhat(-1) + epsilon_r; // Equation (24) Taylor rule for monetary
+policy
 
 // Scenario 2: replace Equation (24) with Equation (32) //rhat =
--ln(r\_ss); // Equation (32) (with zero interest rate condition)
+-ln(r_ss); // Equation (32) (with zero interest rate condition)
 
 // Scenario 3: Money Growth Rules (replace Equation (24) with Equation
-(33)) mu = rho\_mm\emph{mu(-1) + rho\_mpi}pihat(-1) + rho\_mx*xhat(-1);
-// Equation (33) money growth rate rule
+(33)) mu = rho_mm*mu(-1) + rho_mpi*pihat(-1) + rho_mx\*xhat(-1); //
+Equation (33) money growth rate rule
 
-delta\_r\emph{(r\_ss-1)}lambdahat - delta\_r\emph{(r\_ss-1)}ahat - uhat
-+ phi\emph{zhat = phi}mhat(-1) - (1 + (1 + beta)\emph{phi)}mhat +
-beta\emph{phi}mhat(+1) - delta\_r\emph{rhat; // Equation (25) money
-demand relationship //implies that: mhat = delta\_r}(r\_ss-1)\emph{yhat
-- delta\_r}rhat + uhat
+delta_r*(r_ss-1)*lambdahat - delta_r*(r_ss-1)*ahat - uhat + phi*zhat =
+phi*mhat(-1) - (1 + (1 + beta)*phi)*mhat + beta*phi*mhat(+1) -
+delta_r*rhat; // Equation (25) money demand relationship //implies that:
+mhat = delta_r*(r_ss-1)*yhat - delta_r*rhat + uhat
 
 mu = zhat + mhat - mhat(-1) + pihat ; // Equation (26) determines the
 growth rate of the nominal money stock
@@ -2587,14 +2594,14 @@ ghat = yhat - yhat(-1) + zhat; // Equation (27) determines the growth
 rate of aggregate output
 
 //Dynamics of preference, productivity, money demand and cost push
-shocks: ahat = rho\_a*ahat(-1) + epsilon\_a; // Equation (28) preference
+shocks: ahat = rho_a\*ahat(-1) + epsilon_a; // Equation (28) preference
 shock
 
-zhat = epsilon\_z; // Equation (29) productivity shock
+zhat = epsilon_z; // Equation (29) productivity shock
 
-uhat = rho\_u*uhat(-1) + epsilon\_u; // Equation (30) money demand shock
+uhat = rho_u\*uhat(-1) + epsilon_u; // Equation (30) money demand shock
 
-ehat = rho\_e*ehat(-1) + epsilon\_e; // Equation (31) cost push shock
+ehat = rho_e\*ehat(-1) + epsilon_e; // Equation (31) cost push shock
 
 end;
 
@@ -2602,16 +2609,17 @@ steady; check;
 
 // Define shocks:
 
-shocks; var epsilon\_a; stderr 0.01; // preference shock; according to
-Belongia \& Ireland (2020): Table 1 var epsilon\_z; stderr 0.01; //
-productivity shock; according to Belongia \& Ireland (2020): Table 1 var
-epsilon\_u; stderr 0.01; // money demand shock; according to Belongia \&
-Ireland (2020): Table 1 var epsilon\_e; stderr 0.01; // cost push shock;
-according to Belongia \& Ireland (2020): Table 1
+shocks; var epsilon_a; stderr 0.01; // preference shock; according to
+Belongia & Ireland (2020): Table 1 var epsilon_z; stderr 0.01; //
+productivity shock; according to Belongia & Ireland (2020): Table 1 var
+epsilon_u; stderr 0.01; // money demand shock; according to Belongia &
+Ireland (2020): Table 1 var epsilon_e; stderr 0.01; // cost push shock;
+according to Belongia & Ireland (2020): Table 1
 
 end;
 
-stoch\_simul(order=1,irf=20);
+stoch_simul(order=1,irf=20);
+\end{verbatim}
 
 \bibliography{Tex/ref}
 
