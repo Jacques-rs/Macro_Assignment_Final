@@ -1896,7 +1896,7 @@ width="90%"}
 
 \newpage
 
-# Hodrick Prescott Code: 
+# Hodrick Prescott Code
 
 //Hodrick Prescott on GDP
 
