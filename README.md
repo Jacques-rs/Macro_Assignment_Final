@@ -88,7 +88,7 @@ According to Belongia and Ireland (2020), nominal interest rate
 management has been the Federal Reserve's approach to stabilise the
 economy's output gap and inflation. The Taylor rule is a good predictor
 of the nominal interest rate management. Interest rate management has
-been endorsed by literature and has shown advantages over the management
+been endorsed by previous literature and has shown advantages over the management
 of money stock, however, economists have only argued against a constant
 monetary growth rule but have neglected the potential benefits of a
 flexible monetary growth rule. Belongia and Ireland (2020) is a
@@ -109,7 +109,7 @@ log-linearisations of the model are then presented in sections 3 and 4,
 respectively. Section 5 provides an explanation of the data and
 calibration methods used. The paper presents and discusses the
 calibration results, in the form of impulse response functions in
-section 6. Lastly, this paper concludes by ...
+section 6. Lastly, this paper concludes that of the two money growth rules considered, the Constant Money Growth rate rule is outperformed by the Flexible Money Growth rate rule with regards to efficient responses to the shocks, in particular the money demand shock. Additionally, the Flexible Money Growth rate rule presents comparable results to the interest rate rules and may offer more efficient stabilisation with further assumptions.
 
 # The Model
 
@@ -1626,16 +1626,13 @@ rule.
 
 # Conclusion
 
-Interest rate rules, such as the TR rule, have long been considered a successful policy decision tool of choice for the Federal Reserve Bank (Belongia & Ireland, 2020:2). Between 2009-2015, however, the Federal Reserve Bank’s response proved inadequate due to constraints from a nominal interest rate lower bound (Belongia & Ireland, 2020:2). Due to this, alternative rules, such as those that incorporate money growth, need to be investigated. This paper displays the success of interest rate rules in protecting the economy in response to money demand shocks and efficiently adjusting after real shocks, and compares this success against alternative policy rules, namely the FMG and the CMG. 
+Interest rate rules, such as the Taylor (TR) rule, have long been considered a successful policy decision tool of choice for the Federal Reserve Bank (Belongia & Ireland, 2020:2). Between 2009-2015, however, the Federal Reserve Bank’s response proved inadequate due to constraints from a nominal interest rate lower bound (Belongia & Ireland, 2020:2). Due to this, alternative rules, such as those that incorporate money growth, need to be investigated. This paper displays the success of interest rate rules in protecting the economy in response to money demand shocks and efficiently adjusting after real shocks, such as a productivity shock, preference shock and cost push shock. It further compares this success against alternative policy rules, namely the Flexible Money Growth rate (FMG) rule and the Constant Money Growth rate (CMG) rule. 
 
-The results discussed in the previous section illustrate that monetarily, CMG rule does not respond appropriately to scenarios where adjusting output and inflation are necessary. The TR rule allows for the money growth rate to be changed. The FMG rule acts as an alternative to the TR rule but similarly lets money growth adjust slightly after changes to the output gap (Belongia & Ireland, 2020:34). As such, monetary policy can be used for stability in the short run without needing to alter long run money growth (Belongia & Ireland, 2020:34).
+The results discussed in the previous section illustrate that monetarily, the CMG rule does not respond appropriately to scenarios where adjusting output and inflation are necessary. The TR rule allows for the money growth rate to be changed. The FMG rule acts as an alternative to the TR rule but similarly lets money growth adjust slightly after changes to the output gap (Belongia & Ireland, 2020:34). As such, monetary policy can be used for stability in the short run without needing to alter long run money growth (Belongia & Ireland, 2020:34). 
 
+The first alternative to interest rate rules, the CMG rule, offers little to compare. The IRFs from this paper highlight the shortcomings of this rule towards achieving stability in output following a money demand shock. The IRFs of the second alternative, the FMG rule, provide comparable results to the interest rate rules. The response to a money demand shock by this rule achieves successful stabilisation of output alongside stabilisation of the nominal side of the economy. It achieves this despite there being a slight delay in the implementation of the policy. Belongia & Ireland (2020:29-35) mention this delay but argue that shocks similar to that following the Global Financial Crisis had a more predictable nature that would negate this gap. Therefore, applying this rule over the period following the Global Financial Crisis could have provided policy-makers with a tool comparable to the interest rate rule. Furthermore, it removes the need for unconventional policy rules when approaching the zero lower bound. 
 
-The first alternative to interest rate rules, the CMG rule, offers little to compare. The IRFs from this paper highlight the shortcomings of this rule towards achieving stability in output following a money demand shock. The IRFs of the second alternative, the FMG rule, provide comparable results to the interest rate rules. The response to a money demand shock by this rule achieves successful stabilisation of output alongside stabilisation of the nominal side of the economy. It achieves this despite there being a slight delay in the implementation of the policy. Belongia & Ireland (2020:29-35) mention this delay but argue that shocks similar to that following the Global Financial Crisis had a more predictable nature that would negate this gap. Therefore, applying this rule over the period following the global financial could have provided policy-makers with a tool comparable to the interest rate rule. Furthermore, it removes the need for unconventional policy rules when approaching the Zero Lower Bound.
-
-
-The historic success of the federal reserve bank based on an interest rate rule is not enough evidence for this policy rule to take preference over others. Lowering the interest rate to the zero lower bound and the decreasing marginal returns from doing so suggests an alternative (or additional) policy rule is required. The results from this paper suggest that the consideration of the FMG rule is necessary, and adds to efficient where the interest rate rule falls short.
-
+The historic success of the federal reserve bank based on an interest rate rule is not enough evidence for this policy rule to take preference over others. Lowering the interest rate to the zero lower bound and the decreasing marginal returns from doing so suggests an alternative (or additional) policy rule is required. The results from this paper suggest that the consideration of the FMG rule is necessary, and adds to efficiency where the interest rate rules fall short.
 
 \newpage
 
